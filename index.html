@@ -3039,6 +3039,118 @@ header{
   color:#153e69 !important;
 }
 
+
+/* Dashboard Quick Actions */
+.dashboard-quick-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+.dashboard-quick-actions .btn{
+  height:42px;
+  padding:0 16px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+.dashboard-quote-action{
+  background:#153e69 !important;
+  color:#fff !important;
+}
+.dashboard-quote-action:hover{background:#12365c !important}
+.dashboard-client-action{
+  background:#fff !important;
+  color:#153e69 !important;
+  border:1px solid #153e69 !important;
+}
+.dashboard-client-action:hover{background:#f8fafc !important}
+
+
+/* Dashboard quick actions — restore previous styling */
+#dashboard-page .dashboard-quick-actions{
+  display:flex !important;
+  gap:10px !important;
+  margin-bottom:20px !important;
+}
+#dashboard-page .dashboard-quick-actions .btn{
+  height:auto !important;
+  min-height:0 !important;
+  padding:9px 15px !important;
+  border:0 !important;
+  border-radius:7px !important;
+  color:#fff !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+  line-height:normal !important;
+}
+#dashboard-page .dashboard-quote-action{
+  background:#2864e8 !important;
+}
+#dashboard-page .dashboard-client-action{
+  background:#ef8500 !important;
+  color:#fff !important;
+  border:0 !important;
+}
+#dashboard-page .dashboard-quote-action:hover{
+  background:#2864e8 !important;
+}
+#dashboard-page .dashboard-client-action:hover{
+  background:#ef8500 !important;
+}
+
+
+/* Create Quote: Client → Job relationship */
+#quoteStep1 .quote-job-field{
+  margin-top:14px;
+}
+#quoteStep1 .quote-job-field select{
+  width:100%;
+  height:40px;
+  border:1px solid #d8e0e9;
+  border-radius:7px;
+  padding:0 11px;
+  background:#fff;
+  color:#334155;
+  font-size:12px;
+}
+#quoteStep1 .quote-job-field select:disabled{
+  background:#f8fafc;
+  color:#94a3b8;
+}
+#quoteStep1 .quote-job-help{
+  margin-top:6px;
+  color:#94a3b8;
+  font-size:12px;
+}
+
+
+/* Quick Add Client: disabled state until required fields are complete */
+#quoteQuickClientAdd:disabled{
+  background:#e5e7eb !important;
+  border-color:#e5e7eb !important;
+  color:#94a3b8 !important;
+  cursor:not-allowed !important;
+  box-shadow:none !important;
+}
+
+
+/* Disabled buttons — match supplied reference */
+#quoteQuickClientAdd:disabled,
+#create-quote-page button:disabled,
+#add-client-page button:disabled,
+#edit-client-page button:disabled,
+#newOpportunityModal button:disabled{
+  background:#e5e5e5 !important;
+  border:1px solid #e5e5e5 !important;
+  color:#667085 !important;
+  opacity:1 !important;
+  box-shadow:none !important;
+  cursor:not-allowed !important;
+  font-weight:700 !important;
+}
+
 </style>
 
 <style>
@@ -3122,7 +3234,10 @@ header{
 
 <div id="dashboard-page" class="page-view active">
 <main class="content"><h1>Welcome, Consumer Branch Admin</h1><div class="sub">Here's your complete overview.</div>
-<div class="actions"><button class="btn blue">＋ Survey Requests</button><button class="btn orange">＋ New Client</button><button class="btn purple">＋ New Scheduling Task</button></div>
+<div class="actions dashboard-quick-actions">
+  <button class="btn dashboard-quote-action" id="dashboardCreateQuote">＋ Quote</button>
+  <button class="btn dashboard-client-action" id="dashboardNewClient">＋ New Client</button>
+</div>
 <div class="grid4">
 <div class="card metric"><div class="label">Total Clients</div><div class="value">6</div></div><div class="card metric"><div class="label">Total Tasks/Jobs</div><div class="value">27</div></div><div class="card metric"><div class="label">Active Dispatches</div><div class="value">1</div></div><div class="card metric"><div class="label">Total Revenue</div><div class="value">$4,469.60</div></div>
 </div>
@@ -3191,8 +3306,23 @@ header{
     <div class="quote-section">
       <div class="quote-section-title">Client</div><div class="quote-section-sub">Select an existing client or create a new client before continuing.</div>
       <div class="client-select-row">
-        <div class="quote-field"><label>Client <span class="req">*</span></label><select><option>Select client...</option><option>Consumer Company</option><option>QA Tester 3</option><option>No Access Company</option></select></div>
+        <div class="quote-field">
+          <label>Client <span class="req">*</span></label>
+          <select id="quoteClientSelect">
+            <option value="">Select client...</option>
+            <option>Consumer Company</option>
+            <option>QA Tester 3</option>
+            <option>No Access Company</option>
+          </select>
+        </div>
         <button class="add-client-inline" id="quoteAddClient">＋ Add New Client</button>
+      </div>
+      <div class="quote-field quote-job-field">
+        <label>Job <span class="req">*</span></label>
+        <select id="quoteJobSelect" disabled>
+          <option value="">Select a client first</option>
+        </select>
+        <div class="quote-job-help" id="quoteJobHelp">Select a client first to create a new job or choose an existing job.</div>
       </div>
     </div>
 
@@ -4764,7 +4894,7 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
   <span class="quote-portal-track"><span class="quote-portal-thumb"></span></span>
   <span class="quote-portal-status">Enabled</span>
 </label>
-</div><div class="quick-client-section"><h3>Company Information</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Company Name *</label><input id="quickClientCompany" placeholder="E.g. ACME Corporation"></div><div class="quick-client-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div><div class="quick-client-field full"><label>Email Address</label><input placeholder="company@example.com"></div><div class="quick-client-field full"><label>Address *</label><input placeholder="Street address"></div><div class="quick-client-field"><label>Country *</label><select><option>Select country...</option><option>United States</option><option>Canada</option></select></div><div class="quick-client-field"><label>State / Province *</label><input></div><div class="quick-client-field"><label>City *</label><input></div><div class="quick-client-field"><label>ZIP / Postal Code *</label><input></div></div></div><div class="quick-client-section"><h3>Primary Contact *</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Contact Name *</label><input placeholder="E.g. John Smith"></div><div class="quick-client-field"><label>Job Title</label><input></div><div class="quick-client-field"><label>Email Address *</label><input placeholder="john@company.com"></div><div class="quick-client-field"><label>Phone Number</label><input></div></div></div><div class="quick-client-actions"><button class="header-cancel" id="quoteQuickClientCancel">Cancel</button><button class="header-create" id="quoteQuickClientAdd">+ Add Client</button></div></div></div></div>
+</div><div class="quick-client-section"><h3>Company Information</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Company Name *</label><input id="quickClientCompany" placeholder="E.g. ACME Corporation" required></div><div class="quick-client-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div><div class="quick-client-field full"><label>Email Address</label><input placeholder="company@example.com"></div><div class="quick-client-field full"><label>Address *</label><input placeholder="Street address"></div><div class="quick-client-field"><label>Country *</label><select><option>Select country...</option><option>United States</option><option>Canada</option></select></div><div class="quick-client-field"><label>State / Province *</label><input></div><div class="quick-client-field"><label>City *</label><input></div><div class="quick-client-field"><label>ZIP / Postal Code *</label><input></div></div></div><div class="quick-client-section"><h3>Primary Contact *</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Contact Name *</label><input placeholder="E.g. John Smith"></div><div class="quick-client-field"><label>Job Title</label><input></div><div class="quick-client-field"><label>Email Address *</label><input placeholder="john@company.com"></div><div class="quick-client-field"><label>Phone Number</label><input></div></div></div><div class="quick-client-actions"><button class="header-cancel" id="quoteQuickClientCancel">Cancel</button><button class="header-create" id="quoteQuickClientAdd">+ Add Client</button></div></div></div></div>
 <script>
 (function(){const trigger=document.getElementById('quoteAddClient'),modal=document.getElementById('quoteQuickClientModal');if(!trigger||!modal)return;function hide(){modal.classList.remove('open')}trigger.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();modal.classList.add('open')},true);document.getElementById('quoteQuickClientClose').onclick=hide;document.getElementById('quoteQuickClientCancel').onclick=hide;document.getElementById('quoteQuickClientAdd').onclick=function(){const n=document.getElementById('quickClientCompany').value.trim()||'New Client',s=document.querySelector('#quoteStep1 .client-select-row select');if(s){const o=document.createElement('option');o.textContent=n;o.value=n;o.selected=true;s.appendChild(o)}hide()};})();
 </script>
@@ -4813,6 +4943,109 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
  body.addEventListener('scroll',active,{passive:true});
  body.addEventListener('wheel',active,{passive:true});
  body.addEventListener('touchmove',active,{passive:true});
+})();
+</script>
+
+
+<script>
+(function(){
+ const quote=document.getElementById('dashboardCreateQuote');
+ const client=document.getElementById('dashboardNewClient');
+
+ function showView(id){
+   document.querySelectorAll('.page-view').forEach(p=>p.classList.remove('active'));
+   const page=document.getElementById(id);
+   if(page)page.classList.add('active');
+   document.querySelectorAll('.page-link').forEach(a=>a.classList.remove('active'));
+   window.scrollTo(0,0);
+ }
+
+ if(quote)quote.addEventListener('click',()=>showView('create-quote-page'));
+ if(client)client.addEventListener('click',()=>showView('add-client-page'));
+})();
+</script>
+
+
+<script>
+(function(){
+ const client=document.getElementById('quoteClientSelect');
+ const job=document.getElementById('quoteJobSelect');
+ const help=document.getElementById('quoteJobHelp');
+ if(!client||!job)return;
+
+ const jobs={
+  'Consumer Company':['Job #102 — North Site Survey','Job #118 — Austin Property Mapping'],
+  'QA Tester 3':['Job #126 — Toronto Inspection'],
+  'No Access Company':['Job #091 — Property Survey']
+ };
+
+ function syncJobs(){
+   const name=client.value;
+   job.innerHTML='';
+   if(!name){
+     job.disabled=true;
+     job.innerHTML='<option value="">Select a client first</option>';
+     if(help)help.textContent='Select a client first to create a new job or choose an existing job.';
+     return;
+   }
+   job.disabled=false;
+   job.innerHTML='<option value="new">(Auto-create new job)</option>'+
+     (jobs[name]||[]).map(x=>'<option value="'+x+'">'+x+'</option>').join('');
+   if(help)help.textContent='Auto-create a new job for this quote or select an existing job for '+name+'.';
+ }
+ client.addEventListener('change',syncJobs);
+ syncJobs();
+})();
+</script>
+
+
+<script>
+(function(){
+ const modal=document.getElementById('quoteQuickClientModal');
+ const add=document.getElementById('quoteQuickClientAdd');
+ const client=document.getElementById('quoteClientSelect');
+ const job=document.getElementById('quoteJobSelect');
+ const help=document.getElementById('quoteJobHelp');
+ if(!modal||!add)return;
+
+ const required=[
+  'quickClientCompany','quickClientAddress','quickClientCountry','quickClientState',
+  'quickClientCity','quickClientPostal','quickClientContactName','quickClientContactEmail'
+ ].map(id=>document.getElementById(id)).filter(Boolean);
+
+ function valid(){
+   return required.every(el=>{
+     if(!String(el.value||'').trim())return false;
+     if(el.type==='email')return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+     return true;
+   });
+ }
+ function sync(){add.disabled=!valid()}
+ required.forEach(el=>{el.addEventListener('input',sync);el.addEventListener('change',sync)});
+ sync();
+
+ // Override the previous quick-add action so a newly created client has NO existing jobs.
+ add.addEventListener('click',function(e){
+   if(add.disabled)return;
+   e.preventDefault();
+   e.stopImmediatePropagation();
+
+   const name=document.getElementById('quickClientCompany').value.trim();
+   if(client){
+     let opt=[...client.options].find(o=>o.value===name);
+     if(!opt){opt=document.createElement('option');opt.value=name;opt.textContent=name;client.appendChild(opt)}
+     client.value=name;
+   }
+
+   if(job){
+     job.disabled=false;
+     job.innerHTML='<option value="new">(Auto-create new job)</option>';
+     job.value='new';
+   }
+   if(help)help.textContent='This is a new client, so there are no existing jobs to select. A new job will be created automatically.';
+
+   modal.classList.remove('open');
+ },true);
 })();
 </script>
 
