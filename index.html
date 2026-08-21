@@ -2945,6 +2945,100 @@ header{
   border-radius:5px !important;
 }
 
+
+/* Consistent form typography across Create Quote + Opportunity modal */
+#create-quote-page .quote-field label,
+#create-quote-page .quick-client-field label,
+#newOpportunityModal .opp-field label{
+  color:#475569 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+}
+#create-quote-page input,
+#create-quote-page select,
+#create-quote-page textarea,
+#newOpportunityModal input,
+#newOpportunityModal select,
+#newOpportunityModal textarea{
+  color:#334155 !important;
+  font-size:12px !important;
+}
+#create-quote-page input::placeholder,
+#create-quote-page textarea::placeholder,
+#newOpportunityModal input::placeholder,
+#newOpportunityModal textarea::placeholder{
+  color:#94a3b8 !important;
+  opacity:1 !important;
+}
+
+
+/* Match Add New Client page field headers to Create Quote */
+#add-client-page .form-field label,
+#edit-client-page .form-field label{
+  color:#475569 !important;
+  font-size:12px !important;
+  font-weight:600 !important;
+  line-height:1.4 !important;
+  text-transform:none !important;
+  letter-spacing:0 !important;
+  margin-bottom:6px !important;
+}
+#add-client-page .form-section-title,
+#add-client-page .contacts-builder-head h3,
+#edit-client-page .form-section-title,
+#edit-client-page .edit-client-contact-head h3{
+  font-size:13px !important;
+  font-weight:700 !important;
+  color:#172033 !important;
+}
+
+
+/* Dark blue header/label text across forms and popups */
+#create-quote-page .quote-field label,
+#create-quote-page .quick-client-field label,
+#add-client-page .form-field label,
+#edit-client-page .form-field label,
+#newOpportunityModal .opp-field label,
+#quoteQuickClientModal .quick-client-field label,
+#create-quote-page .quote-section-title,
+#add-client-page .form-section-title,
+#add-client-page .contacts-builder-head h3,
+#edit-client-page .form-section-title,
+#edit-client-page .edit-client-contact-head h3,
+#newOpportunityModal .opp-modal-head h2,
+#quoteQuickClientModal .quote-client-modal-head h2,
+#quoteQuickClientModal .quick-client-section h3{
+  color:#153e69 !important;
+}
+
+
+/* Restore form/field labels; dark blue applies to TABLE headers only */
+#create-quote-page .quote-field label,
+#create-quote-page .quick-client-field label,
+#add-client-page .form-field label,
+#edit-client-page .form-field label,
+#newOpportunityModal .opp-field label,
+#quoteQuickClientModal .quick-client-field label{
+  color:#475569 !important;
+}
+
+/* Table headers */
+.crm-row.header,
+.contact-row.head,
+.edit-contact-row.head,
+.service-summary-head,
+.standard-service-example .std-head,
+.provider-address-row.head,
+.provider-send-row.head,
+.current-resource-head,
+.final-selected-head,
+.clean-selected-head,
+.resource-selected-head{
+  color:#153e69 !important;
+}
+
 </style>
 
 <style>
@@ -3358,7 +3452,7 @@ header{
       <div class="form-section">
         <div class="form-section-title">Company Information</div>
         <div class="form-grid">
-          <div class="form-field"><label>Company Name <span class="req">*</span></label><input placeholder="e.g. ACME Corporation"></div>
+          <div class="form-field"><label>Company Name <span class="req">*</span></label><input placeholder="E.g. ACME Corporation"></div>
           <div class="form-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div>
           <div class="form-field full"><label>Email Address</label><input placeholder="company@example.com"></div>
           <div class="form-field full"><label>Address <span class="req">*</span></label><input placeholder="Street address"></div>
@@ -3378,8 +3472,8 @@ header{
           <div class="contact-editor">
             <div class="contact-editor-head"><div><b>Contact 1</b> <span class="primary-pill">Primary</span></div></div>
             <div class="form-grid">
-              <div class="form-field"><label>Contact Name <span class="req">*</span></label><input placeholder="e.g. John Smith"></div>
-              <div class="form-field"><label>Job Title</label><input placeholder="e.g. Operations Manager"></div>
+              <div class="form-field"><label>Contact Name <span class="req">*</span></label><input placeholder="E.g. John Smith"></div>
+              <div class="form-field"><label>Job Title</label><input placeholder="E.g. Operations Manager"></div>
               <div class="form-field"><label>Email Address <span class="req">*</span></label><input placeholder="john@company.com"></div>
               <div class="form-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div>
             </div>
@@ -3894,7 +3988,7 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
       <div class="form-section">
         <div class="form-section-title">Company Information</div>
         <div class="form-grid">
-          <div class="form-field"><label>Company Name <span class="req">*</span></label><input placeholder="e.g. ACME Corporation" required></div>
+          <div class="form-field"><label>Company Name <span class="req">*</span></label><input placeholder="E.g. ACME Corporation" required></div>
           <div class="form-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div>
           <div class="form-field full"><label>Email Address</label><input type="email" placeholder="company@example.com"></div>
           <div class="form-field full"><label>Address <span class="req">*</span></label><input placeholder="Street address" required></div>
@@ -3909,8 +4003,8 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
         <div class="form-section-title">Primary Contact <span class="req">*</span></div>
         <div class="contact-required-note">Every client/company must have at least one contact. This contact will be created with the client.</div>
         <div class="form-grid">
-          <div class="form-field"><label>Contact Name <span class="req">*</span></label><input placeholder="e.g. John Smith" required></div>
-          <div class="form-field"><label>Job Title</label><input placeholder="e.g. Operations Manager"></div>
+          <div class="form-field"><label>Contact Name <span class="req">*</span></label><input placeholder="E.g. John Smith" required></div>
+          <div class="form-field"><label>Job Title</label><input placeholder="E.g. Operations Manager"></div>
           <div class="form-field"><label>Email Address <span class="req">*</span></label><input type="email" placeholder="john@company.com" required></div>
           <div class="form-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div>
         </div>
@@ -4145,15 +4239,15 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
     </div>
     <div class="opp-modal-body">
       <div class="opp-form-grid">
-        <div class="opp-field half"><label>Name <span class="req">*</span></label><input placeholder="e.g. Roof Survey – North Site"></div>
+        <div class="opp-field half"><label>Name <span class="req">*</span></label><input placeholder="E.g. Roof Survey – North Site"></div>
         <div class="opp-field half"><label>Client <span class="req">*</span></label><select><option>Search or select a client...</option><option>Consumer Company</option><option>QA Tester 3</option></select></div>
         <div class="opp-field"><label>Estimated Value</label><input placeholder="$0.00"></div>
         <div class="opp-field"><label>Probability (%)</label><input type="number" value="50" min="0" max="100"></div>
         <div class="opp-field"><label>Stage</label><select><option>Lead</option><option>Qualification</option><option>Proposal</option><option>Negotiation</option><option>Won</option><option>Lost</option></select></div>
         <div class="opp-field half"><label>Contact Name</label><input placeholder="Contact name"></div>
-        <div class="opp-field half"><label>Contact Email</label><input type="email" placeholder="contact@company.com"></div>
+        <div class="opp-field half"><label>Contact Email</label><input type="email" placeholder="Contact@company.com"></div>
         <div class="opp-field"><label>Expected Close</label><input type="date"></div>
-        <div class="opp-field"><label>Source</label><input placeholder="e.g. Referral, Website"></div>
+        <div class="opp-field"><label>Source</label><input placeholder="E.g. Referral, Website"></div>
         <div class="opp-field"><label>Assigned To</label><select><option>Select...</option><option>Consumer Branch Admin</option></select></div>
         <div class="opp-field full"><label>Description</label><textarea placeholder="Add notes about the opportunity, requested services, timing, or next steps..."></textarea></div>
       </div>
@@ -4670,7 +4764,7 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
   <span class="quote-portal-track"><span class="quote-portal-thumb"></span></span>
   <span class="quote-portal-status">Enabled</span>
 </label>
-</div><div class="quick-client-section"><h3>Company Information</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Company Name *</label><input id="quickClientCompany" placeholder="e.g. ACME Corporation"></div><div class="quick-client-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div><div class="quick-client-field full"><label>Email Address</label><input placeholder="company@example.com"></div><div class="quick-client-field full"><label>Address *</label><input placeholder="Street address"></div><div class="quick-client-field"><label>Country *</label><select><option>Select country...</option><option>United States</option><option>Canada</option></select></div><div class="quick-client-field"><label>State / Province *</label><input></div><div class="quick-client-field"><label>City *</label><input></div><div class="quick-client-field"><label>ZIP / Postal Code *</label><input></div></div></div><div class="quick-client-section"><h3>Primary Contact *</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Contact Name *</label><input placeholder="e.g. John Smith"></div><div class="quick-client-field"><label>Job Title</label><input></div><div class="quick-client-field"><label>Email Address *</label><input placeholder="john@company.com"></div><div class="quick-client-field"><label>Phone Number</label><input></div></div></div><div class="quick-client-actions"><button class="header-cancel" id="quoteQuickClientCancel">Cancel</button><button class="header-create" id="quoteQuickClientAdd">+ Add Client</button></div></div></div></div>
+</div><div class="quick-client-section"><h3>Company Information</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Company Name *</label><input id="quickClientCompany" placeholder="E.g. ACME Corporation"></div><div class="quick-client-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div><div class="quick-client-field full"><label>Email Address</label><input placeholder="company@example.com"></div><div class="quick-client-field full"><label>Address *</label><input placeholder="Street address"></div><div class="quick-client-field"><label>Country *</label><select><option>Select country...</option><option>United States</option><option>Canada</option></select></div><div class="quick-client-field"><label>State / Province *</label><input></div><div class="quick-client-field"><label>City *</label><input></div><div class="quick-client-field"><label>ZIP / Postal Code *</label><input></div></div></div><div class="quick-client-section"><h3>Primary Contact *</h3><div class="quick-client-grid"><div class="quick-client-field"><label>Contact Name *</label><input placeholder="E.g. John Smith"></div><div class="quick-client-field"><label>Job Title</label><input></div><div class="quick-client-field"><label>Email Address *</label><input placeholder="john@company.com"></div><div class="quick-client-field"><label>Phone Number</label><input></div></div></div><div class="quick-client-actions"><button class="header-cancel" id="quoteQuickClientCancel">Cancel</button><button class="header-create" id="quoteQuickClientAdd">+ Add Client</button></div></div></div></div>
 <script>
 (function(){const trigger=document.getElementById('quoteAddClient'),modal=document.getElementById('quoteQuickClientModal');if(!trigger||!modal)return;function hide(){modal.classList.remove('open')}trigger.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();modal.classList.add('open')},true);document.getElementById('quoteQuickClientClose').onclick=hide;document.getElementById('quoteQuickClientCancel').onclick=hide;document.getElementById('quoteQuickClientAdd').onclick=function(){const n=document.getElementById('quickClientCompany').value.trim()||'New Client',s=document.querySelector('#quoteStep1 .client-select-row select');if(s){const o=document.createElement('option');o.textContent=n;o.value=n;o.selected=true;s.appendChild(o)}hide()};})();
 </script>
