@@ -5244,12 +5244,12 @@ button[style*="#1E3B8A"]:hover{
 
 <div class="quote-section survey-client-section">
       <div class="quote-section-title">Client</div>
-      <div class="quote-section-sub">Select the client for this survey request or create a new one.</div>
+      <div class="quote-section-sub">Complete the address or enter a Job Number to unlock client selection. Recently surveyed clients will appear first, and you can still search all clients.</div>
       <div class="client-select-row">
         <div class="quote-field">
           <label>Client <span class="req">*</span></label>
           <div class="sr-client-picker" id="srClientPicker">
-            <button type="button" class="sr-client-trigger" id="srClientTrigger">
+            <button type="button" class="sr-client-trigger" id="srClientTrigger" disabled>
               <span id="srClientText" class="placeholder">Select client...</span>
               <span class="sr-chevron">⌄</span>
             </button>
@@ -5262,7 +5262,7 @@ button[style*="#1E3B8A"]:hover{
             <input type="hidden" id="surveyRequestClient" value="">
           </div>
         </div>
-        <button type="button" class="add-client-inline" id="surveyRequestAddClient">＋ Add New Client</button>
+        <button type="button" class="add-client-inline" id="surveyRequestAddClient" disabled>＋ Add New Client</button>
       </div>
     </div>
 
@@ -8607,7 +8607,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     }
 
     // Quote entry points.
-    if((text==='Create Quote' || text.includes('New Quote')) && !el.closest('#create-quote-page')){
+    if((text==='Create Quote' || text.includes('New Quote')) && !el.closest('#create-quote-page') && !el.closest('.create-from-request,#jobDetailsCreateQuote')){
       e.preventDefault();
       e.stopImmediatePropagation();
       route('create-quote-page');
@@ -9341,8 +9341,34 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
     openPage('job-details-page');
   });
 
+  function prefillCreateQuote(source){
+    const root=document.getElementById('create-quote-page');if(!root||!source)return;
+    const requestRow=source.closest('.survey-row');
+    const jobRequestRow=source.closest('.jd-request-row');
+    const jobNo=requestRow?.children[0]?.textContent.trim()||document.getElementById('detailJobNo')?.textContent.trim()||window.__activeJob?.no||'';
+    const clientName=requestRow?.children[2]?.textContent.trim()||document.getElementById('detailClientName')?.textContent.trim()||'Consumer Company';
+    const address=requestRow?.children[3]?.textContent.trim()||window.__activeJob?.address||'';
+    const requestType=jobRequestRow?.children[1]?.textContent.trim()||'';
+    const description=requestType||('Survey request for '+jobNo+(address?' — '+address:''));
+    const client=root.querySelector('#quoteClientSelect');
+    const job=root.querySelector('#quoteJobSelect');
+    if(client){
+      if(![...client.options].some(function(option){return option.value===clientName;})){const option=document.createElement('option');option.value=clientName;option.textContent=clientName;client.appendChild(option);}
+      client.value=clientName;client.dispatchEvent(new Event('change',{bubbles:true}));
+    }
+    if(job&&jobNo){
+      const label=jobNo+' — Survey Request';
+      let option=[...job.options].find(function(item){return item.value===jobNo;});
+      if(!option){option=document.createElement('option');option.value=jobNo;option.textContent=label;job.appendChild(option);}
+      job.disabled=false;job.value=jobNo;job.dispatchEvent(new Event('change',{bubbles:true}));
+    }
+    const descriptionField=root.querySelector('#quoteStep1 textarea[placeholder^="Describe the requested service"]');
+    if(descriptionField)descriptionField.value=description;
+    window.buildUnifiedQuoteDetails?.(root,null,false);
+  }
+
   bind('#survey-requests-page .create-from-request,#jobDetailsCreateQuote',function(e){
-    e.preventDefault();e.stopImmediatePropagation();openPage('create-quote-page');
+    e.preventDefault();e.stopImmediatePropagation();prefillCreateQuote(e.currentTarget);openPage('create-quote-page');window.buildUnifiedQuoteDetails?.(document.getElementById('create-quote-page'),null,false);
   });
   bind('#survey-requests-page .view-created-quote,#quotes-page .quote-actions .view-action,#jobDetailsViewQuote',function(e){
     e.preventDefault();e.stopImmediatePropagation();
@@ -9371,7 +9397,7 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
       openPage('edit-quote-page');return;
     }
     if(e.target.closest('#survey-requests-page .create-from-request')){
-      e.preventDefault();e.stopImmediatePropagation();openPage('create-quote-page');return;
+      e.preventDefault();e.stopImmediatePropagation();const source=e.target.closest('#survey-requests-page .create-from-request');prefillCreateQuote(source);openPage('create-quote-page');window.buildUnifiedQuoteDetails?.(document.getElementById('create-quote-page'),null,false);return;
     }
     if(e.target.closest('#survey-requests-page .view-created-quote')){
       e.preventDefault();e.stopImmediatePropagation();openPage('view-quote-page');
@@ -9871,12 +9897,18 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
 
 #create-quote-page #quoteStep2 .resources-grid,
 #edit-quote-page #edit-quoteStep2 .resources-grid{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
+#create-quote-page #quoteStep2 .resources-grid,
+#edit-quote-page #edit-quoteStep2 .resources-grid{margin-top:18px!important}
 #create-quote-page #quoteStep2 .quote-resource-card,
 #edit-quote-page #edit-quoteStep2 .quote-resource-card{padding:0!important;overflow:hidden;border:1px solid #e1e7ee;border-radius:10px;background:#fff}
 #create-quote-page #quoteStep2 .quote-resource-head,
 #edit-quote-page #edit-quoteStep2 .quote-resource-head{min-height:58px!important;padding:0 16px!important;margin:0!important}
 #create-quote-page #quoteStep2 .resource-select,
 #edit-quote-page #edit-quoteStep2 .resource-select{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;width:94px!important;pointer-events:auto!important;cursor:pointer!important}
+#create-quote-page #quoteStep2 .resource-select,
+#edit-quote-page #edit-quoteStep2 .resource-select{background:#fff!important;border-color:#d0d5dd!important;color:#111827!important}
+#create-quote-page #quoteStep2 .resource-select:hover,
+#edit-quote-page #edit-quoteStep2 .resource-select:hover{background:#f8fafc!important;border-color:#98a2b3!important;color:#111827!important}
 #create-quote-page #quoteStep2 .resource-select svg,
 #edit-quote-page #edit-quoteStep2 .resource-select svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
 #create-quote-page #quoteStep2 .final-selected-fields,
@@ -9955,6 +9987,8 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
     ui.client.value=hidden.client?.value||state?.meta?.client||'';
     ui.job.value=hidden.job?.value||'';
     ui.description.value=hidden.description?.value||state?.meta?.description||'';
+    ui.client.disabled=true;
+    ui.job.disabled=true;
     if(card.dataset.bound!=='true'){
       card.dataset.bound='true';
       ui.client.addEventListener('change',function(){
@@ -10045,6 +10079,111 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
     [document.getElementById('create-quote-page'),document.getElementById('edit-quote-page')].forEach(function(root){if(root?.classList.contains('active'))window.buildUnifiedQuoteDetails(root,null,false);});
   });
   [document.getElementById('create-quote-page'),document.getElementById('edit-quote-page')].forEach(function(root){if(root)observer.observe(root,{attributes:true,attributeFilter:['class']});});
+})();
+</script>
+
+<style id="locked-quote-context-and-client-gating">
+.unified-quote-details select:disabled{background:#f2f4f7!important;color:#667085!important;border-color:#d0d5dd!important;cursor:not-allowed!important;opacity:1!important}
+#new-survey-request-page .survey-client-section .quote-section-sub,
+#new-survey-request-page .sr-client-copy small,
+#new-survey-request-page .sr-client-empty,
+#new-survey-request-page .sr-client-group-label{font-size:12px!important;line-height:1.45!important}
+#new-survey-request-page .sr-client-group-label{padding:10px 8px 6px;color:#667085;font-weight:700}
+#new-survey-request-page .sr-client-trigger:disabled,
+#new-survey-request-page #surveyRequestAddClient:disabled{background:#f2f4f7!important;border-color:#d0d5dd!important;color:#98a2b3!important;cursor:not-allowed!important;opacity:1!important}
+#new-survey-request-page .sr-client-picker.is-locked .sr-chevron{color:#b7c0cc!important}
+</style>
+
+<script id="survey-client-context-gating">
+(function(){
+  const root=document.getElementById('new-survey-request-page');if(!root)return;
+  const clients=[
+    {name:'Consumer Company',email:'consumer.cl@mail.com'},
+    {name:'QA Tester 3',email:'revew59089@playboot.com'},
+    {name:'QA Tester 2',email:'pimebo9836@playboot.com'},
+    {name:'No Access Company',email:'yihiser358@joystill.com'}
+  ];
+  const jobClients={
+    'JOB-102':['Consumer Company','QA Tester 2'],
+    'JOB-118':['Consumer Company'],
+    'JOB-126':['QA Tester 3']
+  };
+  const addressClients={
+    '123 main street':['Consumer Company','QA Tester 2'],
+    '550 congress ave':['Consumer Company'],
+    '345 apple st':['QA Tester 3']
+  };
+  const ids=['refSurveyStreet','refSurveyCity','refSurveyState','refSurveyCountry','refSurveyPostal','refSurveyLat','refSurveyLng','refJobSearch'];
+  const field=function(id){return document.getElementById(id);};
+  const normalize=function(value){return String(value||'').trim().toLowerCase();};
+  const initials=function(name){return name.split(/\s+/).map(function(part){return part[0];}).join('').slice(0,2).toUpperCase();};
+
+  function propertyReady(){
+    if(root.classList.contains('from-job')||window.__surveyRequestFromJob)return true;
+    const mode=root.querySelector('[data-ref-location].active')?.dataset.refLocation||'address';
+    const addressComplete=['refSurveyStreet','refSurveyCity','refSurveyState','refSurveyCountry','refSurveyPostal'].every(function(id){return normalize(field(id)?.value);});
+    const coordinatesComplete=normalize(field('refSurveyLat')?.value)&&normalize(field('refSurveyLng')?.value);
+    const jobComplete=normalize(field('refJobSearch')?.value);
+    return !!(jobComplete||(mode==='coordinates'?coordinatesComplete:addressComplete));
+  }
+  function associatedNames(){
+    const job=String(field('refJobSearch')?.value||(root.classList.contains('from-job')?window.__surveyRequestJobNo:'')||'').trim().toUpperCase();
+    if(jobClients[job])return jobClients[job];
+    const street=normalize(field('refSurveyStreet')?.value);
+    const addressKey=Object.keys(addressClients).find(function(key){return street===key||street.startsWith(key);});
+    return addressKey?addressClients[addressKey]:[];
+  }
+  function clientButton(client){
+    return '<button type="button" class="sr-client-option crm-client-option" data-client="'+client.name+'" data-name="'+client.name+'" data-email="'+client.email+'"><span class="sr-client-avatar">'+initials(client.name)+'</span><span class="sr-client-copy"><b>'+client.name+'</b><small>'+client.email+'</small></span></button>';
+  }
+  function renderClients(query){
+    const box=field('srClientOptions'),empty=field('srClientEmpty');if(!box)return;
+    const q=normalize(query);const associated=new Set(associatedNames());
+    const matches=clients.filter(function(client){return !q||normalize(client.name+' '+client.email).includes(q);});
+    const recent=matches.filter(function(client){return associated.has(client.name);});
+    const others=matches.filter(function(client){return !associated.has(client.name);});
+    let html='';
+    if(q){html='<div class="sr-client-group-label">Search results</div>'+recent.concat(others).map(clientButton).join('');}
+    else{
+      if(recent.length)html+='<div class="sr-client-group-label">Recently surveyed for this property</div>'+recent.map(clientButton).join('');
+      if(others.length)html+='<div class="sr-client-group-label">'+(recent.length?'All other clients':'All clients')+'</div>'+others.map(clientButton).join('');
+    }
+    box.innerHTML=html;if(empty)empty.style.display=matches.length?'none':'block';
+  }
+  function resetSelectedClient(){
+    const hidden=field('surveyRequestClient'),text=field('srClientText');
+    if(hidden)hidden.value='';
+    if(text){text.textContent='Select client...';text.classList.add('placeholder');}
+  }
+  function syncClientState(){
+    const ready=propertyReady();const picker=field('srClientPicker');const trigger=field('srClientTrigger');const add=field('surveyRequestAddClient');const menu=field('srClientMenu');
+    if(trigger){trigger.disabled=!ready;trigger.setAttribute('aria-disabled',String(!ready));}
+    if(add)add.disabled=!ready;
+    picker?.classList.toggle('is-locked',!ready);
+    if(!ready){menu?.classList.remove('open');resetSelectedClient();}
+    else renderClients(field('srClientSearch')?.value||'');
+  }
+  function setupPicker(){
+    let trigger=field('srClientTrigger'),search=field('srClientSearch'),menu=field('srClientMenu');if(!trigger||!menu)return;
+    const freshTrigger=trigger.cloneNode(true);trigger.replaceWith(freshTrigger);trigger=freshTrigger;
+    if(search){const freshSearch=search.cloneNode(true);search.replaceWith(freshSearch);search=freshSearch;}
+    trigger.addEventListener('click',function(e){
+      if(trigger.disabled)return;e.preventDefault();e.stopPropagation();const opening=!menu.classList.contains('open');menu.classList.toggle('open',opening);
+      if(opening&&search){search.value='';renderClients('');setTimeout(function(){search.focus();},0);}
+    });
+    search?.addEventListener('input',function(){renderClients(search.value);});
+    menu.addEventListener('click',function(e){
+      const option=e.target.closest('.sr-client-option');if(!option)return;const name=option.dataset.client||option.dataset.name;
+      const hidden=field('surveyRequestClient'),text=field('srClientText');if(hidden)hidden.value=name;if(text){text.textContent=name;text.classList.remove('placeholder');}menu.classList.remove('open');
+    });
+    document.addEventListener('click',function(e){if(!e.target.closest('#srClientPicker'))menu.classList.remove('open');});
+  }
+  ids.forEach(function(id){const input=field(id);input?.addEventListener('input',syncClientState);input?.addEventListener('change',syncClientState);});
+  root.querySelectorAll('[data-ref-location]').forEach(function(button){button.addEventListener('click',function(){setTimeout(syncClientState,0);});});
+  document.addEventListener('click',function(e){if(e.target.closest('#refJobMenu [data-job]'))setTimeout(syncClientState,0);});
+  new MutationObserver(function(){if(root.classList.contains('active'))setTimeout(syncClientState,0);}).observe(root,{attributes:true,attributeFilter:['class']});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setupPicker();syncClientState();});
+  else{setupPicker();syncClientState();}
 })();
 </script>
 
