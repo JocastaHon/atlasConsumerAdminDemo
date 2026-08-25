@@ -3418,6 +3418,8 @@ header{
 .survey-more-menu.open{display:block}
 .survey-more-item{width:100%;border:0;background:transparent;text-align:left;padding:8px 9px;border-radius:5px;font-size:12px;color:#334155;cursor:pointer}
 .survey-more-item:hover{background:#f4f7fb}
+.survey-more-item{display:flex;align-items:center;gap:8px}
+.survey-more-item svg{width:15px;height:15px;flex:0 0 15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 
 /* Compact quote action in Survey Requests */
@@ -5029,10 +5031,9 @@ button[style*="#1E3B8A"]:hover{
 </div>
 
 <div id="job-details-page" class="page-view">
-  <button class="jd-back" id="jobDetailsBack">← Back</button>
-
   <div class="jd-header">
     <div>
+      <button class="jd-back" id="jobDetailsBack">← Back</button>
       <h1>Job Details - <span id="detailJobNo">JOB-102</span></h1>
     </div>
     <div class="jd-header-actions">
@@ -5162,10 +5163,49 @@ button[style*="#1E3B8A"]:hover{
 <div class="survey-filter-box"><div class="survey-filter-row"><input class="survey-search" id="surveyRequestSearch" placeholder="Search job #, client, or address..."><select class="survey-filter" id="surveyRequestStatus"><option>All Statuses</option><option>Pending</option><option>Quoted</option><option>Approved</option></select><select class="survey-filter"><option>All Clients</option><option>Consumer Company</option><option>QA Tester 3</option><option>No Access Company</option></select></div></div>
 <div class="survey-table">
 <div class="survey-row head"><div>Job #</div><div>Date</div><div>Client</div><div>Address</div><div>Status</div><div>Actions</div></div>
-<div class="survey-row"><div><b>JOB-132</b></div><div>Aug 21, 2026</div><div>Consumer Company</div><div>123 Main Street, Austin, TX 78701</div><div><span class="survey-status pending">Pending</span></div><div class="survey-actions"><button class="icon-action view-action" title="View" aria-label="View request"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="survey-text-quote create-from-request">Create Quote</button><div class="survey-more-wrap"><button class="icon-action survey-more-trigger" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="survey-more-menu"><button class="survey-more-item">Edit Request</button><button class="survey-more-item">Duplicate</button></div></div></div></div>
+<div class="survey-row"><div><b>JOB-132</b></div><div>Aug 21, 2026</div><div>Consumer Company</div><div>123 Main Street, Austin, TX 78701</div><div><span class="survey-status pending">Pending</span></div><div class="survey-actions"><button class="icon-action view-action" title="View" aria-label="View request"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="survey-text-quote create-from-request" onclick="window.__quoteBackOrigin=window.__quoteBackOrigin||'survey-requests-page'">Create Quote</button><div class="survey-more-wrap"><button class="icon-action survey-more-trigger" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="survey-more-menu"><button class="survey-more-item">Edit Request</button><button class="survey-more-item">Duplicate</button></div></div></div></div>
 <div class="survey-row"><div><b>JOB-131</b></div><div>Aug 20, 2026</div><div>QA Tester 3</div><div>345 Apple St, Toronto, ON</div><div><span class="survey-status quoted">Quoted</span></div><div class="survey-actions"><button class="icon-action view-action" title="View" aria-label="View request"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="survey-text-quote view-created-quote">View Quote</button><div class="survey-more-wrap"><button class="icon-action survey-more-trigger" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="survey-more-menu"><button class="survey-more-item">Edit Request</button><button class="survey-more-item">Duplicate</button></div></div></div></div>
 <div class="survey-row"><div><b>JOB-129</b></div><div>Aug 18, 2026</div><div>Consumer Company</div><div>1123 Apple, Toronto, ON</div><div><span class="survey-status approved">Approved</span></div><div class="survey-actions"><button class="icon-action view-action" title="View" aria-label="View request"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="survey-text-quote view-created-quote">View Quote</button><div class="survey-more-wrap"><button class="icon-action survey-more-trigger" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="survey-more-menu"><button class="survey-more-item">Edit Request</button><button class="survey-more-item">Duplicate</button></div></div></div></div>
 </div></main></div>
+<div id="view-survey-request-page" class="page-view">
+<main class="survey-view-page">
+  <div class="survey-view-head">
+    <div><button type="button" class="back-client-link" id="surveyViewBack">← Back to Survey Requests</button><h1>Survey Request Details</h1><p>Review the submitted request, property information, and current status.</p></div>
+    <div class="survey-view-actions"><button type="button" class="survey-view-edit" id="surveyViewEdit">Edit Request</button><button type="button" class="survey-request-primary" id="surveyViewPrimary" onclick="window.__quoteBackOrigin='view-survey-request-page'">Create Quote</button></div>
+  </div>
+  <div class="survey-form-preview">
+    <section class="survey-preview-card">
+      <div class="survey-preview-card-head"><h3>Subject Property &amp; Job</h3><span class="survey-status pending" id="svStatus">Pending</span></div>
+      <p class="survey-preview-address"><b id="svStreet">123 Main Street</b>, <span id="svCity">Austin</span>, <span id="svState">Texas</span>, <span id="svCountry">United States</span> <span id="svPostal">78701</span></p>
+      <div class="survey-preview-list"><div><span>Coordinates</span><b><span id="svLat">30.2672</span>, <span id="svLng">-97.7431</span></b></div><div><span>Job Number</span><b id="svJob">JOB-132</b></div></div>
+    </section>
+
+    <section class="survey-preview-card">
+      <h3>Client</h3>
+      <p class="survey-preview-primary" id="svClient">Consumer Company</p>
+    </section>
+
+    <section class="survey-preview-card">
+      <h3>Request Details</h3>
+      <div class="survey-preview-list four"><div><span>Survey Type</span><b id="svSurveyType">Property Survey</b></div><div><span>Submitted</span><b id="svDate">Aug 21, 2026</b></div><div><span>Requested Date</span><b id="svRequestedDate">Aug 21, 2026</b></div><div><span>Expected Close</span><b id="svExpectedClose">Sep 5, 2026</b></div></div>
+      <div class="survey-preview-description"><span>Description</span><p id="svDescription">Complete a property survey and confirm site boundaries for the submitted address.</p></div>
+    </section>
+
+    <section class="survey-preview-card">
+      <h3>Property &amp; Legal Information</h3>
+      <div class="survey-preview-list legal"><div><span>Section</span><b id="svSection">12</b></div><div><span>Township</span><b id="svTownship">Austin</b></div><div><span>Range</span><b id="svRange">3</b></div><div><span>Lot</span><b id="svLot">24</b></div><div><span>Block</span><b id="svBlock">B</b></div><div><span>Certify To</span><b id="svCertify">Consumer Company</b></div></div>
+      <div class="survey-preview-description"><span>Legal Description</span><p id="svLegal">Survey and legal description associated with the subject property.</p></div>
+    </section>
+
+    <section class="survey-preview-card">
+      <h3>Attachments &amp; Notes</h3>
+      <div class="survey-view-file"><span>▧</span><div><b id="svAttachment">property-boundary-reference.pdf</b><p>Submitted with this survey request</p></div></div>
+      <div class="survey-preview-description notes"><span>Notes</span><p id="svNotes">Please coordinate site access with the client before arrival.</p></div>
+    </section>
+  </div>
+</main>
+</div>
+
 <div id="quotes-page" class="page-view">
 <main class="quotes-page">
   <div class="quotes-head">
@@ -5269,40 +5309,39 @@ button[style*="#1E3B8A"]:hover{
     <div class="quote-section">
       <div class="quote-section-title">Request Details</div>
       <div class="quote-form-grid">
-        <div class="quote-field full"><label>Survey Type <span class="req">*</span></label><select><option>Select survey type...</option><option>Property Survey</option><option>Inspection</option><option>Mapping</option></select></div>
-        <div class="quote-field"><label>Requested Date</label><input type="date"></div>
-        <div class="quote-field"><label>Expected Close</label><input type="date"></div>
-        <div class="quote-field full"><label>Description</label><textarea placeholder="Describe the requested service, scope, or client requirements..."></textarea></div>
+        <div class="quote-field full"><label>Survey Type <span class="req">*</span></label><select id="surveyRequestType"><option>Select survey type...</option><option>Property Survey</option><option>Inspection</option><option>Mapping</option></select></div>
+        <div class="quote-field"><label>Requested Date</label><input id="surveyRequestRequestedDate" type="date"></div>
+        <div class="quote-field"><label>Expected Close</label><input id="surveyRequestExpectedClose" type="date"></div>
+        <div class="quote-field full"><label>Description</label><textarea id="surveyRequestDescription" placeholder="Describe the requested service, scope, or client requirements..."></textarea></div>
       </div>
     </div>
 
     <div class="quote-section">
       <div class="quote-section-title">Property & Legal Information</div>
       <div class="quote-form-grid">
-        <div class="quote-field"><label>Section</label><input></div>
-        <div class="quote-field"><label>Township</label><input></div>
-        <div class="quote-field"><label>Range</label><input></div>
-        <div class="quote-field"><label>Lot</label><input></div>
-        <div class="quote-field"><label>Block</label><input></div>
-        <div class="quote-field"><label>Certify To</label><input placeholder="E.g. John Smith, ABC Title Company"></div>
-        <div class="quote-field full"><label>Legal Description</label><textarea placeholder="Full legal description of the property..."></textarea></div>
+        <div class="quote-field"><label>Section</label><input id="surveyRequestSection"></div>
+        <div class="quote-field"><label>Township</label><input id="surveyRequestTownship"></div>
+        <div class="quote-field"><label>Range</label><input id="surveyRequestRange"></div>
+        <div class="quote-field"><label>Lot</label><input id="surveyRequestLot"></div>
+        <div class="quote-field"><label>Block</label><input id="surveyRequestBlock"></div>
+        <div class="quote-field"><label>Certify To</label><input id="surveyRequestCertify" placeholder="E.g. John Smith, ABC Title Company"></div>
+        <div class="quote-field full"><label>Legal Description</label><textarea id="surveyRequestLegal" placeholder="Full legal description of the property..."></textarea></div>
       </div>
     </div>
 
     <div class="quote-section">
       <div class="quote-section-title">Attachments & Notes</div>
-      <div class="upload-box"><div><b>Upload files</b><br>Click to select or drag and drop documents here</div></div>
-      <div class="quote-form-grid" style="margin-top:14px"><div class="quote-field full"><label>Notes</label><textarea placeholder="Additional notes or special instructions..."></textarea></div></div>
+      <div class="upload-box" id="surveyRequestUploadBox"><div><b>Upload files</b><br>Click to select or drag and drop documents here</div></div>
+      <div class="quote-form-grid" style="margin-top:14px"><div class="quote-field full"><label>Notes</label><textarea id="surveyRequestNotes" placeholder="Additional notes or special instructions..."></textarea></div></div>
     </div>
   </div>
 </main>
 </div>
 
 <div id="view-quote-page" class="page-view">
-  <button type="button" class="vq-back" id="vqBack">← Back to Quotes</button>
-
   <div class="vq-header">
     <div>
+      <button type="button" class="vq-back" id="vqBack">← Back to Quotes</button>
       <h1>Quote Details</h1>
       <p>Review quote information, services, pricing, and status.</p>
     </div>
@@ -5362,7 +5401,7 @@ button[style*="#1E3B8A"]:hover{
 <main class="create-quote-page">
   <div class="create-quote-head">
     <div><button class="back-client-link" id="backToQuotes">← Back to Quotes</button><h1>Create Quote</h1><p>Build the quote by selecting services, provider requirements, delivery options, equipment, and pricing.</p></div>
-    <div class="create-quote-actions"><button class="header-cancel" id="cancelCreateQuote">Cancel</button><button class="header-create">＋ Create Quote</button></div>
+    <div class="create-quote-actions"><button class="header-create">＋ Create Quote</button></div>
   </div>
   
   <div class="quote-stepper">
@@ -5793,6 +5832,55 @@ button[style*="#1E3B8A"]:hover{
   </div>
 
 </div></div>
+</div>
+
+<div id="view-client-page" class="page-view">
+<main class="client-view-page">
+  <div class="client-view-head">
+    <div><button type="button" class="back-client-link" id="backFromViewClient">← Back to Clients</button><h1>Client Details</h1><p>Review company information, portal access, and contacts.</p></div>
+    <button type="button" class="header-create" id="viewClientEdit"><svg class="client-view-edit-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg><span>Edit Client</span></button>
+  </div>
+  <section class="client-view-summary">
+    <div class="client-view-avatar" id="viewClientAvatar">CC</div>
+    <div><span>Client / Company</span><h2 id="viewClientCompany">Consumer Company</h2><p id="viewClientPrimary">Primary contact: Consumer Client</p></div>
+    <span class="client-view-active">Portal enabled</span>
+  </section>
+  <section class="client-view-card">
+    <h3>Company Information</h3>
+    <div class="client-view-info-grid"><div><span>Company Name</span><b id="viewCompanyName">Consumer Company</b></div><div><span>Phone Number</span><b id="viewCompanyPhone">+1 123 123 1234</b></div><div><span>Email Address</span><b id="viewCompanyEmail">consumer.cl@mail.com</b></div><div><span>Address</span><b id="viewCompanyAddress">123 Main Street, Austin, Texas 78701</b></div></div>
+  </section>
+  <section class="client-view-card">
+    <div class="client-view-card-head"><div><h3>Contacts</h3><p>Contacts associated with this client.</p></div></div>
+    <div class="client-view-contact-table"><div class="client-view-contact-row head"><div>Name</div><div>Email</div><div>Phone</div></div><div id="viewClientContacts"></div></div>
+  </section>
+  <section class="client-view-card"><h3>Additional Information</h3><p class="client-view-notes">Long-term client. Primary contact handles operations.</p></section>
+</main>
+</div>
+
+<div class="contact-edit-backdrop" id="crmContactEditModal">
+  <div class="contact-edit-modal">
+    <div class="contact-edit-head"><div><h2>Edit Contact</h2><p>Update this contact under the selected client.</p></div><button type="button" class="contact-edit-close" id="closeCrmContactEdit">×</button></div>
+    <div class="contact-edit-body">
+      <div class="form-grid">
+        <div class="form-field"><label>Contact Name <span class="req">*</span></label><input id="crmContactName"></div>
+        <div class="form-field"><label>Job Title</label><input id="crmContactTitle"></div>
+        <div class="form-field"><label>Email Address <span class="req">*</span></label><input id="crmContactEmail"></div>
+        <div class="form-field"><label>Phone Number</label><input id="crmContactPhone"></div>
+      </div>
+      <div class="contact-edit-footer"><button type="button" class="header-cancel" id="cancelCrmContactEdit">Cancel</button><button type="button" class="header-create" id="saveCrmContactEdit">Save Contact</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-delete-backdrop" id="deleteContactModal" role="dialog" aria-modal="true" aria-labelledby="deleteContactTitle">
+  <div class="contact-delete-dialog">
+    <button type="button" class="contact-delete-close" id="closeDeleteContact" aria-label="Close">×</button>
+    <div class="contact-delete-content">
+      <div class="contact-delete-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M7 7l1 13h8l1-13"/><path d="M10 11v5M14 11v5"/></svg></div>
+      <div><h2 id="deleteContactTitle">Delete contact?</h2><p id="deleteContactMessage">Are you sure you want to delete this contact? This action cannot be undone.</p></div>
+    </div>
+    <div class="contact-delete-actions"><button type="button" class="header-cancel" id="cancelDeleteContact">Cancel</button><button type="button" class="contact-delete-confirm" id="confirmDeleteContact">Delete Contact</button></div>
+  </div>
 </div>
 
 <div id="edit-client-page" class="page-view">
@@ -6636,7 +6724,7 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
         <div class="form-field"><label>Email Address <span class="req">*</span></label><input id="editContactEmail" value="consumer.cl@mail.com"></div>
         <div class="form-field"><label>Phone Number</label><input id="editContactPhone" value="+1 123 123 1234"></div>
       </div>
-      <div class="contact-edit-footer"><button class="header-cancel" id="cancelEditContact">Cancel</button><button class="header-create">Save Contact</button></div>
+      <div class="contact-edit-footer"><button class="header-cancel" id="cancelEditContact">Cancel</button><button class="header-create" id="saveEditContact">Save Contact</button></div>
     </div>
   </div>
 </div>
@@ -7785,6 +7873,7 @@ search?.addEventListener('input',filter);status?.addEventListener('change',filte
    document.querySelectorAll('.survey-more-menu.open').forEach(x=>x.classList.remove('open'));
  });
  document.querySelectorAll('.create-from-request').forEach(btn=>btn.addEventListener('click',function(){
+   window.__quoteBackOrigin=document.getElementById('view-survey-request-page')?.classList.contains('active')?'view-survey-request-page':'survey-requests-page';
    document.querySelectorAll('.page-view').forEach(p=>p.classList.remove('active'));
    document.getElementById('create-quote-page')?.classList.add('active');
    const s1=document.getElementById('quoteStep1'),s2=document.getElementById('quoteStep2');
@@ -8432,27 +8521,33 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
 
 <script>
 (function(){
-  function returnToJobs(){
+  function returnToSurveyRequests(){
+    window.__surveyRequestFromJob=false;
+    window.__surveyRequestJobNo='';
+    document.getElementById('new-survey-request-page')?.classList.remove('from-job');
+
+    if(typeof window.openAppPage==='function'){
+      window.openAppPage('survey-requests-page');
+      return;
+    }
+
     document.querySelectorAll('.page-view').forEach(function(page){
       page.classList.remove('active');
       page.style.setProperty('display','none','important');
     });
 
-    const jobs=document.getElementById('jobs-page');
-    if(jobs){
-      jobs.classList.add('active');
-      jobs.style.setProperty('display','block','important');
+    const requests=document.getElementById('survey-requests-page');
+    if(requests){
+      requests.classList.add('active');
+      requests.style.setProperty('display','block','important');
     }
-
-    window.__surveyRequestFromJob=false;
-    window.__surveyRequestJobNo='';
     window.scrollTo(0,0);
   }
 
   const survey=document.getElementById('new-survey-request-page');
   if(!survey)return;
 
-  // Capture Back/Cancel only when this request was launched from Jobs.
+  // Back and Cancel always return to the Survey Requests list.
   survey.addEventListener('click',function(e){
     const control=e.target.closest('button,a');
     if(!control || !window.__surveyRequestFromJob)return;
@@ -8464,7 +8559,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     if(isBack || isCancel){
       e.preventDefault();
       e.stopImmediatePropagation();
-      returnToJobs();
+      returnToSurveyRequests();
     }
   },true);
 })();
@@ -8597,12 +8692,13 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
       route('new-survey-request-page');
     }
 
-    // Normal Survey Request back/cancel returns to Survey Requests.
-    if(el.closest('#new-survey-request-page') && !window.__surveyRequestFromJob){
+    // Survey Request back/cancel returns to the page that launched the form.
+    if(el.closest('#new-survey-request-page')){
       if(text.toLowerCase().includes('back') || text.toLowerCase()==='cancel'){
         e.preventDefault();
         e.stopImmediatePropagation();
-        route('survey-requests-page');
+        route(window.__surveyRequestFromJob?'jobs-page':'survey-requests-page');
+        window.__surveyRequestFromJob=false;
       }
     }
 
@@ -8613,12 +8709,13 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
       route('create-quote-page');
     }
 
-    // Create Quote back/cancel returns to Quotes.
+    // Create Quote back/cancel returns to its originating survey page when applicable.
     if(el.closest('#create-quote-page') &&
        (text.toLowerCase().includes('back') || text.toLowerCase()==='cancel')){
       e.preventDefault();
       e.stopImmediatePropagation();
-      route('quotes-page');
+      route(window.__quoteBackOrigin||'quotes-page');
+      window.__quoteBackOrigin='';
     }
   },true);
 })();
@@ -9368,6 +9465,9 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
   }
 
   bind('#survey-requests-page .create-from-request,#jobDetailsCreateQuote',function(e){
+    if(e.currentTarget.matches('#survey-requests-page .create-from-request')){
+      window.__quoteBackOrigin=document.getElementById('view-survey-request-page')?.classList.contains('active')?'view-survey-request-page':'survey-requests-page';
+    }
     e.preventDefault();e.stopImmediatePropagation();prefillCreateQuote(e.currentTarget);openPage('create-quote-page');window.buildUnifiedQuoteDetails?.(document.getElementById('create-quote-page'),null,false);
   });
   bind('#survey-requests-page .view-created-quote,#quotes-page .quote-actions .view-action,#jobDetailsViewQuote',function(e){
@@ -9397,6 +9497,7 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
       openPage('edit-quote-page');return;
     }
     if(e.target.closest('#survey-requests-page .create-from-request')){
+      window.__quoteBackOrigin=document.getElementById('view-survey-request-page')?.classList.contains('active')?'view-survey-request-page':'survey-requests-page';
       e.preventDefault();e.stopImmediatePropagation();const source=e.target.closest('#survey-requests-page .create-from-request');prefillCreateQuote(source);openPage('create-quote-page');window.buildUnifiedQuoteDetails?.(document.getElementById('create-quote-page'),null,false);return;
     }
     if(e.target.closest('#survey-requests-page .view-created-quote')){
@@ -9896,11 +9997,11 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
 .unified-quote-field select:focus,.unified-quote-field input:focus,.unified-quote-field textarea:focus{border-color:#3e579b;box-shadow:0 0 0 2px rgba(62,87,155,.08)}
 
 #create-quote-page #quoteStep2 .resources-grid,
-#edit-quote-page #edit-quoteStep2 .resources-grid{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
+#edit-quote-page #edit-quoteStep2 .resources-grid{display:grid!important;grid-template-columns:1fr!important;gap:0!important}
 #create-quote-page #quoteStep2 .resources-grid,
-#edit-quote-page #edit-quoteStep2 .resources-grid{margin-top:18px!important}
+#edit-quote-page #edit-quoteStep2 .resources-grid{margin-top:0!important}
 #create-quote-page #quoteStep2 .quote-resource-card,
-#edit-quote-page #edit-quoteStep2 .quote-resource-card{padding:0!important;overflow:hidden;border:1px solid #e1e7ee;border-radius:10px;background:#fff}
+#edit-quote-page #edit-quoteStep2 .quote-resource-card{padding:0!important;margin-top:18px!important;overflow:hidden;border:1px solid #e1e7ee;border-radius:10px;background:#fff}
 #create-quote-page #quoteStep2 .quote-resource-head,
 #edit-quote-page #edit-quoteStep2 .quote-resource-head{min-height:58px!important;padding:0 16px!important;margin:0!important}
 #create-quote-page #quoteStep2 .resource-select,
@@ -10184,6 +10285,671 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
   new MutationObserver(function(){if(root.classList.contains('active'))setTimeout(syncClientState,0);}).observe(root,{attributes:true,attributeFilter:['class']});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setupPicker();syncClientState();});
   else{setupPicker();syncClientState();}
+})();
+</script>
+
+<style id="survey-request-view-styles">
+.main{padding-top:64px}
+.main>header{
+  position:fixed!important;
+  top:0;
+  left:230px;
+  right:0;
+  z-index:500;
+  box-sizing:border-box;
+  background:#fff;
+  box-shadow:0 1px 4px rgba(15,23,42,.06);
+}
+#view-survey-request-page{padding:26px 34px 50px;background:#f6f8fb;min-height:100%}
+.survey-view-page{width:100%;max-width:none;margin:0}
+.survey-view-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:22px}
+.survey-view-head h1{margin:12px 0 4px;color:#172033;font-size:24px}
+.survey-view-head p{margin:0;color:#667085;font-size:13px}
+.survey-view-actions{display:flex;align-items:center;justify-content:flex-start;gap:10px}
+.create-quote-head,.add-client-page-head,.edit-client-head,.survey-view-head,.vq-header{align-items:flex-start!important}
+.create-quote-actions,.add-client-head-actions,.edit-client-actions,.survey-view-actions,.vq-header-actions{align-self:flex-start!important;margin-top:0!important}
+.survey-view-actions button{display:inline-flex;align-items:center;justify-content:center;width:auto;height:40px;box-sizing:border-box;padding:0 16px;border-radius:8px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}
+#new-survey-request-page .create-quote-actions button{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:40px!important;min-height:40px!important;box-sizing:border-box!important;padding:0 16px!important}
+.survey-view-edit{border:1px solid #98a2b3;background:#fff;color:#172033}
+.survey-view-edit:hover{border-color:#667085;background:#f8fafc}
+#view-survey-request-page #surveyViewPrimary{border:1px solid #153e69;background:#153e69;color:#fff}
+#view-survey-request-page #surveyViewPrimary:hover{border-color:#0f3155;background:#0f3155}
+#survey-requests-page .survey-row>div:last-child{
+  width:100%!important;
+  justify-self:start!important;
+  text-align:left!important;
+}
+#survey-requests-page .survey-row{
+  grid-template-columns:minmax(0,.75fr) minmax(0,.9fr) minmax(0,1.2fr) minmax(0,1.55fr) minmax(0,.9fr) minmax(168px,1.25fr)!important;
+}
+#survey-requests-page .survey-actions{
+  width:100%!important;
+  justify-content:flex-start!important;
+  justify-self:start!important;
+  text-align:left!important;
+}
+.survey-view-hero{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 26px;margin-bottom:18px;border:1px solid #e1e7ee;border-radius:12px;background:#fff}
+.survey-view-hero>div>span{color:#667085;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.survey-view-hero h2{margin:5px 0;color:#153e69;font-size:22px}
+.survey-view-hero p{margin:0;color:#667085;font-size:13px}
+.survey-view-hero .survey-status{font-size:12px;padding:7px 12px}
+.survey-request-overview{padding:26px 28px 0;margin-bottom:18px;border:1px solid #dce3ec;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.035);overflow:hidden}
+.survey-request-overview-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
+.survey-request-reference{display:flex;align-items:center;gap:10px}
+.survey-request-reference span{color:#667085;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.045em}
+.survey-request-reference b{padding-left:10px;border-left:1px solid #d0d5dd;color:#153e69;font-size:13px}
+.survey-request-overview h2{margin:0;color:#172033;font-size:23px;line-height:1.35}
+.survey-request-overview h2 span:first-child{color:#153e69}
+.survey-request-address{margin:7px 0 0;color:#667085;font-size:14px}
+.survey-request-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:24px 0 0;border:1px solid #e4e7ec;border-radius:9px;background:#f8fafc}
+.survey-request-timeline>div{padding:13px 16px;border-right:1px solid #e4e7ec}
+.survey-request-timeline>div:last-child{border-right:0}
+.survey-request-timeline span{display:block;margin-bottom:4px;color:#667085;font-size:11px;font-weight:600}
+.survey-request-timeline b{color:#344054;font-size:13px}
+.survey-request-schedule{display:flex;align-items:center;gap:14px;margin-top:25px;padding:18px 0 2px;border-top:1px solid #eaecf0}
+.survey-schedule-item{display:flex;align-items:center;gap:10px;min-width:max-content}
+.survey-schedule-dot{width:9px;height:9px;border:2px solid #153e69;border-radius:50%;background:#fff;box-sizing:border-box}
+.survey-schedule-item.complete .survey-schedule-dot{background:#153e69}
+.survey-schedule-item.future .survey-schedule-dot{border-color:#98a2b3}
+.survey-schedule-item>div>span{display:block;margin-bottom:3px;color:#667085;font-size:11px;font-weight:600}
+.survey-schedule-item b{color:#344054;font-size:13px}
+.survey-schedule-line{height:1px;min-width:28px;flex:1;background:#d0d5dd}
+.survey-request-property-line{display:flex;align-items:flex-start;gap:14px;margin:24px -28px 0;padding:18px 28px;border-top:1px solid #eaecf0;background:#fbfcfe}
+.survey-request-property-line>div>span{display:block;margin-bottom:4px;color:#667085;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.035em}
+.survey-request-property-line p{margin:0;color:#344054;font-size:13px;line-height:1.5}
+.survey-request-property-line small{display:block;margin-top:3px;color:#667085;font-size:12px}
+.survey-request-property-line small b{color:#344054}
+.survey-request-detail-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.75fr);gap:18px;align-items:start}
+.survey-request-content-card{padding:24px 26px;border:1px solid #dce3ec;border-radius:14px;background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.025)}
+.survey-card-kicker{display:block;margin-bottom:6px;color:#667085;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.045em}
+.survey-request-content-card h3{margin:0 0 22px;color:#172033;font-size:17px}
+.survey-content-block>span,.survey-note-block>span{display:block;margin-bottom:7px;color:#667085;font-size:12px;font-weight:700}
+.survey-content-block p,.survey-note-block p{margin:0;color:#344054;font-size:13px;line-height:1.7}
+.survey-content-block p b{color:#172033}
+.survey-content-block small{display:block;margin-top:12px;padding:12px 14px;border-radius:8px;background:#f8fafc;color:#667085;font-size:12px;line-height:1.6}
+.survey-content-divider{height:1px;margin:21px 0;background:#eaecf0}
+.survey-request-materials .survey-view-file{margin-bottom:16px;background:#f8fafc}
+.survey-note-block{padding:14px 16px;border-radius:9px;background:#f8fafc}
+.survey-note-block p{font-size:12px;line-height:1.6}
+.survey-form-preview{display:flex;flex-direction:column;gap:16px}
+.survey-preview-card{padding:22px 24px;border:1px solid #dfe5ec;border-radius:10px;background:#fff}
+.survey-preview-card-head{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.survey-preview-card h3{margin:0 0 18px;color:#172033;font-size:15px}
+.survey-preview-card-head h3{margin-bottom:0}
+.survey-preview-address{margin:16px 0 0;color:#344054;font-size:14px;line-height:1.6}
+.survey-preview-primary{margin:0;color:#344054;font-size:14px;font-weight:600}
+.survey-preview-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 30px;margin-top:18px}
+.survey-preview-list.four{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:0}
+.survey-preview-list.legal{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0}
+.survey-preview-list>div>span,.survey-preview-description>span{display:block;margin-bottom:5px;color:#667085;font-size:12px;font-weight:600}
+.survey-preview-list>div>b{color:#344054;font-size:13px}
+.survey-preview-description{margin-top:20px;padding-top:18px;border-top:1px solid #eaecf0}
+.survey-preview-description p{margin:0;color:#344054;font-size:13px;line-height:1.65}
+.survey-preview-description.notes{padding:14px 16px;border-top:0;border-radius:8px;background:#f8fafc}
+.survey-preview-card>.survey-view-file{background:#f8fafc}
+.survey-view-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.survey-view-card{padding:22px 24px;border:1px solid #e1e7ee;border-radius:12px;background:#fff}
+.survey-view-card.full{grid-column:1/-1}
+.survey-view-card h3{margin:0 0 18px;color:#172033;font-size:15px}
+.survey-summary-card{padding:0;overflow:hidden}
+.survey-summary-top{display:flex;align-items:flex-start;justify-content:space-between;gap:32px;padding:25px 26px}
+.survey-summary-top>div:first-child{flex:1;min-width:0}
+.survey-summary-eyebrow{display:block;margin-bottom:8px;color:#667085;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.survey-summary-top .survey-overview-meta{justify-content:flex-end;max-width:520px;margin-top:0}
+.survey-summary-property{display:flex;align-items:flex-start;gap:14px;padding:19px 26px;border-top:1px solid #eaecf0;background:#f8fafc}
+.survey-summary-property>div>span{display:block;margin-bottom:5px;color:#667085;font-size:12px;font-weight:700}
+.survey-summary-property p{margin:0;color:#344054;font-size:13px;line-height:1.55}
+.survey-summary-property small{display:block;margin-top:4px;color:#667085;font-size:12px}
+.survey-summary-property small b{color:#344054}
+.survey-overview-lead{margin:0;color:#344054;font-size:16px;line-height:1.65}
+.survey-overview-lead b{color:#153e69}
+.survey-overview-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.survey-overview-meta span{padding:8px 11px;border:1px solid #e1e7ee;border-radius:8px;background:#f8fafc;color:#667085;font-size:12px}
+.survey-overview-meta b{margin-left:4px;color:#172033}
+.survey-overview-icon-row{display:flex;align-items:flex-start;gap:14px}
+.survey-overview-icon-row p{margin:0;color:#344054;font-size:13px;line-height:1.65}
+.survey-overview-icon-row small{color:#667085;font-size:12px}
+.survey-overview-copy{margin:0;color:#344054;font-size:13px;line-height:1.75}
+.survey-overview-copy b{color:#172033}
+.survey-overview-secondary{margin:14px 0 0;padding-top:14px;border-top:1px solid #eaecf0;color:#667085;font-size:13px;line-height:1.65}
+.survey-overview-note{margin:16px 0 0;padding:14px 16px;border-left:3px solid #153e69;border-radius:0 7px 7px 0;background:#f8fafc;color:#344054;font-size:13px;line-height:1.6}
+.survey-view-fields{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
+.survey-view-fields-wide{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:20px;padding-top:20px;border-top:1px solid #eaecf0}
+.survey-view-fields div>span,.survey-property-display div>span{display:block;margin-bottom:5px;color:#667085;font-size:12px;font-weight:600}
+.survey-view-fields b,.survey-property-display b{display:block;color:#172033;font-size:13px}
+.survey-property-display{display:flex;align-items:flex-start;gap:14px;padding:16px;border:1px solid #e5eaf0;border-radius:9px;background:#f8fafc}
+.survey-property-icon{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:#e8eef7;color:#153e69;font-size:18px}
+.survey-property-display small{display:block;margin-top:7px;color:#667085;font-size:12px}
+.survey-view-description{margin:0;color:#344054;font-size:13px;line-height:1.65}
+.survey-view-readonly-block{margin-top:20px;padding:16px;border:1px solid #e5eaf0;border-radius:9px;background:#f8fafc}
+.survey-view-readonly-block>span{display:block;margin-bottom:7px;color:#667085;font-size:12px;font-weight:600}
+.survey-view-readonly-block p{margin:0;color:#344054;font-size:13px;line-height:1.6}
+.survey-view-file{display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid #e5eaf0;border-radius:9px;background:#fff}
+.survey-view-file>span{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:#eef4ff;color:#153e69;font-size:19px}
+.survey-view-file b{color:#344054;font-size:13px}.survey-view-file p{margin:3px 0 0;color:#667085;font-size:12px}
+.survey-view-empty{display:flex;align-items:center;gap:13px;padding:16px;border:1px dashed #d0d5dd;border-radius:9px;background:#fafbfc;color:#667085}
+.survey-view-empty>span{font-size:22px}.survey-view-empty b{color:#344054;font-size:13px}.survey-view-empty p{margin:3px 0 0;font-size:12px}
+@media(max-width:1000px){.survey-view-fields-wide{grid-template-columns:repeat(2,minmax(0,1fr))}.survey-summary-top{flex-direction:column}.survey-summary-top .survey-overview-meta{justify-content:flex-start;max-width:none}.survey-request-detail-layout{grid-template-columns:1fr}.survey-request-timeline{grid-template-columns:1fr 1fr}.survey-request-timeline>div:nth-child(2){border-right:0}.survey-request-timeline>div:nth-child(-n+2){border-bottom:1px solid #e4e7ec}.survey-preview-list.four,.survey-preview-list.legal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){#view-survey-request-page{padding:20px}.survey-view-head{align-items:flex-start;flex-direction:column}.survey-view-grid{grid-template-columns:1fr}.survey-view-card.full{grid-column:auto}.survey-view-fields,.survey-view-fields-wide{grid-template-columns:1fr}.survey-summary-top,.survey-summary-property{padding:20px}.survey-request-overview{padding:22px 20px 0}.survey-request-property-line{margin:22px -20px 0;padding:17px 20px}.survey-request-timeline{grid-template-columns:1fr}.survey-request-timeline>div{border-right:0;border-bottom:1px solid #e4e7ec}.survey-request-timeline>div:last-child{border-bottom:0}.survey-request-schedule{align-items:flex-start;flex-direction:column;gap:13px}.survey-schedule-line{display:none}.survey-request-content-card{padding:21px 20px}.survey-preview-card{padding:20px}.survey-preview-list,.survey-preview-list.four,.survey-preview-list.legal{grid-template-columns:1fr}}
+</style>
+
+<script id="survey-request-view-flow">
+(function(){
+  const view=document.getElementById('view-survey-request-page');if(!view)return;
+  let activeRow=null;
+  const requestDetails={
+    'JOB-132':{type:'Property Survey',requested:'Aug 21, 2026',expected:'Sep 5, 2026',street:'123 Main Street',city:'Austin',state:'Texas',country:'United States',postal:'78701',lat:'30.2672',lng:'-97.7431',section:'12',township:'Austin',range:'3',lot:'24',block:'B',certify:'Consumer Company',legal:'Survey and legal description associated with 123 Main Street.',attachment:'property-boundary-reference.pdf',notes:'Please coordinate site access with the client before arrival.',description:'Complete a property survey and confirm site boundaries for the submitted address.'},
+    'JOB-131':{type:'Inspection',requested:'Aug 20, 2026',expected:'Sep 3, 2026',street:'345 Apple St',city:'Toronto',state:'Ontario',country:'Canada',postal:'M5V 2T6',lat:'43.6426',lng:'-79.3871',section:'—',township:'Toronto',range:'—',lot:'18',block:'C',certify:'QA Tester 3',legal:'Inspection property record associated with 345 Apple St.',attachment:'site-reference.pdf',notes:'Contact the property manager before the inspection.',description:'Perform a site inspection and document current property conditions.'},
+    'JOB-129':{type:'Mapping',requested:'Aug 18, 2026',expected:'Sep 1, 2026',street:'1123 Apple',city:'Toronto',state:'Ontario',country:'Canada',postal:'M5V 2T6',lat:'43.6418',lng:'-79.3864',section:'—',township:'Toronto',range:'—',lot:'9',block:'A',certify:'Consumer Company',legal:'Mapping reference associated with the submitted Toronto property.',attachment:'mapping-area-reference.pdf',notes:'Include the complete mapped property boundary in the final files.',description:'Create updated property mapping and deliver the completed survey files.'}
+  };
+  function show(page){
+    document.querySelectorAll('.page-view').forEach(function(item){item.classList.remove('active');item.style.setProperty('display','none','important');});
+    page.classList.add('active');page.style.setProperty('display','block','important');window.scrollTo(0,0);
+  }
+  function set(id,value){const element=document.getElementById(id);if(element)element.textContent=value;}
+  function dateInputValue(value){
+    const match=String(value||'').match(/^([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})$/);if(!match)return '';
+    const months={Jan:'01',Feb:'02',Mar:'03',Apr:'04',May:'05',Jun:'06',Jul:'07',Aug:'08',Sep:'09',Oct:'10',Nov:'11',Dec:'12'};
+    return match[3]+'-'+(months[match[1].slice(0,3)]||'01')+'-'+String(match[2]).padStart(2,'0');
+  }
+  function openRow(row){
+    if(!row)return;activeRow=row;const cells=row.children;const job=cells[0]?.textContent.trim()||'JOB-132';const date=cells[1]?.textContent.trim()||'';const client=cells[2]?.textContent.trim()||'';const address=cells[3]?.textContent.trim()||'';const status=cells[4]?.textContent.trim()||'Pending';const details=requestDetails[job]||{type:'Property Survey',description:'Survey request submitted for '+address+'.'};
+    set('svJob',job);set('svJobField',job);set('svDate',date);set('svClient',client);set('svClientSummary',client);set('svAddress',address);set('svPropertyJob',job);set('svStatus',status);set('svSurveyType',details.type);set('svRequestedDate',details.requested||date);set('svRequestedSummary',details.requested||date);set('svExpectedClose',details.expected||'—');set('svExpectedSummary',details.expected||'—');set('svStreet',details.street||address.split(',')[0]||'—');set('svCity',details.city||address.split(',')[1]?.trim()||'—');set('svState',details.state||'—');set('svCountry',details.country||'—');set('svPostal',details.postal||'—');set('svLat',details.lat||'—');set('svLng',details.lng||'—');set('svSection',details.section||'—');set('svTownship',details.township||'—');set('svRange',details.range||'—');set('svLot',details.lot||'—');set('svBlock',details.block||'—');set('svCertify',details.certify||client||'—');set('svLegal',details.legal||'—');set('svAttachment',details.attachment||'No attachments submitted');set('svNotes',details.notes||'No additional notes were included with this request.');set('svDescription',details.description);set('svHeroDescription',details.type+' request for '+address+'.');
+    const statusElement=document.getElementById('svStatus');if(statusElement)statusElement.className='survey-status '+status.toLowerCase();
+    const action=document.getElementById('surveyViewPrimary');const edit=document.getElementById('surveyViewEdit');const quoteButton=row.querySelector('.create-from-request,.view-created-quote');if(action){action.textContent=quoteButton?.classList.contains('view-created-quote')?'View Quote':'Create Quote';action.style.display=quoteButton?'inline-flex':'none';}if(edit)edit.style.display=status.toLowerCase()==='pending'?'inline-flex':'none';
+    show(view);
+  }
+  document.addEventListener('click',function(e){
+    if(e.target.closest('#newSurveyRequest')){const form=document.getElementById('new-survey-request-page');const title=form?.querySelector('.create-quote-head h1'),save=form?.querySelector('.create-quote-head .header-create');if(title)title.textContent='Add New Survey Request';if(save)save.textContent='＋ Add Survey Request';}
+    const button=e.target.closest('#survey-requests-page .view-action');if(!button)return;e.preventDefault();e.stopImmediatePropagation();openRow(button.closest('.survey-row'));
+  },true);
+  document.getElementById('surveyViewBack')?.addEventListener('click',function(){show(document.getElementById('survey-requests-page'));},true);
+  document.getElementById('surveyViewEdit')?.addEventListener('click',function(){
+    if(!activeRow)return;const cells=activeRow.children;const job=cells[0]?.textContent.trim()||'';const client=cells[2]?.textContent.trim()||'';const address=cells[3]?.textContent.trim()||'';const details=requestDetails[job]||{description:'Survey request submitted for '+address+'.'};const form=document.getElementById('new-survey-request-page');if(!form)return;
+    window.__surveyRequestFromJob=false;form.classList.remove('from-job');show(form);
+    const title=form.querySelector('.create-quote-head h1'),save=form.querySelector('.create-quote-head .header-create');if(title)title.textContent='Edit Survey Request';if(save)save.textContent='Save Changes';
+    const parts=address.split(',').map(function(part){return part.trim();});const region=parts[2]||'';const postal=(region.match(/[A-Z]\d[A-Z]\s?\d[A-Z]\d|\d{5}/i)||[''])[0];const province=region.replace(postal,'').trim();
+    const values={refSurveyStreet:details.street||parts[0]||'',refSurveyCity:details.city||parts[1]||'',refSurveyState:details.state||(province==='TX'?'Texas':province==='ON'?'Ontario':province),refSurveyCountry:details.country||(/\bON\b|Toronto/i.test(address)?'Canada':'United States'),refSurveyPostal:details.postal||postal,refSurveyLat:details.lat||'',refSurveyLng:details.lng||''};
+    Object.keys(values).forEach(function(id){const field=document.getElementById(id);if(field){field.value=values[id];field.dispatchEvent(new Event('input',{bubbles:true}));field.dispatchEvent(new Event('change',{bubbles:true}));}});
+    const jobInput=document.getElementById('refJobSearch');if(jobInput){jobInput.disabled=false;jobInput.value=job;jobInput.dispatchEvent(new Event('input',{bubbles:true}));}
+    const hidden=document.getElementById('surveyRequestClient'),clientText=document.getElementById('srClientText'),clientTrigger=document.getElementById('srClientTrigger'),addClient=document.getElementById('surveyRequestAddClient');if(hidden)hidden.value=client;if(clientText){clientText.textContent=client;clientText.classList.remove('placeholder');}if(clientTrigger)clientTrigger.disabled=false;if(addClient)addClient.disabled=false;
+    const requestValues={surveyRequestType:details.type||'',surveyRequestRequestedDate:dateInputValue(details.requested),surveyRequestExpectedClose:dateInputValue(details.expected),surveyRequestDescription:details.description||'',surveyRequestSection:details.section||'',surveyRequestTownship:details.township||'',surveyRequestRange:details.range||'',surveyRequestLot:details.lot||'',surveyRequestBlock:details.block||'',surveyRequestCertify:details.certify||client||'',surveyRequestLegal:details.legal||'',surveyRequestNotes:details.notes||''};
+    Object.keys(requestValues).forEach(function(id){const field=document.getElementById(id);if(!field)return;field.value=requestValues[id];field.dispatchEvent(new Event('input',{bubbles:true}));field.dispatchEvent(new Event('change',{bubbles:true}));});
+    const upload=document.getElementById('surveyRequestUploadBox');if(upload)upload.innerHTML='<div><b>Existing attachment</b><br>'+String(details.attachment||'No attachment submitted')+' · Upload a new file to replace it</div>';
+  },true);
+  document.getElementById('surveyViewPrimary')?.addEventListener('click',function(){const button=activeRow?.querySelector('.create-from-request,.view-created-quote');if(button)button.click();},true);
+  if(location.hash==='#survey-request-view'){
+    const first=document.querySelector('#survey-requests-page .survey-row:not(.head)');setTimeout(function(){openRow(first);},0);
+  }
+})();
+</script>
+
+<style id="jobs-actions-column-position">
+#jobs-page .jobs-row{
+  grid-template-columns:140px minmax(280px,1fr) 130px 220px!important;
+}
+#jobs-page .jobs-row>div:last-child,
+#jobs-page .jobs-actions{
+  justify-self:start!important;
+  text-align:left!important;
+}
+#edit-client-page .edit-client-contact-head{background:transparent!important}
+#edit-client-page .edit-client-contact-table{padding:20px 22px!important;border:1px solid #dfe5ec!important;border-radius:10px!important;background:#fff!important}
+#edit-client-page .edit-contact-row{border-left:1px solid #eaecf0!important;border-right:1px solid #eaecf0!important}
+#edit-client-page .edit-contact-row.head{border:1px solid #eaecf0!important;border-radius:8px 8px 0 0!important;background:#f8fafc!important}
+#edit-client-page .edit-contact-row:last-child{border-bottom:1px solid #eaecf0!important;border-radius:0 0 8px 8px!important}
+#jobs-page .jobs-toolbar{display:flex!important;align-items:center!important;gap:10px!important;padding:12px!important;margin-bottom:14px!important;border:1px solid #dfe5ec!important;border-radius:10px!important;background:#fff!important}
+#jobs-page .jobs-search input,#jobs-page .jobs-toolbar select{height:42px!important;border-color:#cfd9e6!important;background:#fff!important}
+#jobs-page .jobs-search svg{top:13px!important}
+#create-quote-page #quoteStep2 .resources-grid,
+#edit-quote-page #edit-quoteStep2 .resources-grid{gap:14px!important;margin-top:14px!important}
+#create-quote-page #quoteStep2 .quote-resource-card,
+#edit-quote-page #edit-quoteStep2 .quote-resource-card{margin:0!important;min-height:0!important}
+#create-quote-page #quoteStep2 .quote-resource-head,
+#edit-quote-page #edit-quoteStep2 .quote-resource-head{min-height:50px!important;padding:8px 14px 5px!important}
+#create-quote-page #quoteStep2 .quote-resource-card>.resource-selected,
+#edit-quote-page #edit-quoteStep2 .quote-resource-card>.resource-selected{padding:0 14px 9px!important;margin:-4px 0 0!important;line-height:1.25!important}
+.client-view-page{padding:22px 34px 50px}
+.client-view-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:18px}
+.client-view-head h1{margin:12px 0 5px;color:#172033;font-size:24px}.client-view-head p{margin:0;color:#667085;font-size:12px}
+.client-view-head>.header-create{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px!important;min-height:40px!important;box-sizing:border-box!important;padding:0 17px!important}
+.client-view-edit-icon{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.client-view-summary{display:flex;align-items:center;gap:16px;padding:20px 22px;margin-bottom:16px;border:1px solid #dfe5ec;border-radius:10px;background:#fff}
+.client-view-avatar{display:grid;place-items:center;width:44px;height:44px;border-radius:10px;background:#eaf1f9;color:#153e69;font-size:14px;font-weight:800}
+.client-view-summary>div:nth-child(2){flex:1}.client-view-summary>div:nth-child(2)>span{color:#667085;font-size:11px;font-weight:600}.client-view-summary h2{margin:3px 0;color:#172033;font-size:19px}.client-view-summary p{margin:0;color:#667085;font-size:12px}
+.client-view-active{padding:6px 10px;border-radius:999px;background:#e8f7ed;color:#18783d;font-size:11px;font-weight:700}
+.client-view-card{padding:20px 22px;margin-bottom:16px;border:1px solid #dfe5ec;border-radius:10px;background:#fff}
+.client-view-card h3{margin:0 0 17px;color:#172033;font-size:14px}.client-view-card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:13px}.client-view-card-head h3{margin:0}.client-view-card-head p{margin:4px 0 0;color:#667085;font-size:12px}
+.client-view-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}.client-view-info-grid span{display:block;margin-bottom:5px;color:#667085;font-size:12px;font-weight:600}.client-view-info-grid b{color:#344054;font-size:13px}
+.client-view-contact-table{border:1px solid #eaecf0;border-radius:8px;overflow:hidden}.client-view-contact-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:14px;align-items:center;min-height:47px;padding:0 13px;border-top:1px solid #eaecf0;color:#344054;font-size:12px}.client-view-contact-row:first-child{border-top:0}.client-view-contact-row.head{min-height:36px;background:#f8fafc;color:#667085;font-size:10px;font-weight:700;text-transform:uppercase}.client-view-notes{margin:0;color:#475467;font-size:13px;line-height:1.6}
+.contact-delete-backdrop{display:none;position:fixed;inset:0;z-index:350000;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.45)}
+.contact-delete-backdrop.open{display:flex}.contact-delete-dialog{position:relative;width:min(500px,calc(100vw - 32px));padding:0;border-radius:18px;background:#fff;box-shadow:0 24px 60px rgba(15,23,42,.24);overflow:hidden}
+.contact-delete-close{position:absolute;top:21px;right:26px;width:28px;height:28px;border:0;background:transparent;color:#667085;font-size:25px;line-height:1;cursor:pointer}.contact-delete-close:hover{color:#344054}
+.contact-delete-content{display:flex;align-items:flex-start;gap:19px;padding:30px 66px 28px 32px}
+.contact-delete-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:9px;background:#fee4e2;color:#e32626}.contact-delete-icon svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-delete-dialog h2{margin:6px 0 8px;color:#1d3165;font-size:20px;line-height:1.25}.contact-delete-content p{margin:0;color:#667085;font-size:14px;line-height:1.55}
+.contact-delete-actions{display:flex;justify-content:flex-end;gap:12px;padding:19px 32px;border-top:1px solid #e4e7ec}.contact-delete-actions button{height:44px;box-sizing:border-box;padding:0 20px;border-radius:8px;font-size:13px;font-weight:700}.contact-delete-confirm{border:1px solid #e32626;background:#e32626;color:#fff;cursor:pointer}.contact-delete-confirm:hover{border-color:#c91f1f;background:#c91f1f}
+#clients .client-row:not(.header){cursor:pointer}
+#clients .client-row:not(.header):hover{background:#fbfcfe}
+#clients .client-row:not(.header) .client-actions .icon-action{width:30px!important;height:30px!important;padding:5px!important;border-radius:6px!important;color:#153e69!important;transition:background-color .12s ease,color .12s ease!important}
+#clients .client-row:not(.header) .client-actions .icon-action:hover,
+#clients .client-row:not(.header) .client-actions .client-menu-trigger:hover{background:#f1f5f9!important;color:#0f3155!important}
+[class*="table"] .icon-action:hover,
+[class*="table"] .action-icon:hover,
+[class*="table"] .jobs-icon:hover,
+[class*="table"] .jd-eye:hover,
+[class*="table"] .jd-edit:hover,
+.survey-table .icon-action:hover,
+.jobs-table .jobs-icon:hover{background:#f1f5f9!important;color:#0f3155!important}
+#jobs-page .jobs-table .jobs-icon:hover,
+#survey-requests-page .survey-table .icon-action:hover,
+#quotes-page .crm-table .icon-action:hover,
+#clients .crm-table .icon-action:hover,
+#edit-client-page .edit-client-contact-table .icon-action:hover,
+#view-quote-page .vq-table .icon-action:hover{background:#f1f5f9!important;color:#0f3155!important}
+[class*="table"] .delete-action:hover{background:#f1f5f9!important;color:#dc2626!important}
+
+/* A selected/expanded row uses the stronger action hover for clearer context. */
+#clients .client-row.expanded .client-actions .icon-action:hover,
+#clients .client-row.expanded .client-actions .client-menu-trigger:hover,
+[class*="row"].expanded .icon-action:hover,
+[class*="row"].expanded .action-icon:hover,
+[class*="row"].expanded .jobs-icon:hover,
+[class*="row"].selected .icon-action:hover,
+[class*="row"].selected .action-icon:hover,
+[class*="row"].selected .jobs-icon:hover,
+[class*="row"][aria-selected="true"] .icon-action:hover,
+[class*="row"][aria-selected="true"] .action-icon:hover,
+[class*="row"][aria-selected="true"] .jobs-icon:hover{background:#e3ecf6!important;color:#0f3155!important}
+[class*="row"].expanded .delete-action:hover,
+[class*="row"].selected .delete-action:hover,
+[class*="row"][aria-selected="true"] .delete-action:hover{background:#e3ecf6!important;color:#dc2626!important}
+
+/* Destructive table actions always keep their red icon on hover. */
+#clients .client-row:not(.header) .client-actions .icon-action.delete-action:hover,
+#clients .client-row.expanded .client-actions .icon-action.delete-action:hover,
+#jobs-page .jobs-table .delete-action:hover,
+#survey-requests-page .survey-table .icon-action.delete-action:hover,
+#quotes-page .crm-table .icon-action.delete-action:hover,
+#edit-client-page .edit-client-contact-table .icon-action.delete-action:hover,
+#view-quote-page .vq-table .icon-action.delete-action:hover{background:#fee2e2!important;color:#dc2626!important}
+#clients .client-row.expanded + .company-detail .icon-action:hover{background:#e3ecf6!important;color:#0f3155!important}
+#clients .client-row.expanded + .company-detail .icon-action.delete-action:hover{background:#fee2e2!important;color:#dc2626!important}
+
+/* Consistent neutral outline treatment for secondary buttons. */
+#crm-page .crm-actions .crm-btn:not(.primary),
+.closed-view-btn,
+.modal-cancel,
+.header-cancel,
+.add-another-contact,
+.add-client-inline,
+.quote-secondary,
+#create-quote-page #quoteStep2 #quotePrevStep,
+#edit-quote-page #edit-quoteStep2 #edit-quotePrevStep,
+#create-quote-page #quoteStep2 .resource-select,
+#edit-quote-page #edit-quoteStep2 .resource-select,
+.mini-action,
+#survey-requests-page .survey-quote-action,
+#survey-requests-page .survey-text-quote.view-created-quote,
+.survey-view-edit,
+.vq-outline,
+.dashboard-client-action,
+.jd-task-toolbar button,
+.jd-download,
+.client-cancel{
+  background:#FFFFFF!important;
+  border:1px solid #D9DFEA!important;
+  color:#667085!important;
+}
+#crm-page .crm-actions .crm-btn:not(.primary):hover,
+.closed-view-btn:hover,
+.modal-cancel:hover,
+.header-cancel:hover,
+.add-another-contact:hover,
+.add-client-inline:hover,
+.quote-secondary:hover,
+#create-quote-page #quoteStep2 #quotePrevStep:hover,
+#edit-quote-page #edit-quoteStep2 #edit-quotePrevStep:hover,
+#create-quote-page #quoteStep2 .resource-select:hover,
+#edit-quote-page #edit-quoteStep2 .resource-select:hover,
+.mini-action:hover,
+#survey-requests-page .survey-quote-action:hover,
+#survey-requests-page .survey-text-quote.view-created-quote:hover,
+.survey-view-edit:hover,
+.vq-outline:hover,
+.dashboard-client-action:hover,
+.jd-task-toolbar button:hover,
+.jd-download.enabled:hover,
+.client-cancel:hover{
+  background:#F5F5F5!important;
+  border-color:#D9DFEA!important;
+  color:#667085!important;
+}
+
+/* One background colour for every tabular header row. */
+table thead,
+table thead tr,
+table thead th,
+[class*="table"] > [class*="row"].head,
+[class*="table"] > [class*="row"].header,
+#clients .crm-row.header,
+#clients .contact-row.head,
+#opportunities .crm-row.header,
+#quotes-page .crm-table > .crm-row.header.quotes-row,
+#survey-requests-page .survey-row.head,
+#jobs-page .jobs-table > .jobs-row.jobs-head,
+#job-details-page .jd-table-head,
+#edit-client-page .edit-contact-row.head,
+#view-quote-page .vq-row.head,
+.crm-row.header,
+.contact-row.head,
+.edit-contact-row.head,
+#jobs-page .jobs-row.jobs-head,
+#job-clients-page .job-client-row.head,
+.jobs-row.jobs-head,
+.survey-row.head,
+.quotes-row.head,
+.quote-row.head,
+.job-client-row.head,
+.jd-table-head,
+.vq-row.head,
+.client-view-contact-row.head,
+.provider-address-row.head,
+.provider-send-row.head{
+  background:#F5F8FF!important;
+  font-family:Inter,Arial,sans-serif!important;
+  font-size:11px!important;
+  color:#153E69!important;
+  font-weight:700!important;
+  text-transform:uppercase!important;
+  letter-spacing:.02em!important;
+}
+table thead th,
+[class*="table"] > [class*="row"].head > *,
+[class*="table"] > [class*="row"].header > *,
+.crm-row.header > *,
+.contact-row.head > *,
+.edit-contact-row.head > *,
+#jobs-page .jobs-row.jobs-head > *,
+#job-clients-page .job-client-row.head > *,
+#jobs-page .jobs-row.jobs-head > div,
+#job-clients-page .job-client-row.head > div,
+.jobs-row.jobs-head > *,
+.survey-row.head > *,
+.quotes-row.head > *,
+.quote-row.head > *,
+.job-client-row.head > *,
+.jd-table-head > *,
+.vq-row.head > *,
+.client-view-contact-row.head > *,
+.provider-address-row.head > *,
+.provider-send-row.head > *{
+  font-family:Inter,Arial,sans-serif!important;
+  font-size:11px!important;
+  color:#153E69!important;
+  font-weight:700!important;
+  text-transform:uppercase!important;
+  letter-spacing:.02em!important;
+}
+
+/* Shared application canvas sampled from the supplied reference (#F6F7FB). */
+html,
+body,
+.main,
+.content,
+.page-view,
+.page-view > main{
+  background:#F6F7FB!important;
+}
+
+/* Job Management child selection matches Dashboard and CRM. */
+.side .subnav a.job-page-selected,
+.side .subnav .job-page-selected{
+  background:rgba(45,91,132,.48)!important;
+  color:#FFFFFF!important;
+}
+.side .subnav a.job-page-selected:hover,
+.side .subnav .job-page-selected:hover{
+  background:rgba(45,91,132,.54)!important;
+  color:#FFFFFF!important;
+}
+
+/* Expanded client contact accordions stay on a clean white surface. */
+#clients .client-row.expanded,
+#clients .client-row.expanded + .company-detail,
+#clients .client-row.expanded + .company-detail.open{
+  background:#FFFFFF!important;
+}
+#clients .company-detail .contact-head,
+#clients .company-detail.open .contact-head{
+  background:#FFFFFF!important;
+  background-color:#FFFFFF!important;
+  box-shadow:none!important;
+}
+
+/* Job Details actions align with the top edge of the Back control. */
+#job-details-page .jd-header{
+  align-items:flex-start!important;
+}
+#job-details-page .jd-header-actions{
+  align-self:flex-start!important;
+  margin-top:0!important;
+}
+
+/* CRM Clients rows match the hover used by the Jobs client list. */
+#clients .client-row:not(.header):not(.expanded):hover{
+  background:#F8FAFC!important;
+}
+#clients .client-row.expanded:hover{
+  background:#F8FAFC!important;
+}
+#clients .client-row.expanded{
+  background:#F8FAFC!important;
+  border-bottom-color:#DBE7F7!important;
+}
+
+/* Shared row-hover colour from the supplied reference (#F8FAFC). */
+#clients .client-row:not(.header):not(.expanded):hover,
+#edit-client-page .edit-contact-row:not(.head):hover,
+#job-clients-page .job-client-row:not(.head):hover{
+  background:#F8FAFC!important;
+}
+
+/* Job Management tables do not change row background on hover. */
+#jobs-page .jobs-row:not(.jobs-head):hover,
+#survey-requests-page .survey-row:not(.head):hover,
+#quotes-page .quotes-row:not(.header):hover,
+#view-quote-page .vq-row:not(.head):hover,
+#job-details-page .jd-row:not(.jd-table-head):hover{
+  background:transparent!important;
+}
+
+/* Quote numbers match the Job number emphasis. */
+#quotes-page .quote-id{
+  font-weight:600!important;
+}
+@media(max-width:760px){.client-view-page{padding:20px}.client-view-head{flex-direction:column}.client-view-info-grid{grid-template-columns:1fr}.client-view-contact-table{overflow-x:auto}.client-view-contact-row{min-width:650px}}
+</style>
+<script id="client-view-and-contact-edit-flow">
+(function(){
+  let activeClientRow=null,activeContactRow=null,activeSourceContactRow=null,activeDetailRows=[];
+  const viewPage=document.getElementById('view-client-page'),crmPage=document.getElementById('crm-page'),editPage=document.getElementById('edit-client-page');
+  const modal=document.getElementById('crmContactEditModal');
+  const addresses={'Consumer Company':'123 Main Street, Austin, Texas 78701','QA Tester 3':'345 Apple St, Toronto, Ontario M5V 2T6','QA Tester 2':'Toronto, Ontario, Canada','No Access Company':'Austin, Texas, United States'};
+  function show(page){document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');p.style.setProperty('display','none','important');});page.classList.add('active');page.style.setProperty('display','block','important');window.scrollTo(0,0);}
+  function initials(name){return String(name||'').split(/\s+/).map(function(x){return x[0]||'';}).join('').slice(0,2).toUpperCase();}
+  function escapeHtml(value){return String(value||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function contactValues(row){const children=row?row.children:[];return{name:children[0]?.textContent.trim()||'',email:children[1]?.textContent.trim()||'',phone:children[2]?.textContent.trim()||''};}
+  function openClient(row){
+    if(!row)return;activeClientRow=row;const cells=row.children;const company=row.querySelector('.company')?.textContent.trim()||'Client';const primary=cells[2]?.querySelector('b')?.textContent.trim()||'';const info=cells[3]?.querySelectorAll('div')||[];const email=info[0]?.textContent.trim()||'—';const phone=info[1]?.textContent.trim()||'—';const detail=row.nextElementSibling;
+    document.getElementById('viewClientAvatar').textContent=initials(company);document.getElementById('viewClientCompany').textContent=company;document.getElementById('viewCompanyName').textContent=company;document.getElementById('viewClientPrimary').textContent='Primary contact: '+(primary||'—');document.getElementById('viewCompanyEmail').textContent=email;document.getElementById('viewCompanyPhone').textContent=phone;document.getElementById('viewCompanyAddress').textContent=addresses[company]||'Address on file';
+    activeDetailRows=detail?[...detail.querySelectorAll('.contact-row:not(.head)')]:[];const contacts=document.getElementById('viewClientContacts');contacts.innerHTML=activeDetailRows.map(function(source,index){const value=contactValues(source);return '<div class="client-view-contact-row" data-contact-index="'+index+'"><b>'+escapeHtml(value.name)+'</b><span>'+escapeHtml(value.email)+'</span><span>'+escapeHtml(value.phone)+'</span></div>';}).join('');
+    show(viewPage);
+  }
+  function openContactEditor(row,source,company,provided){
+    if(!row||!modal)return;activeContactRow=row;activeSourceContactRow=source||row;const value=provided||contactValues(row);const applyValues=function(){const name=document.getElementById('crmContactName'),email=document.getElementById('crmContactEmail'),phone=document.getElementById('crmContactPhone');name.value=value.name||'';email.value=value.email||'';phone.value=value.phone||'';name.defaultValue=value.name||'';email.defaultValue=value.email||'';phone.defaultValue=value.phone||'';};applyValues();const subtitle=modal.querySelector('.contact-edit-head p');if(subtitle)subtitle.textContent='Update this contact under '+(company||'the selected client')+'.';modal.classList.add('open');setTimeout(applyValues,0);setTimeout(applyValues,120);
+  }
+  document.addEventListener('click',function(e){
+    const view=e.target.closest('#clients .client-actions .view-action');if(view){e.preventDefault();e.stopImmediatePropagation();openClient(view.closest('.client-row'));return;}
+    const crmEdit=e.target.closest('#clients .company-detail .contact-row:not(.head) .edit-action');if(crmEdit){e.preventDefault();e.stopImmediatePropagation();const row=crmEdit.closest('.contact-row');const company=row.closest('.company-detail')?.previousElementSibling?.querySelector('.company')?.textContent.trim();openContactEditor(row,row,company);return;}
+    const viewEdit=e.target.closest('#view-client-page .client-view-contact-edit');if(viewEdit){e.preventDefault();e.stopImmediatePropagation();const row=viewEdit.closest('.client-view-contact-row');const source=activeDetailRows[Number(row.dataset.contactIndex)]||row;openContactEditor(row,source,document.getElementById('viewClientCompany').textContent,{name:viewEdit.dataset.contactName,email:viewEdit.dataset.contactEmail,phone:viewEdit.dataset.contactPhone});const restore=function(){document.getElementById('crmContactName').value=viewEdit.dataset.contactName||'';document.getElementById('crmContactEmail').value=viewEdit.dataset.contactEmail||'';document.getElementById('crmContactPhone').value=viewEdit.dataset.contactPhone||'';};restore();setTimeout(restore,160);return;}
+  },true);
+  document.getElementById('saveCrmContactEdit')?.addEventListener('click',function(){const values=[document.getElementById('crmContactName').value,document.getElementById('crmContactEmail').value,document.getElementById('crmContactPhone').value];[activeContactRow,activeSourceContactRow].forEach(function(row){if(!row)return;const children=row.children;if(children[0])children[0].textContent=values[0];if(children[1])children[1].textContent=values[1];if(children[2])children[2].textContent=values[2];});modal?.classList.remove('open');},true);
+  function closeCrmContactModal(){modal?.classList.remove('open');}
+  document.getElementById('closeCrmContactEdit')?.addEventListener('click',closeCrmContactModal);document.getElementById('cancelCrmContactEdit')?.addEventListener('click',closeCrmContactModal);modal?.addEventListener('click',function(e){if(e.target===modal)closeCrmContactModal();});
+  document.getElementById('backFromViewClient')?.addEventListener('click',function(){show(crmPage);});
+  document.getElementById('viewClientEdit')?.addEventListener('click',function(){const edit=activeClientRow?.querySelector('.client-actions .edit-action');if(edit)edit.click();else show(editPage);});
+  document.getElementById('viewClientAddContact')?.addEventListener('click',function(){const add=document.getElementById('addContactModal');const subtitle=add?.querySelector('.contact-edit-head p');if(subtitle)subtitle.textContent='Add a new contact under '+document.getElementById('viewClientCompany').textContent+'.';add?.classList.add('open');});
+  if(location.hash==='#client-view')setTimeout(function(){openClient(document.querySelector('#clients .client-row:not(.header)'));},0);
+})();
+</script>
+<script id="delete-contact-and-row-accordion-flow">
+(function(){
+  const modal=document.getElementById('deleteContactModal');let pendingRow=null;
+  function companyFor(row){const detail=row?.closest('.company-detail');if(detail)return detail.previousElementSibling?.querySelector('.company')?.textContent.trim()||'Client';return 'Consumer Company';}
+  function openDelete(row){if(!row||!modal)return;pendingRow=row;const name=row.children[0]?.textContent.trim()||'this contact';document.getElementById('deleteContactMessage').innerHTML='Are you sure you want to delete <b>'+name.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</b>? This action cannot be undone.';modal.classList.add('open');}
+  function closeDelete(){modal?.classList.remove('open');pendingRow=null;}
+  document.addEventListener('click',function(e){
+    const remove=e.target.closest('#clients .company-detail .contact-row:not(.head) .delete-action,#edit-client-page .edit-contact-row:not(.head) .delete-action');if(remove){e.preventDefault();e.stopImmediatePropagation();openDelete(remove.closest('.contact-row,.edit-contact-row'));return;}
+    const row=e.target.closest('#clients .client-row:not(.header)');if(!row||e.target.closest('button,a,input,select,.client-actions'))return;const detail=row.nextElementSibling;if(!detail?.classList.contains('company-detail'))return;const opening=!detail.classList.contains('open');detail.classList.toggle('open',opening);row.classList.toggle('expanded',opening);
+  },true);
+  document.getElementById('cancelDeleteContact')?.addEventListener('click',closeDelete);document.getElementById('closeDeleteContact')?.addEventListener('click',closeDelete);modal?.addEventListener('click',function(e){if(e.target===modal)closeDelete();});
+  document.getElementById('confirmDeleteContact')?.addEventListener('click',function(){if(pendingRow)pendingRow.remove();closeDelete();});
+  if(location.hash==='#delete-contact-preview')setTimeout(function(){document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');p.style.setProperty('display','none','important');});const crm=document.getElementById('crm-page');crm.classList.add('active');crm.style.setProperty('display','block','important');const row=document.querySelector('#clients .client-row:not(.header)'),detail=row?.nextElementSibling;if(row&&detail?.classList.contains('company-detail')){row.classList.add('expanded');detail.classList.add('open');openDelete(detail.querySelector('.contact-row:not(.head)'));}window.scrollTo(0,0);},0);
+})();
+</script>
+
+<script id="survey-request-menu-icons">
+(function(){
+  const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>';
+  const duplicateIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>';
+  document.querySelectorAll('#survey-requests-page .survey-more-item').forEach(function(item){
+    if(item.querySelector('svg'))return;
+    item.insertAdjacentHTML('afterbegin',item.textContent.trim().toLowerCase().includes('edit')?editIcon:duplicateIcon);
+  });
+})();
+</script>
+
+<script id="approved-quote-download-actions">
+(function(){
+  const downloadSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M5 19h14"/></svg>';
+  const table=document.querySelector('#quotes-page .crm-table');
+  function downloadMenuItem(menu){
+    return [...(menu?.querySelectorAll('.quote-more-item')||[])].find(function(item){return item.textContent.trim().toLowerCase()==='download';});
+  }
+  function syncRow(row){
+    const actions=row.querySelector('.quote-actions'),wrap=actions?.querySelector('.quote-more-wrap'),menu=wrap?.querySelector('.quote-more-menu');
+    if(!actions||!wrap||!menu)return;
+    const approved=!!row.querySelector('.quote-status-admin') || /approved\s*\(admin\)/i.test(row.children[3]?.textContent||'');
+    let outside=actions.querySelector(':scope > .quote-download'),inside=downloadMenuItem(menu);
+    if(approved){
+      if(!outside){outside=document.createElement('button');outside.type='button';outside.className='icon-action quote-download';outside.title='Download';outside.setAttribute('aria-label','Download quote');outside.innerHTML=downloadSvg;actions.insertBefore(outside,wrap);}
+      inside?.remove();
+    }else{
+      outside?.remove();
+      if(!inside){inside=document.createElement('button');inside.type='button';inside.className='quote-more-item';inside.innerHTML=downloadSvg+'<span>Download</span>';menu.insertBefore(inside,menu.querySelector('.delete'));}
+    }
+  }
+  function sync(){table?.querySelectorAll('.quotes-row:not(.header)').forEach(syncRow);}
+  sync();
+  if(table)new MutationObserver(sync).observe(table,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
+
+<script id="shared-back-navigation">
+(function(){
+  const backSelector=[
+    '#jobClientsBack','#jobDetailsBack','#surveyViewBack','#backToSurveyRequests',
+    '#vqBack','#backToQuotes','#edit-backToQuotes','#backFromViewClient',
+    '#backFromEditClient','#backToClients','[data-client-back]',
+    '#cancelSurveyRequest','#cancelCreateQuote','#edit-cancelCreateQuote',
+    '#cancelEditClient','#cancelAddClientPage'
+  ].join(',');
+  const jobPages=new Set([
+    'jobs-page','job-clients-page','job-details-page','survey-requests-page',
+    'new-survey-request-page','view-survey-request-page','quotes-page',
+    'view-quote-page','create-quote-page','edit-quote-page'
+  ]);
+  const crmPages=new Set(['crm-page','view-client-page','edit-client-page','add-client-page']);
+  const activePage=function(){return [...document.querySelectorAll('.page-view')].find(function(page){return page.classList.contains('active');});};
+  const history=[];
+  let suppressTarget='';
+
+  function setTopNavigation(pageId){
+    document.querySelectorAll('.side .nav,.side .page-link,.side .subnav a').forEach(function(item){
+      item.classList.remove('active','selected','subnav-active','job-page-selected');
+      item.removeAttribute('aria-current');
+    });
+    const name=crmPages.has(pageId)?'crm':pageId==='dashboard-page'?'dashboard':'';
+    const link=name?document.querySelector('.page-link[data-page="'+name+'"]'):null;
+    if(link){link.classList.add('active','selected');link.setAttribute('aria-current','page');}
+  }
+
+  function showPage(pageId){
+    if(jobPages.has(pageId)&&typeof window.jobManagementRoute==='function'){
+      window.jobManagementRoute(pageId);
+      return;
+    }
+    document.querySelectorAll('.page-view').forEach(function(page){
+      page.classList.remove('active');
+      page.style.setProperty('display','none','important');
+    });
+    const target=document.getElementById(pageId);
+    if(target){target.classList.add('active');target.style.setProperty('display','block','important');}
+    setTopNavigation(pageId);
+    window.scrollTo(0,0);
+  }
+
+  function recordActive(){
+    const id=activePage()?.id;
+    if(!id)return;
+    if(suppressTarget===id){suppressTarget='';return;}
+    if(history[history.length-1]!==id)history.push(id);
+  }
+
+  document.querySelectorAll(backSelector).forEach(function(button){button.textContent='← Back';button.setAttribute('aria-label','Go back to previous page');});
+  recordActive();
+  new MutationObserver(recordActive).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','style']});
+
+  document.addEventListener('pointerdown',function(event){
+    const trigger=event.target.closest('#survey-requests-page .create-from-request,#view-survey-request-page #surveyViewPrimary');
+    if(!trigger)return;
+    window.__quoteBackOrigin=document.getElementById('view-survey-request-page')?.classList.contains('active')
+      ?'view-survey-request-page':'survey-requests-page';
+  },true);
+
+  document.addEventListener('click',function(event){
+    const quoteTrigger=event.target.closest('#survey-requests-page .create-from-request,#view-survey-request-page #surveyViewPrimary');
+    if(quoteTrigger){
+      const source=activePage()?.id;
+      if(source==='survey-requests-page'||source==='view-survey-request-page')window.__quoteBackOrigin=source;
+    }
+    const back=event.target.closest(backSelector);
+    if(!back)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const current=activePage()?.id;
+    if(current&&history[history.length-1]!==current)history.push(current);
+    const quoteOrigin=back.matches('#backToQuotes,#cancelCreateQuote')&&current==='create-quote-page'
+      &&(window.__quoteBackOrigin==='survey-requests-page'||window.__quoteBackOrigin==='view-survey-request-page')
+      ?window.__quoteBackOrigin:'';
+    let target;
+    if(quoteOrigin){
+      const originIndex=history.lastIndexOf(quoteOrigin);
+      if(originIndex>=0)history.splice(originIndex+1);
+      else history.push(quoteOrigin);
+      target=quoteOrigin;
+      window.__quoteBackOrigin='';
+    }else{
+      if(history.length>1)history.pop();
+      target=history[history.length-1]||'dashboard-page';
+    }
+    suppressTarget=target;
+    window.__surveyRequestFromJob=false;
+    window.__surveyRequestJobNo='';
+    document.getElementById('new-survey-request-page')?.classList.remove('from-job');
+    showPage(target);
+  },true);
 })();
 </script>
 
