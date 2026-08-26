@@ -5249,21 +5249,25 @@ button[style*="#1E3B8A"]:hover{
   </div>
 </div>
 
-<div class="new-job-modal" id="newJobModal" role="dialog" aria-modal="true" aria-labelledby="newJobModalTitle">
-  <div class="new-job-dialog">
-    <div class="new-job-modal-head">
-      <div><h2 id="newJobModalTitle">New Job</h2><p>Create a job by entering its property location and optionally assigning a client.</p></div>
-      <button type="button" class="new-job-close" id="newJobClose" aria-label="Close">×</button>
+<div id="new-job-page" class="page-view">
+  <main class="create-quote-page new-job-page">
+    <div class="create-quote-head">
+      <div><button type="button" class="back-client-link" id="newJobBack">← Back</button><h1 id="newJobPageTitle">Add New Job</h1><p>Create a job by entering its property location and optionally assigning a client.</p></div>
+      <div class="create-quote-actions"><button type="button" class="header-create" id="newJobCreate">＋ Create Job</button></div>
     </div>
-    <div class="new-job-modal-body">
+    <div class="new-job-page-body">
+      <section class="quote-section new-job-number-section">
+        <div class="quote-section-title">Job Details</div>
+        <div class="quote-section-sub">The job number is generated automatically.</div>
       <div class="new-job-field">
         <label for="newJobNumber">Job Number</label>
         <input id="newJobNumber" type="text" readonly aria-readonly="true">
         <small>Generated automatically when the job is created.</small>
       </div>
+      </section>
 
-      <div class="new-job-section">
-        <div class="new-job-section-head"><h3>Subject Property</h3><p>Enter an address or use coordinates.</p></div>
+      <section class="quote-section new-job-section">
+        <div class="new-job-section-head"><div><h3>Subject Property</h3><p>Enter an address or use coordinates.</p></div><button type="button" class="property-clear-action" id="newJobClearProperty"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m9 9 6 6M15 9l-6 6"/></svg><span>Clear</span></button></div>
         <div class="new-job-location-tabs" role="tablist" aria-label="Location entry method">
           <button type="button" class="active" data-new-job-location="address" role="tab" aria-selected="true">Address</button>
           <button type="button" data-new-job-location="coordinates" role="tab" aria-selected="false">Coordinates</button>
@@ -5283,20 +5287,21 @@ button[style*="#1E3B8A"]:hover{
             <div class="new-job-field"><label for="newJobLongitude">Longitude <span>*</span></label><input id="newJobLongitude" inputmode="decimal" placeholder="e.g. -79.3832"></div>
           </div>
         </div>
-      </div>
+        <div class="new-job-duplicate-error" id="newJobDuplicateError" role="alert"></div>
+      </section>
 
-      <div class="new-job-field">
+      <section class="quote-section new-job-client-section">
+        <div class="quote-section-title">Client</div>
+        <div class="quote-section-sub">Assign an existing client or create a new client without leaving this job.</div>
+        <div class="new-job-field">
         <label for="newJobClient">Client <em>Optional</em></label>
         <div class="new-job-client-row"><select id="newJobClient"><option value="">No client selected</option><option>Consumer Company</option><option>QA Tester 3</option><option>No Access Company</option><option>James Lee</option></select><button type="button" class="new-job-add-client" id="newJobAddClient">＋ Add New Client</button></div>
         <small>A client can also be assigned later.</small>
         <div class="new-job-client-notice" id="newJobClientNotice" role="status"></div>
-      </div>
+        </div>
+      </section>
     </div>
-    <div class="new-job-modal-foot">
-      <button type="button" class="new-job-cancel" id="newJobCancel">Cancel</button>
-      <button type="button" class="new-job-create" id="newJobCreate">Create Job</button>
-    </div>
-  </div>
+  </main>
 </div>
 
 <div id="survey-requests-page" class="page-view"><main class="survey-requests-page">
@@ -5378,7 +5383,6 @@ button[style*="#1E3B8A"]:hover{
       <p>Create a survey request by identifying the subject property or job, then selecting the client and entering request details.</p>
     </div>
     <div class="create-quote-actions">
-      <button class="header-cancel" id="cancelSurveyRequest">Cancel</button>
       <button class="header-create">＋ Add Survey Request</button>
     </div>
   </div>
@@ -5386,8 +5390,7 @@ button[style*="#1E3B8A"]:hover{
   <div class="survey-request-clean-body">
 
     <div class="quote-section survey-property-job-section reference-property-job">
-  <div class="quote-section-title">Subject Property &amp; Job</div>
-  <div class="quote-section-sub">Enter the subject property using an address or coordinates, or search by Job Number to find and populate the associated address. If the property matches an existing job, the Job Number will fill automatically.</div>
+  <div class="subject-property-form-head"><div><div class="quote-section-title">Subject Property &amp; Job</div><div class="quote-section-sub">Enter the subject property using an address or coordinates, or search by Job Number to find and populate the associated address. If the property matches an existing job, the Job Number will fill automatically.</div></div><button type="button" class="property-clear-action" id="surveyClearProperty"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m9 9 6 6M15 9l-6 6"/></svg><span>Clear</span></button></div>
 
   <div class="reference-location-tabs">
     <button type="button" class="active" data-ref-location="address">Address</button>
@@ -6050,7 +6053,6 @@ button[style*="#1E3B8A"]:hover{
       <p>Update company information, portal access, and contacts for Consumer Company.</p>
     </div>
     <div class="edit-client-actions">
-      <button class="header-cancel" id="cancelEditClient">Cancel</button>
       <button class="header-create"><span>Save Changes</span></button>
     </div>
   </div>
@@ -6772,9 +6774,9 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
       <div class="form-section">
         <div class="form-section-title">Company Information</div>
         <div class="form-grid">
-          <div class="form-field"><label>Company Name <span class="req">*</span></label><input placeholder="E.g. ACME Corporation" required></div>
+          <div class="form-field"><label>Company Name <span class="req">*</span></label><input id="newJobClientCompany" placeholder="E.g. ACME Corporation" required></div>
           <div class="form-field"><label>Phone Number</label><input placeholder="+1 555 123 4567"></div>
-          <div class="form-field full"><label>Email Address</label><input type="email" placeholder="company@example.com"></div>
+          <div class="form-field full"><label>Email Address</label><input id="newJobClientEmail" type="email" placeholder="company@example.com"></div>
           <div class="form-field full"><label>Address <span class="req">*</span></label><input placeholder="Street address" required></div>
           <div class="form-field"><label>Country <span class="req">*</span></label><select><option>Select country...</option></select></div>
           <div class="form-field"><label>State / Province <span class="req">*</span></label><input placeholder="State / Province"></div>
@@ -6799,7 +6801,7 @@ document.querySelectorAll('.view-switch button').forEach(btn=>{
         <div class="form-grid"><div class="form-field full"><label>Notes</label><textarea placeholder="Add any relevant notes about this client..."></textarea></div></div>
       </div>
 
-      <div class="modal-actions"><button class="modal-cancel" id="cancelClientModal">Cancel</button><button class="modal-save">Add Client</button></div>
+      <div class="modal-actions"><button class="modal-cancel" id="cancelClientModal">Cancel</button><button class="modal-save" id="saveClientModal">Add Client</button></div>
     </div>
   </div>
 </div>
@@ -8779,7 +8781,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     });
 
     let selected='';
-    if(id==='jobs-page'||id==='job-clients-page'||id==='job-details-page') selected='Jobs';
+    if(id==='jobs-page'||id==='job-clients-page'||id==='job-details-page'||id==='new-job-page') selected='Jobs';
     if(id==='survey-requests-page'||id==='new-survey-request-page') selected='Survey Requests';
     if(id==='quotes-page'||id==='create-quote-page') selected='Quotes';
 
@@ -9437,6 +9439,7 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
     'jobs-page':'jobs',
     'job-clients-page':'jobs',
     'job-details-page':'jobs',
+    'new-job-page':'jobs',
     'survey-requests-page':'survey',
     'new-survey-request-page':'survey',
     'quotes-page':'quotes',
@@ -10954,3 +10957,760 @@ body,
   function contactValues(row){const children=row?row.children:[];return{name:children[0]?.textContent.trim()||'',email:children[1]?.textContent.trim()||'',phone:children[2]?.textContent.trim()||''};}
   function setClientViewTab(name){
     document.querySelectorAll('#view-client-page .client-view-tab').forEach(function(tab){const active=tab.dataset.clientViewTab===name;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));});
+    document.getElementById('clientViewDetailsPanel')?.classList.toggle('active',name==='details');
+    document.getElementById('clientViewJobsPanel')?.classList.toggle('active',name==='jobs');
+    const edit=document.getElementById('viewClientEdit');if(edit)edit.classList.toggle('tab-hidden',name!=='details');
+  }
+  function renderClientJobs(company){
+    const jobs=[];
+    document.querySelectorAll('#jobs-page .job-clients-accordion').forEach(function(accordion){
+      const hasClient=[...accordion.querySelectorAll('.job-inline-client')].some(function(client){return (client.dataset.client||'').toLowerCase()===company.toLowerCase();});
+      if(!hasClient)return;
+      const row=accordion.previousElementSibling;if(!row)return;
+      jobs.push({number:accordion.dataset.job||row.querySelector('.jobs-number')?.textContent.trim()||'',address:row.children[1]?.textContent.trim()||'',status:row.querySelector('.jobs-status')?.textContent.trim()||'Active'});
+    });
+    const container=document.getElementById('viewClientJobs'),empty=document.getElementById('viewClientJobsEmpty'),count=document.getElementById('viewClientJobCount');
+    if(count)count.textContent=String(jobs.length);
+    if(container)container.innerHTML=jobs.map(function(job){const statusClass=job.status.toLowerCase();return '<button type="button" class="client-job-row" data-job="'+escapeHtml(job.number)+'"><span class="client-job-number">'+escapeHtml(job.number)+'</span><span>'+escapeHtml(job.address)+'</span><span><em class="client-job-status '+escapeHtml(statusClass)+'">'+escapeHtml(job.status)+'</em></span><span class="client-job-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>';}).join('');
+    if(empty)empty.style.display=jobs.length?'none':'block';
+    const table=document.querySelector('#view-client-page .client-jobs-table');if(table)table.style.display=jobs.length?'block':'none';
+  }
+  function openClient(row){
+    if(!row)return;activeClientRow=row;const cells=row.children;const company=row.querySelector('.company')?.textContent.trim()||'Client';const primary=cells[2]?.querySelector('b')?.textContent.trim()||'';const info=cells[3]?.querySelectorAll('div')||[];const email=info[0]?.textContent.trim()||'—';const phone=info[1]?.textContent.trim()||'—';const detail=row.nextElementSibling;
+    document.getElementById('viewClientAvatar').textContent=initials(company);document.getElementById('viewClientCompany').textContent=company;document.getElementById('viewCompanyName').textContent=company;document.getElementById('viewClientPrimary').textContent='Primary contact: '+(primary||'—');document.getElementById('viewCompanyEmail').textContent=email;document.getElementById('viewCompanyPhone').textContent=phone;document.getElementById('viewCompanyAddress').textContent=addresses[company]||'Address on file';
+    activeDetailRows=detail?[...detail.querySelectorAll('.contact-row:not(.head)')]:[];const contacts=document.getElementById('viewClientContacts');contacts.innerHTML=activeDetailRows.map(function(source,index){const value=contactValues(source);return '<div class="client-view-contact-row" data-contact-index="'+index+'"><b>'+escapeHtml(value.name)+'</b><span>'+escapeHtml(value.email)+'</span><span>'+escapeHtml(value.phone)+'</span></div>';}).join('');
+    renderClientJobs(company);setClientViewTab('details');
+    show(viewPage);
+  }
+  function openContactEditor(row,source,company,provided){
+    if(!row||!modal)return;activeContactRow=row;activeSourceContactRow=source||row;const value=provided||contactValues(row);const applyValues=function(){const name=document.getElementById('crmContactName'),email=document.getElementById('crmContactEmail'),phone=document.getElementById('crmContactPhone');name.value=value.name||'';email.value=value.email||'';phone.value=value.phone||'';name.defaultValue=value.name||'';email.defaultValue=value.email||'';phone.defaultValue=value.phone||'';};applyValues();const subtitle=modal.querySelector('.contact-edit-head p');if(subtitle)subtitle.textContent='Update this contact under '+(company||'the selected client')+'.';modal.classList.add('open');setTimeout(applyValues,0);setTimeout(applyValues,120);
+  }
+  document.addEventListener('click',function(e){
+    const view=e.target.closest('#clients .client-actions .view-action');if(view){e.preventDefault();e.stopImmediatePropagation();openClient(view.closest('.client-row'));return;}
+    const crmEdit=e.target.closest('#clients .company-detail .contact-row:not(.head) .edit-action');if(crmEdit){e.preventDefault();e.stopImmediatePropagation();const row=crmEdit.closest('.contact-row');const company=row.closest('.company-detail')?.previousElementSibling?.querySelector('.company')?.textContent.trim();openContactEditor(row,row,company);return;}
+    const viewEdit=e.target.closest('#view-client-page .client-view-contact-edit');if(viewEdit){e.preventDefault();e.stopImmediatePropagation();const row=viewEdit.closest('.client-view-contact-row');const source=activeDetailRows[Number(row.dataset.contactIndex)]||row;openContactEditor(row,source,document.getElementById('viewClientCompany').textContent,{name:viewEdit.dataset.contactName,email:viewEdit.dataset.contactEmail,phone:viewEdit.dataset.contactPhone});const restore=function(){document.getElementById('crmContactName').value=viewEdit.dataset.contactName||'';document.getElementById('crmContactEmail').value=viewEdit.dataset.contactEmail||'';document.getElementById('crmContactPhone').value=viewEdit.dataset.contactPhone||'';};restore();setTimeout(restore,160);return;}
+  },true);
+  document.getElementById('saveCrmContactEdit')?.addEventListener('click',function(){const values=[document.getElementById('crmContactName').value,document.getElementById('crmContactEmail').value,document.getElementById('crmContactPhone').value];[activeContactRow,activeSourceContactRow].forEach(function(row){if(!row)return;const children=row.children;if(children[0])children[0].textContent=values[0];if(children[1])children[1].textContent=values[1];if(children[2])children[2].textContent=values[2];});modal?.classList.remove('open');},true);
+  function closeCrmContactModal(){modal?.classList.remove('open');}
+  document.getElementById('closeCrmContactEdit')?.addEventListener('click',closeCrmContactModal);document.getElementById('cancelCrmContactEdit')?.addEventListener('click',closeCrmContactModal);modal?.addEventListener('click',function(e){if(e.target===modal)closeCrmContactModal();});
+  document.getElementById('backFromViewClient')?.addEventListener('click',function(){show(crmPage);});
+  document.getElementById('viewClientEdit')?.addEventListener('click',function(){const edit=activeClientRow?.querySelector('.client-actions .edit-action');if(edit)edit.click();else show(editPage);});
+  document.querySelectorAll('#view-client-page .client-view-tab').forEach(function(tab){tab.addEventListener('click',function(){setClientViewTab(tab.dataset.clientViewTab);});});
+  document.getElementById('viewClientJobs')?.addEventListener('click',function(event){
+    const jobRow=event.target.closest('.client-job-row');if(!jobRow)return;
+    const job=jobRow.dataset.job,company=document.getElementById('viewClientCompany')?.textContent.trim()||'';
+    const accordion=[...document.querySelectorAll('#jobs-page .job-clients-accordion')].find(function(item){return item.dataset.job===job;});
+    const client=[...(accordion?.querySelectorAll('.job-inline-client')||[])].find(function(item){return (item.dataset.client||'').toLowerCase()===company.toLowerCase();});
+    client?.click();
+  });
+  document.getElementById('viewClientAddContact')?.addEventListener('click',function(){const add=document.getElementById('addContactModal');const subtitle=add?.querySelector('.contact-edit-head p');if(subtitle)subtitle.textContent='Add a new contact under '+document.getElementById('viewClientCompany').textContent+'.';add?.classList.add('open');});
+  if(location.hash==='#client-view')setTimeout(function(){openClient(document.querySelector('#clients .client-row:not(.header)'));},0);
+})();
+</script>
+<script id="delete-contact-and-row-accordion-flow">
+(function(){
+  const modal=document.getElementById('deleteContactModal');let pendingRow=null;
+  function companyFor(row){const detail=row?.closest('.company-detail');if(detail)return detail.previousElementSibling?.querySelector('.company')?.textContent.trim()||'Client';return 'Consumer Company';}
+  function openDelete(row){if(!row||!modal)return;pendingRow=row;const name=row.children[0]?.textContent.trim()||'this contact';document.getElementById('deleteContactMessage').innerHTML='Are you sure you want to delete <b>'+name.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</b>? This action cannot be undone.';modal.classList.add('open');}
+  function closeDelete(){modal?.classList.remove('open');pendingRow=null;}
+  document.addEventListener('click',function(e){
+    const remove=e.target.closest('#clients .company-detail .contact-row:not(.head) .delete-action,#edit-client-page .edit-contact-row:not(.head) .delete-action');if(remove){e.preventDefault();e.stopImmediatePropagation();openDelete(remove.closest('.contact-row,.edit-contact-row'));return;}
+    const row=e.target.closest('#clients .client-row:not(.header)');if(!row||e.target.closest('button,a,input,select,.client-actions'))return;const detail=row.nextElementSibling;if(!detail?.classList.contains('company-detail'))return;const opening=!detail.classList.contains('open');detail.classList.toggle('open',opening);row.classList.toggle('expanded',opening);
+  },true);
+  document.getElementById('cancelDeleteContact')?.addEventListener('click',closeDelete);document.getElementById('closeDeleteContact')?.addEventListener('click',closeDelete);modal?.addEventListener('click',function(e){if(e.target===modal)closeDelete();});
+  document.getElementById('confirmDeleteContact')?.addEventListener('click',function(){if(pendingRow)pendingRow.remove();closeDelete();});
+  if(location.hash==='#delete-contact-preview')setTimeout(function(){document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');p.style.setProperty('display','none','important');});const crm=document.getElementById('crm-page');crm.classList.add('active');crm.style.setProperty('display','block','important');const row=document.querySelector('#clients .client-row:not(.header)'),detail=row?.nextElementSibling;if(row&&detail?.classList.contains('company-detail')){row.classList.add('expanded');detail.classList.add('open');openDelete(detail.querySelector('.contact-row:not(.head)'));}window.scrollTo(0,0);},0);
+})();
+</script>
+
+<script id="survey-request-menu-icons">
+(function(){
+  const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>';
+  const duplicateIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>';
+  document.querySelectorAll('#survey-requests-page .survey-more-item').forEach(function(item){
+    if(item.querySelector('svg'))return;
+    item.insertAdjacentHTML('afterbegin',item.textContent.trim().toLowerCase().includes('edit')?editIcon:duplicateIcon);
+  });
+})();
+</script>
+
+<script id="approved-quote-download-actions">
+(function(){
+  const downloadSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M5 19h14"/></svg>';
+  const table=document.querySelector('#quotes-page .crm-table');
+  function downloadMenuItem(menu){
+    return [...(menu?.querySelectorAll('.quote-more-item')||[])].find(function(item){return item.textContent.trim().toLowerCase()==='download';});
+  }
+  function syncRow(row){
+    const actions=row.querySelector('.quote-actions'),wrap=actions?.querySelector('.quote-more-wrap'),menu=wrap?.querySelector('.quote-more-menu');
+    if(!actions||!wrap||!menu)return;
+    const approved=!!row.querySelector('.quote-status-admin') || /approved\s*\(admin\)/i.test(row.children[3]?.textContent||'');
+    let outside=actions.querySelector(':scope > .quote-download'),inside=downloadMenuItem(menu);
+    if(approved){
+      if(!outside){outside=document.createElement('button');outside.type='button';outside.className='icon-action quote-download';outside.title='Download';outside.setAttribute('aria-label','Download quote');outside.innerHTML=downloadSvg;actions.insertBefore(outside,wrap);}
+      inside?.remove();
+    }else{
+      outside?.remove();
+      if(!inside){inside=document.createElement('button');inside.type='button';inside.className='quote-more-item';inside.innerHTML=downloadSvg+'<span>Download</span>';menu.insertBefore(inside,menu.querySelector('.delete'));}
+    }
+  }
+  function sync(){table?.querySelectorAll('.quotes-row:not(.header)').forEach(syncRow);}
+  sync();
+  if(table)new MutationObserver(sync).observe(table,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class']});
+})();
+</script>
+
+<style id="jobs-inline-left-toggle-override">
+#jobs-page .jobs-row{grid-template-columns:40px 140px minmax(280px,1fr) 130px 180px!important}
+#jobs-page .jobs-row.jobs-head::before{content:""}
+#jobs-page .jobs-row:not(.jobs-head)>.jobs-number{grid-column:2!important}
+#jobs-page .jobs-row:not(.jobs-head)>div:nth-child(2){grid-column:3!important}
+#jobs-page .jobs-row:not(.jobs-head)>div:nth-child(3){grid-column:4!important}
+#jobs-page .jobs-row:not(.jobs-head)>.jobs-actions{display:contents!important}
+#jobs-page .jobs-row:not(.jobs-head) .jobs-accordion-toggle{grid-column:1!important;grid-row:1!important;justify-self:start!important}
+#jobs-page .jobs-row:not(.jobs-head) .jobs-create-request{grid-column:5!important;grid-row:1!important;justify-self:start!important}
+#jobs-page .job-clients-accordion{padding-top:14px!important}
+#jobs-page .job-client-inline-row.inline-head{background:#F5F8FF!important;color:#153E69!important}
+#jobs-page .jobs-row:not(.jobs-head){cursor:pointer!important;transition:background-color .15s ease!important}
+#jobs-page .jobs-row:not(.jobs-head):hover,#jobs-page .jobs-row.expanded{background:#F8FAFC!important}
+#jobs-page .jobs-accordion-toggle{width:24px!important;height:24px!important;padding:0!important;border:0!important;border-radius:4px!important;background:transparent!important;color:#64748B!important;display:grid!important;place-items:center!important;font:400 16px/1 Arial,sans-serif!important;cursor:pointer!important;transition:transform .18s ease,color .18s ease!important}
+#jobs-page .jobs-accordion-toggle:hover{background:transparent!important;color:#2563EB!important}
+#jobs-page .jobs-row.expanded .jobs-accordion-toggle{transform:rotate(90deg)!important;background:transparent!important;color:#2563EB!important}
+.new-job-modal{display:none;position:fixed;inset:0;z-index:400000;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.42)}
+.new-job-modal.open{display:flex}
+.new-job-dialog{width:min(760px,calc(100vw - 32px));max-height:90vh;display:flex;flex-direction:column;overflow:hidden;border-radius:14px;background:#fff;box-shadow:0 24px 64px rgba(15,23,42,.24)}
+.new-job-modal-head{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #E4E7EC}
+.new-job-modal-head h2{margin:0;color:#101828;font-size:19px}.new-job-modal-head p{margin:6px 0 0;color:#667085;font-size:12px}
+.new-job-close{width:30px;height:30px;border:0;border-radius:6px;background:transparent;color:#667085;font-size:22px;cursor:pointer}.new-job-close:hover{background:#F5F5F5;color:#344054}
+.new-job-modal-body{padding:20px 24px;overflow:auto}.new-job-section{margin:22px 0 20px;padding:20px 0 0;border:0;border-top:1px solid #E4E7EC;background:transparent}
+.new-job-section-head{display:block;margin-bottom:16px}.new-job-section-head h3{margin:0;color:#101828;font-size:14px}.new-job-section-head p{margin:4px 0 0;color:#667085;font-size:12px}
+.new-job-location-tabs{display:inline-flex;margin-bottom:18px;padding:3px;border:1px solid #E4E7EC;border-radius:8px;background:#F8FAFC}
+.new-job-location-tabs button{height:34px;padding:0 18px;border:0;border-radius:6px;background:transparent;color:#667085;font-size:12px;font-weight:600;cursor:pointer}.new-job-location-tabs button.active{background:#fff;color:#101828;box-shadow:0 1px 3px rgba(15,23,42,.1)}
+.new-job-location-panel{display:none}.new-job-location-panel.active{display:block}.new-job-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}.new-job-field.full{grid-column:1/-1}
+.new-job-field label{display:flex;align-items:center;gap:5px;margin-bottom:6px;color:#344054;font-size:12px;font-weight:600}.new-job-field label span{color:#D92D20}.new-job-field label em{padding:2px 6px;border-radius:999px;background:#F2F4F7;color:#667085;font-size:10px;font-style:normal;font-weight:600}
+.new-job-field input,.new-job-field select{width:100%;height:42px;box-sizing:border-box;border:1px solid #D0D5DD;border-radius:7px;background:#fff;padding:0 11px;color:#344054;font:inherit;font-size:12px;outline:none}.new-job-field input:focus,.new-job-field select:focus{border-color:#84ADDC;box-shadow:0 0 0 3px rgba(21,62,105,.08)}
+.new-job-field input[readonly]{background:#F2F4F7;color:#667085;cursor:not-allowed}.new-job-field input.invalid,.new-job-field select.invalid{border-color:#F04438;box-shadow:0 0 0 3px rgba(240,68,56,.08)}.new-job-field small{display:block;margin-top:6px;color:#667085;font-size:12px}
+.new-job-client-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}.new-job-add-client{height:42px;padding:0 14px;border:1px solid #D0D5DD;border-radius:7px;background:#fff;color:#344054;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}.new-job-add-client:hover{background:#F5F5F5}
+.new-job-client-notice{display:none;margin-top:9px;padding:9px 11px;border:1px solid #ABEFC6;border-radius:7px;background:#ECFDF3;color:#067647;font-size:12px}.new-job-client-notice.show{display:block}
+#add-client-page input.invalid{border-color:#F04438!important;box-shadow:0 0 0 3px rgba(240,68,56,.08)!important}
+#addClientModal.from-new-job{z-index:400100!important}
+#addClientModal.from-new-job input.invalid,#addClientModal.from-new-job select.invalid{border-color:#F04438!important;box-shadow:0 0 0 3px rgba(240,68,56,.08)!important}
+.new-job-page-body{width:calc(100% - 68px);margin:0 34px;padding:0 0 50px;box-sizing:border-box}.new-job-page-body>.quote-section{width:100%;margin:0 0 14px;padding:18px;box-sizing:border-box}
+#new-job-page .new-job-number-section .new-job-field{max-width:520px;margin-top:16px}
+#new-job-page .new-job-section{margin:0 0 14px;padding:18px;border:1px solid #dfe5ec;border-radius:10px;background:#fff}
+#new-job-page .new-job-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}#new-job-page .new-job-section-head h3{font-size:14px}
+.property-clear-action{display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:5px 7px;border:0;background:transparent;color:#2563EB;font-size:13px;font-weight:700;cursor:pointer}.property-clear-action svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.property-clear-action:hover{background:transparent;color:#1D4ED8;text-decoration:underline;text-underline-offset:3px}.property-clear-action:disabled{border:0!important;background:transparent!important;color:#B0B7C3!important;text-decoration:none!important;cursor:not-allowed}
+.subject-property-form-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.subject-property-form-head>div{min-width:0}.subject-property-form-head .quote-section-sub{margin-bottom:0}
+#new-survey-request-page.from-job #surveyClearProperty{display:none}
+#new-job-page .new-job-client-section .new-job-field{margin-top:16px}
+#new-job-page .new-job-grid{max-width:none}
+.new-job-duplicate-error{display:none;margin-top:14px;padding:11px 12px;border:1px solid #FDA29B;border-radius:8px;background:#FEF3F2;color:#B42318;font-size:12px;font-weight:600;line-height:1.45}
+.new-job-duplicate-error.show{display:block}
+#newJobCreate:disabled{border-color:transparent!important;background:#EAECF0!important;color:#98A2B3!important;cursor:not-allowed!important;box-shadow:none!important}
+#addClientModal.from-new-job #saveClientModal:disabled{border-color:transparent!important;background:#EAECF0!important;color:#98A2B3!important;cursor:not-allowed!important;box-shadow:none!important}
+@media(max-width:900px){.new-job-page-body{width:calc(100% - 40px);margin:0 20px}}
+.new-job-modal-foot{display:flex;justify-content:flex-end;gap:10px;padding:16px 24px;border-top:1px solid #E4E7EC;background:#fff}.new-job-cancel,.new-job-create{height:40px;padding:0 17px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer}.new-job-cancel{border:1px solid #D0D5DD;background:#fff;color:#344054}.new-job-cancel:hover{background:#F5F5F5}.new-job-create{border:1px solid #153E69;background:#153E69;color:#fff}.new-job-create:hover{border-color:#0F3155;background:#0F3155}
+.job-inline-empty{padding:18px;color:#667085;font-size:12px;text-align:center}
+@media(max-width:680px){.new-job-modal{padding:12px}.new-job-dialog{max-height:94vh}.new-job-modal-head,.new-job-modal-body,.new-job-modal-foot{padding-left:18px;padding-right:18px}.new-job-grid{grid-template-columns:1fr}.new-job-field.full{grid-column:auto}.new-job-client-row{grid-template-columns:1fr}.new-job-add-client{width:100%}}
+</style>
+
+<script id="jobs-inline-clients-flow">
+(function(){
+  const jobsPage=document.getElementById('jobs-page');
+  if(!jobsPage)return;
+
+  function closeAccordion(accordion){
+    if(!accordion)return;
+    accordion.classList.remove('open');
+    accordion.setAttribute('aria-hidden','true');
+    const row=accordion.previousElementSibling;
+    row?.classList.remove('expanded');
+    const toggle=row?.querySelector('.jobs-accordion-toggle');
+    toggle?.setAttribute('aria-expanded','false');
+  }
+
+  function toggleJobRow(row){
+    const accordion=row?.nextElementSibling?.classList.contains('job-clients-accordion')?row.nextElementSibling:null;
+    const toggle=row?.querySelector('.jobs-accordion-toggle');
+    const shouldOpen=!accordion?.classList.contains('open');
+    jobsPage.querySelectorAll('.job-clients-accordion.open').forEach(closeAccordion);
+    if(shouldOpen&&accordion){
+      accordion.classList.add('open');
+      accordion.setAttribute('aria-hidden','false');
+      row.classList.add('expanded');
+      toggle?.setAttribute('aria-expanded','true');
+    }
+  }
+
+  function openJobDetails(clientButton){
+    const accordion=clientButton.closest('.job-clients-accordion');
+    const jobRow=accordion?.previousElementSibling;
+    const jobNo=accordion?.dataset.job||jobRow?.querySelector('.jobs-number')?.textContent.trim()||'';
+    const address=jobRow?.children[1]?.textContent.trim()||'';
+    const status=jobRow?.querySelector('.jobs-status')?.textContent.trim()||'Active';
+    const client=clientButton.dataset.client||'Client';
+    const email=clientButton.dataset.email||'';
+    window.__activeJob={no:jobNo,address:address};
+    window.__jobDetailsFromAccordion=true;
+    const set=function(id,value){const el=document.getElementById(id);if(el)el.textContent=value;};
+    set('detailJobNo',jobNo);
+    set('detailOverviewJob',jobNo);
+    set('detailJobAddress',address);
+    set('detailPropertyRow',address);
+    set('detailPropertyHeading',address);
+    set('detailClientName',client);
+    set('detailClientEmail',email);
+    const statusPill=document.querySelector('#job-details-page .jd-status');
+    if(statusPill)statusPill.textContent=status;
+    if(typeof window.jobManagementRoute==='function')window.jobManagementRoute('job-details-page');
+    else{
+      document.querySelectorAll('.page-view').forEach(function(page){page.classList.remove('active');page.style.setProperty('display','none','important');});
+      const details=document.getElementById('job-details-page');
+      details?.classList.add('active');
+      details?.style.setProperty('display','block','important');
+      window.scrollTo(0,0);
+    }
+  }
+
+  jobsPage.addEventListener('click',function(event){
+    const createRequest=event.target.closest('.jobs-create-request');
+    if(createRequest){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const row=createRequest.closest('.jobs-row');
+      const jobNo=row?.querySelector('.jobs-number')?.textContent.trim()||'';
+      const address=row?.children[1]?.textContent.trim()||'';
+      window.__surveyRequestFromJob=true;
+      window.__surveyRequestJobNo=jobNo;
+      window.__activeJob={no:jobNo,address:address};
+      const form=document.getElementById('new-survey-request-page');
+      form?.classList.add('from-job');
+      if(typeof window.jobManagementRoute==='function')window.jobManagementRoute('new-survey-request-page');
+      return;
+    }
+    const toggle=event.target.closest('.jobs-accordion-toggle');
+    if(toggle){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      toggleJobRow(toggle.closest('.jobs-row'));
+      return;
+    }
+    const client=event.target.closest('.job-inline-client');
+    if(client){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openJobDetails(client);
+      return;
+    }
+    const row=event.target.closest('.jobs-row:not(.jobs-head)');
+    if(row&&!event.target.closest('button,a,input,select')){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      toggleJobRow(row);
+    }
+  },true);
+
+  document.addEventListener('click',function(event){
+    const link=event.target.closest('#survey-requests-page .survey-job-link,#survey-requests-page .survey-row:not(.head)>div:first-child b');
+    if(!link)return;
+    const jobNo=(link.dataset.job||link.textContent||'').trim().toUpperCase();
+    const accordion=[...jobsPage.querySelectorAll('.job-clients-accordion')].find(function(item){return item.dataset.job===jobNo;});
+    if(!accordion)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    jobsPage.querySelectorAll('.job-clients-accordion.open').forEach(closeAccordion);
+    const row=accordion.previousElementSibling;
+    accordion.classList.add('open');
+    accordion.setAttribute('aria-hidden','false');
+    row?.classList.add('expanded');
+    row?.querySelector('.jobs-accordion-toggle')?.setAttribute('aria-expanded','true');
+    if(typeof window.jobManagementRoute==='function')window.jobManagementRoute('jobs-page');
+    else{
+      document.querySelectorAll('.page-view').forEach(function(page){page.classList.remove('active');page.style.setProperty('display','none','important');});
+      jobsPage.classList.add('active');
+      jobsPage.style.setProperty('display','block','important');
+      window.scrollTo(0,0);
+    }
+    setTimeout(function(){row?.scrollIntoView({block:'center'});},0);
+  },true);
+})();
+</script>
+
+<script id="new-job-modal-flow">
+(function(){
+  const page=document.getElementById('new-job-page');
+  const openButton=document.querySelector('#jobs-page .jobs-new-job-btn');
+  const createButton=document.getElementById('newJobCreate');
+  const addClientButton=document.getElementById('newJobAddClient');
+  const numberField=document.getElementById('newJobNumber');
+  const duplicateError=document.getElementById('newJobDuplicateError');
+  const clearPropertyButton=document.getElementById('newJobClearProperty');
+  const saveClientButton=document.getElementById('saveClientModal');
+  const tabs=[...document.querySelectorAll('[data-new-job-location]')];
+  if(!page||!openButton)return;
+  let mode='address';
+  const clientEmails={'Consumer Company':'contact@consumercompany.com','QA Tester 3':'qa.tester3@example.com','No Access Company':'contact@noaccesscompany.com','James Lee':'james@zenatech.com'};
+  const escapeHtml=function(value){return String(value||'').replace(/[&<>"']/g,function(char){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[char];});};
+  const normalizeLocation=function(value){return String(value||'').toLowerCase().replace(/\b(street)\b/g,'st').replace(/\b(avenue)\b/g,'ave').replace(/\b(road)\b/g,'rd').replace(/[^a-z0-9.-]+/g,' ').trim();};
+
+  function duplicateJobs(){
+    const rows=[...document.querySelectorAll('#jobs-page .jobs-row:not(.jobs-head)')];
+    if(mode==='coordinates'){
+      const lat=document.getElementById('newJobLatitude').value.trim(),lng=document.getElementById('newJobLongitude').value.trim();
+      if(!lat||!lng)return [];
+      const entered=normalizeLocation('Coordinates: '+lat+', '+lng);
+      return rows.filter(function(row){return normalizeLocation(row.children[1]?.textContent)===entered;}).map(function(row){return row.querySelector('.jobs-number')?.textContent.trim();}).filter(Boolean);
+    }
+    const street=normalizeLocation(document.getElementById('newJobStreet').value);
+    if(!street)return [];
+    return rows.filter(function(row){const existing=normalizeLocation((row.children[1]?.textContent||'').split(',')[0]);return existing===street;}).map(function(row){return row.querySelector('.jobs-number')?.textContent.trim();}).filter(Boolean);
+  }
+  function requiredLocationComplete(){
+    const ids=mode==='address'?['newJobStreet','newJobCity','newJobState','newJobCountry','newJobPostal']:['newJobLatitude','newJobLongitude'];
+    return ids.every(function(id){return Boolean(document.getElementById(id)?.value.trim());});
+  }
+  function propertyHasValue(){
+    return ['newJobStreet','newJobCity','newJobState','newJobCountry','newJobPostal','newJobLatitude','newJobLongitude'].some(function(id){return Boolean(document.getElementById(id)?.value.trim());});
+  }
+  function validateUniqueLocation(){
+    const jobs=[...new Set(duplicateJobs())],duplicate=jobs.length>0;
+    const disabled=duplicate||!requiredLocationComplete();
+    createButton.disabled=disabled;
+    createButton.setAttribute('aria-disabled',String(disabled));
+    if(clearPropertyButton)clearPropertyButton.disabled=!propertyHasValue();
+    if(duplicateError){duplicateError.textContent=duplicate?'This property already has a job assigned ('+jobs.join(', ')+'). Enter a different address or open the existing job.':'';duplicateError.classList.toggle('show',duplicate);}
+    return !duplicate;
+  }
+  function updateClientSaveState(){
+    if(!saveClientButton)return;
+    const clientModal=document.getElementById('addClientModal');
+    const complete=[...clientModal.querySelectorAll('input[required]')].every(function(field){return Boolean(field.value.trim());});
+    saveClientButton.disabled=!complete;
+    saveClientButton.setAttribute('aria-disabled',String(!complete));
+  }
+  function clearSubjectProperty(){
+    ['newJobStreet','newJobCity','newJobState','newJobPostal','newJobLatitude','newJobLongitude'].forEach(function(id){const field=document.getElementById(id);if(field){field.value='';field.classList.remove('invalid');}});
+    document.getElementById('newJobCountry').value='';
+    validateUniqueLocation();
+    const focusId=mode==='coordinates'?'newJobLatitude':'newJobStreet';
+    document.getElementById(focusId)?.focus();
+  }
+
+  function nextJobNumber(){
+    const values=[...document.querySelectorAll('#jobs-page .jobs-number')].map(function(item){const match=item.textContent.match(/(\d+)/);return match?Number(match[1]):0;});
+    return 'JOB-'+(Math.max(0,...values)+1);
+  }
+  function setMode(nextMode){
+    mode=nextMode;
+    tabs.forEach(function(tab){const selected=tab.dataset.newJobLocation===mode;tab.classList.toggle('active',selected);tab.setAttribute('aria-selected',String(selected));});
+    document.querySelectorAll('[data-new-job-panel]').forEach(function(panel){panel.classList.toggle('active',panel.dataset.newJobPanel===mode);});
+    page.querySelectorAll('.invalid').forEach(function(field){field.classList.remove('invalid');});
+    validateUniqueLocation();
+  }
+  function resetForm(){
+    numberField.value=nextJobNumber();
+    ['newJobStreet','newJobCity','newJobState','newJobPostal','newJobLatitude','newJobLongitude'].forEach(function(id){const field=document.getElementById(id);if(field)field.value='';});
+    document.getElementById('newJobCountry').value='';
+    document.getElementById('newJobClient').value='';
+    const notice=document.getElementById('newJobClientNotice');if(notice){notice.textContent='';notice.classList.remove('show');}
+    setMode('address');
+    validateUniqueLocation();
+  }
+  function openPage(){resetForm();if(typeof window.jobManagementRoute==='function')window.jobManagementRoute('new-job-page');else{document.querySelectorAll('.page-view').forEach(function(item){item.classList.remove('active');item.style.setProperty('display','none','important');});page.classList.add('active');page.style.setProperty('display','block','important');window.scrollTo(0,0);}setTimeout(function(){document.getElementById('newJobStreet')?.focus();},0);}
+  function openAddClientPopup(){
+    window.__addClientFromNewJob=true;
+    const clientModal=document.getElementById('addClientModal');
+    if(!clientModal)return;
+    clientModal.querySelectorAll('input').forEach(function(field){if(field.type==='checkbox')field.checked=true;else field.value='';field.classList.remove('invalid');});
+    clientModal.querySelectorAll('textarea').forEach(function(field){field.value='';});
+    clientModal.querySelectorAll('select').forEach(function(field){field.selectedIndex=0;field.classList.remove('invalid');});
+    updateClientSaveState();
+    clientModal.classList.add('open','from-new-job');
+    clientModal.style.setProperty('display','flex','important');
+    document.body.style.overflow='hidden';
+    setTimeout(function(){document.getElementById('newJobClientCompany')?.focus();},0);
+  }
+  function closeClientPopup(returnToJob){
+    const clientModal=document.getElementById('addClientModal');
+    clientModal?.classList.remove('open','from-new-job');
+    clientModal?.style.setProperty('display','none','important');
+    window.__addClientFromNewJob=false;
+    document.body.style.removeProperty('overflow');
+    if(returnToJob)setTimeout(function(){document.getElementById('newJobClient')?.focus();},0);
+  }
+  function createClientFromPopup(event){
+    if(!window.__addClientFromNewJob)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const clientModal=document.getElementById('addClientModal');
+    const required=[...clientModal.querySelectorAll('input[required]')];
+    required.forEach(function(field){field.classList.toggle('invalid',!field.value.trim());});
+    const missing=required.find(function(field){return !field.value.trim();});
+    if(missing){missing.focus();return;}
+    const nameField=document.getElementById('newJobClientCompany');
+    const name=nameField?.value.trim()||'';
+    if(!name){nameField?.classList.add('invalid');nameField?.focus();return;}
+    const email=document.getElementById('newJobClientEmail')?.value.trim()||'';
+    clientEmails[name]=email;
+    const select=document.getElementById('newJobClient');
+    let option=[...select.options].find(function(item){return item.value===name;});
+    if(!option){option=document.createElement('option');option.value=name;option.textContent=name;select.appendChild(option);}
+    select.value=name;
+    const notice=document.getElementById('newJobClientNotice');if(notice){notice.textContent=name+' was created and selected for this job.';notice.classList.add('show');}
+    closeClientPopup(true);
+  }
+  function requireFields(ids){
+    const missing=ids.map(function(id){return document.getElementById(id);}).filter(function(field){field?.classList.remove('invalid');return !field?.value.trim();});
+    missing.forEach(function(field){field.classList.add('invalid');});
+    missing[0]?.focus();
+    return missing.length===0;
+  }
+  function createJob(){
+    if(!validateUniqueLocation())return;
+    const valid=mode==='address'
+      ?requireFields(['newJobStreet','newJobCity','newJobState','newJobCountry','newJobPostal'])
+      :requireFields(['newJobLatitude','newJobLongitude']);
+    if(!valid)return;
+    const jobNo=numberField.value;
+    const client=document.getElementById('newJobClient').value;
+    const email=clientEmails[client]||'';
+    const address=mode==='address'
+      ?[document.getElementById('newJobStreet').value.trim(),document.getElementById('newJobCity').value.trim(),document.getElementById('newJobState').value.trim(),document.getElementById('newJobPostal').value.trim(),document.getElementById('newJobCountry').value].filter(Boolean).join(', ')
+      :'Coordinates: '+document.getElementById('newJobLatitude').value.trim()+', '+document.getElementById('newJobLongitude').value.trim();
+    const clientContent=client
+      ?'<button class="job-client-inline-row job-inline-client" type="button" data-client="'+escapeHtml(client)+'" data-email="'+escapeHtml(email)+'"><span class="job-client-person"><span class="job-client-avatar">'+escapeHtml(client.charAt(0).toUpperCase())+'</span><b>'+escapeHtml(client)+'</b></span><span>'+escapeHtml(email)+'</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>'
+      :'<div class="job-inline-empty">No client is assigned to this job yet.</div>';
+    const markup='<div class="jobs-row" data-status="Active"><div class="jobs-number">'+escapeHtml(jobNo)+'</div><div>'+escapeHtml(address)+'</div><div><span class="jobs-status active">Active</span></div><div class="jobs-actions"><button class="jobs-accordion-toggle" type="button" aria-expanded="true" aria-label="Show clients for '+escapeHtml(jobNo)+'">›</button><button class="jobs-create-request">Create Request</button></div></div><div class="job-clients-accordion" data-job="'+escapeHtml(jobNo)+'" aria-hidden="false"><div class="job-clients-inline-table"><div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>'+clientContent+'</div></div>';
+    const table=document.querySelector('#jobs-page .jobs-table');
+    table?.querySelectorAll('.job-clients-accordion.open').forEach(function(item){item.classList.remove('open');item.setAttribute('aria-hidden','true');item.previousElementSibling?.classList.remove('expanded');item.previousElementSibling?.querySelector('.jobs-accordion-toggle')?.setAttribute('aria-expanded','false');});
+    table?.insertAdjacentHTML('beforeend',markup);
+    const accordion=table?.querySelector('.job-clients-accordion[data-job="'+jobNo+'"]');
+    const row=accordion?.previousElementSibling;
+    accordion?.classList.add('open');row?.classList.add('expanded');
+    if(typeof window.jobManagementRoute==='function')window.jobManagementRoute('jobs-page');
+    else{page.classList.remove('active');page.style.setProperty('display','none','important');const jobs=document.getElementById('jobs-page');jobs?.classList.add('active');jobs?.style.setProperty('display','block','important');}
+    setTimeout(function(){row?.scrollIntoView({block:'center'});},0);
+  }
+
+  openButton.addEventListener('click',function(event){event.preventDefault();event.stopImmediatePropagation();openPage();},true);
+  addClientButton?.addEventListener('click',function(event){event.preventDefault();event.stopImmediatePropagation();openAddClientPopup();},true);
+  document.getElementById('saveClientModal')?.addEventListener('click',createClientFromPopup,true);
+  ['closeClientModal','cancelClientModal'].forEach(function(id){document.getElementById(id)?.addEventListener('click',function(event){if(!window.__addClientFromNewJob)return;event.preventDefault();event.stopImmediatePropagation();closeClientPopup(true);},true);});
+  document.getElementById('addClientModal')?.addEventListener('click',function(event){if(window.__addClientFromNewJob&&event.target===event.currentTarget){event.preventDefault();event.stopImmediatePropagation();closeClientPopup(true);}},true);
+  tabs.forEach(function(tab){tab.addEventListener('click',function(){setMode(tab.dataset.newJobLocation);});});
+  document.getElementById('newJobClearProperty')?.addEventListener('click',clearSubjectProperty);
+  ['newJobStreet','newJobCity','newJobState','newJobCountry','newJobPostal','newJobLatitude','newJobLongitude'].forEach(function(id){const field=document.getElementById(id);field?.addEventListener('input',validateUniqueLocation);field?.addEventListener('change',validateUniqueLocation);});
+  document.querySelectorAll('#addClientModal input[required]').forEach(function(field){field.addEventListener('input',updateClientSaveState);field.addEventListener('change',updateClientSaveState);});
+  createButton.addEventListener('click',createJob);
+})();
+</script>
+
+<script id="shared-back-navigation">
+(function(){
+  const backSelector=[
+    '#jobClientsBack','#jobDetailsBack','#surveyViewBack','#backToSurveyRequests',
+    '#vqBack','#backToQuotes','#edit-backToQuotes','#backFromViewClient',
+    '#backFromEditClient','#backToClients','[data-client-back]',
+    '#cancelCreateQuote','#edit-cancelCreateQuote',
+    '#cancelAddClientPage','#newJobBack'
+  ].join(',');
+  const jobPages=new Set([
+    'jobs-page','job-clients-page','job-details-page','new-job-page','survey-requests-page',
+    'new-survey-request-page','view-survey-request-page','quotes-page',
+    'view-quote-page','create-quote-page','edit-quote-page'
+  ]);
+  const crmPages=new Set(['crm-page','view-client-page','edit-client-page','add-client-page']);
+  const activePage=function(){return [...document.querySelectorAll('.page-view')].find(function(page){return page.classList.contains('active');});};
+  const history=[];
+  let suppressTarget='';
+
+  function setTopNavigation(pageId){
+    document.querySelectorAll('.side .nav,.side .page-link,.side .subnav a').forEach(function(item){
+      item.classList.remove('active','selected','subnav-active','job-page-selected');
+      item.removeAttribute('aria-current');
+    });
+    const name=crmPages.has(pageId)?'crm':pageId==='dashboard-page'?'dashboard':'';
+    const link=name?document.querySelector('.page-link[data-page="'+name+'"]'):null;
+    if(link){link.classList.add('active','selected');link.setAttribute('aria-current','page');}
+  }
+
+  function showPage(pageId){
+    if(jobPages.has(pageId)&&typeof window.jobManagementRoute==='function'){
+      window.jobManagementRoute(pageId);
+      return;
+    }
+    document.querySelectorAll('.page-view').forEach(function(page){
+      page.classList.remove('active');
+      page.style.setProperty('display','none','important');
+    });
+    const target=document.getElementById(pageId);
+    if(target){target.classList.add('active');target.style.setProperty('display','block','important');}
+    setTopNavigation(pageId);
+    window.scrollTo(0,0);
+  }
+
+  function recordActive(){
+    const id=activePage()?.id;
+    if(!id)return;
+    if(suppressTarget===id){suppressTarget='';return;}
+    if(history[history.length-1]!==id)history.push(id);
+  }
+
+  document.querySelectorAll(backSelector).forEach(function(button){button.textContent='← Back';button.setAttribute('aria-label','Go back to previous page');});
+  recordActive();
+  new MutationObserver(recordActive).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','style']});
+
+  document.addEventListener('pointerdown',function(event){
+    const trigger=event.target.closest('#survey-requests-page .create-from-request,#view-survey-request-page #surveyViewPrimary');
+    if(!trigger)return;
+    window.__quoteBackOrigin=document.getElementById('view-survey-request-page')?.classList.contains('active')
+      ?'view-survey-request-page':'survey-requests-page';
+  },true);
+
+  document.addEventListener('click',function(event){
+    const quoteTrigger=event.target.closest('#survey-requests-page .create-from-request,#view-survey-request-page #surveyViewPrimary');
+    if(quoteTrigger){
+      const source=activePage()?.id;
+      if(source==='survey-requests-page'||source==='view-survey-request-page')window.__quoteBackOrigin=source;
+    }
+    const back=event.target.closest(backSelector);
+    if(!back)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const current=activePage()?.id;
+    if(current&&history[history.length-1]!==current)history.push(current);
+    const quoteOrigin=back.matches('#backToQuotes,#cancelCreateQuote')&&current==='create-quote-page'
+      &&(window.__quoteBackOrigin==='survey-requests-page'||window.__quoteBackOrigin==='view-survey-request-page')
+      ?window.__quoteBackOrigin:'';
+    let target;
+    if(quoteOrigin){
+      const originIndex=history.lastIndexOf(quoteOrigin);
+      if(originIndex>=0)history.splice(originIndex+1);
+      else history.push(quoteOrigin);
+      target=quoteOrigin;
+      window.__quoteBackOrigin='';
+    }else{
+      if(history.length>1)history.pop();
+      target=history[history.length-1]||'dashboard-page';
+    }
+    suppressTarget=target;
+    window.__surveyRequestFromJob=false;
+    window.__surveyRequestJobNo='';
+    document.getElementById('new-survey-request-page')?.classList.remove('from-job');
+    showPage(target);
+  },true);
+})();
+</script>
+
+<style id="all-form-required-action-styles">
+.header-create:disabled,
+.modal-save:disabled,
+.client-save:disabled,
+.quote-primary:disabled,
+.contact-edit-confirm:disabled,
+.opp-modal-footer .header-create:disabled{
+  border-color:transparent!important;
+  background:#EAECF0!important;
+  color:#98A2B3!important;
+  cursor:not-allowed!important;
+  box-shadow:none!important;
+  opacity:1!important;
+}
+button:disabled{border-color:transparent!important;outline:none!important}
+</style>
+<script id="survey-property-clear-action">
+(function(){
+  const page=document.getElementById('new-survey-request-page');
+  const clear=document.getElementById('surveyClearProperty');
+  if(!page||!clear)return;
+  const ids=['refSurveyStreet','refSurveyCity','refSurveyState','refSurveyCountry','refSurveyPostal','refSurveyLat','refSurveyLng','refJobSearch'];
+  function hasProperty(){return ids.some(function(id){return Boolean(document.getElementById(id)?.value.trim());});}
+  function sync(){clear.disabled=!hasProperty();clear.setAttribute('aria-disabled',String(clear.disabled));}
+  function clearProperty(){
+    if(page.classList.contains('from-job'))return;
+    ids.forEach(function(id){const field=document.getElementById(id);if(!field)return;field.value='';field.classList.remove('invalid');if(id==='refJobSearch')field.disabled=false;field.dispatchEvent(new Event('input',{bubbles:true}));field.dispatchEvent(new Event('change',{bubbles:true}));});
+    page.querySelectorAll('[data-ref-location]').forEach(function(tab){const active=tab.dataset.refLocation==='address';tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));});
+    document.getElementById('refAddressPanel')?.classList.add('active');document.getElementById('refCoordinatesPanel')?.classList.remove('active');
+    const help=document.getElementById('refJobHelp');if(help){help.classList.remove('matched');help.textContent='Auto-fill from the property, or enter a Job # if you know it. If no existing job is found, a new Job # will be created automatically.';}
+    sync();document.getElementById('refSurveyStreet')?.focus();
+  }
+  clear.addEventListener('click',clearProperty);
+  ids.forEach(function(id){const field=document.getElementById(id);field?.addEventListener('input',sync);field?.addEventListener('change',sync);});
+  document.addEventListener('click',function(){setTimeout(sync,0);},true);
+  sync();
+})();
+</script>
+<script id="all-form-required-actions">
+(function(){
+  const configurations=[
+    {scope:'#new-survey-request-page',buttons:'.create-quote-actions .header-create'},
+    {scope:'#create-quote-page',buttons:'#quoteNextStep'},
+    {scope:'#edit-quote-page',buttons:'.create-quote-actions .header-create,#edit-quoteNextStep'},
+    {scope:'#add-client-page',buttons:'#createClientFromPage'},
+    {scope:'#edit-client-page',buttons:'.edit-client-actions .header-create'},
+    {scope:'#crmContactEditModal',buttons:'#saveCrmContactEdit'},
+    {scope:'#editContactModal',buttons:'#saveEditContact'},
+    {scope:'#addContactModal',buttons:'.contact-edit-footer .header-create'},
+    {scope:'#newOpportunityModal',buttons:'.opp-modal-footer .header-create'},
+    {scope:'#quoteQuickClientModal',buttons:'#quoteQuickClientAdd'},
+    {scope:'#addClientModal',buttons:'#saveClientModal'}
+  ];
+  const fieldBlockSelector='.form-field,.quote-field,.quick-client-field,.opp-field,.new-job-field';
+
+  function isScopeAvailable(scope){
+    if(scope.classList.contains('page-view'))return scope.classList.contains('active');
+    return getComputedStyle(scope).display!=='none';
+  }
+  function isVisibleBlock(block){return block.getClientRects().length>0&&getComputedStyle(block).visibility!=='hidden';}
+  function requiredControls(scope){
+    const controls=new Set(scope.querySelectorAll('input[required],select[required],textarea[required]'));
+    scope.querySelectorAll(fieldBlockSelector).forEach(function(block){
+      if(!isVisibleBlock(block))return;
+      const label=block.querySelector('label');
+      if(!label||(!label.querySelector('.req')&&!label.textContent.includes('*')))return;
+      const control=block.querySelector('input:not([type="checkbox"]),select,textarea');
+      if(control)controls.add(control);
+    });
+    return [...controls].filter(function(control){
+      const block=control.closest(fieldBlockSelector);
+      return !block||isVisibleBlock(block);
+    });
+  }
+  function hasValue(control){
+    if(control.type==='checkbox'||control.type==='radio')return control.checked;
+    const value=String(control.value||'').trim();
+    if(!value)return false;
+    if(control.tagName==='SELECT'&&control.selectedIndex===0){
+      const text=(control.options[0]?.textContent||'').toLowerCase();
+      if(/select|choose|search/.test(text))return false;
+    }
+    return true;
+  }
+  function refresh(configuration){
+    const scope=document.querySelector(configuration.scope);if(!scope||!isScopeAvailable(scope))return;
+    const required=requiredControls(scope),complete=required.length===0||required.every(hasValue);
+    scope.querySelectorAll(configuration.buttons).forEach(function(button){
+      button.disabled=!complete;
+      button.setAttribute('aria-disabled',String(!complete));
+    });
+  }
+  function refreshAll(){configurations.forEach(refresh);}
+  document.addEventListener('input',refreshAll,true);
+  document.addEventListener('change',refreshAll,true);
+  document.addEventListener('click',function(){setTimeout(refreshAll,0);},true);
+  document.addEventListener('focusin',refreshAll,true);
+  new MutationObserver(function(mutations){
+    if(mutations.some(function(item){return item.type==='childList'||item.attributeName==='class'||item.attributeName==='style';}))setTimeout(refreshAll,0);
+  }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style']});
+  refreshAll();
+})();
+</script>
+
+<script id="create-quote-required-actions">
+(function(){
+  const page=document.getElementById('create-quote-page');if(!page)return;
+  const createButton=page.querySelector('.create-quote-actions .header-create');
+  const addServiceButton=page.querySelector('.services-block .quote-primary');
+  const serviceSelect=page.querySelector('.services-block .service-select');
+
+  function controlValid(control){
+    if(!control)return false;
+    const value=String(control.value||'').trim();if(!value)return false;
+    if(control.tagName==='SELECT'&&control.selectedIndex===0&&/select|choose|search/i.test(control.options[0]?.textContent||''))return false;
+    return true;
+  }
+  function stepOneComplete(){
+    const unified=page.querySelector('.unified-quote-details');
+    if(unified){
+      return ['client','job','description'].every(function(name){return controlValid(unified.querySelector('[data-unified-field="'+name+'"]'));});
+    }
+    const step=page.querySelector('#quoteStep1');
+    const required=[...step.querySelectorAll('.quote-field')].filter(function(field){const locationPanel=field.closest('.location-panel');return field.querySelector('label .req')&&(!locationPanel||locationPanel.classList.contains('active'));}).map(function(field){return field.querySelector('input,select,textarea');});
+    return required.length>0&&required.every(controlValid);
+  }
+  function hasService(){
+    const list=page.querySelector('#addedServicesList');
+    const thermal=page.querySelector('#thermalInspectionTable');
+    return Boolean(list?.children.length)||(thermal&&getComputedStyle(thermal).display!=='none');
+  }
+  function refresh(){
+    const serviceChosen=Boolean(serviceSelect&&serviceSelect.selectedIndex>0);
+    if(addServiceButton){addServiceButton.disabled=!serviceChosen;addServiceButton.setAttribute('aria-disabled',String(!serviceChosen));}
+    const complete=stepOneComplete()&&hasService();
+    if(createButton){createButton.disabled=!complete;createButton.setAttribute('aria-disabled',String(!complete));}
+  }
+  page.addEventListener('input',refresh,true);page.addEventListener('change',refresh,true);page.addEventListener('click',function(){setTimeout(refresh,0);},true);
+  new MutationObserver(refresh).observe(page,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style']});
+  document.addEventListener('click',function(){setTimeout(refresh,0);},true);
+  refresh();
+})();
+</script>
+
+<style id="action-icon-tooltip-styles">
+.action-icon-tooltip{
+  position:fixed;
+  z-index:100000;
+  display:none;
+  pointer-events:none;
+  padding:5px 8px;
+  border-radius:7px;
+  background:#172033;
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  line-height:1;
+  white-space:nowrap;
+  box-shadow:0 2px 5px rgba(16,24,40,.16);
+  transform:translate(-50%,-100%);
+}
+.action-icon-tooltip.show{display:block}
+</style>
+<script id="action-icon-tooltips">
+(function(){
+  const selector='.icon-action,.jobs-icon,.jd-eye,.jd-edit,.job-client-view,.client-view-contact-edit';
+  const tooltip=document.createElement('div');
+  tooltip.className='action-icon-tooltip';
+  tooltip.setAttribute('role','tooltip');
+  document.body.appendChild(tooltip);
+  let active=null;
+
+  function fallback(button){
+    if(button.matches('.delete-action'))return 'Delete';
+    if(button.matches('.edit-action,.jd-edit'))return 'Edit';
+    if(button.matches('.view-action,.jd-eye,.job-client-view'))return 'View';
+    if(button.matches('.quote-download'))return 'Download';
+    if(button.matches('.more-action,.quote-more,.survey-more-trigger,.client-menu-trigger'))return 'More actions';
+    return 'Action';
+  }
+  function prepare(button){
+    if(!button.dataset.actionTooltip){
+      button.dataset.actionTooltip=button.getAttribute('title')||button.getAttribute('aria-label')||fallback(button);
+      if(!button.getAttribute('aria-label'))button.setAttribute('aria-label',button.dataset.actionTooltip);
+      button.removeAttribute('title');
+    }
+    return button.dataset.actionTooltip;
+  }
+  function show(button){
+    active=button;
+    tooltip.textContent=prepare(button);
+    tooltip.classList.add('show');
+    const rect=button.getBoundingClientRect();
+    tooltip.style.left=(rect.left+rect.width/2)+'px';
+    tooltip.style.top=(rect.top-7)+'px';
+  }
+  function hide(button){
+    if(button&&active!==button)return;
+    active=null;
+    tooltip.classList.remove('show');
+  }
+  document.querySelectorAll(selector).forEach(prepare);
+  document.addEventListener('pointerover',function(event){const button=event.target.closest(selector);if(button)show(button);});
+  document.addEventListener('pointerout',function(event){const button=event.target.closest(selector);if(button&&!button.contains(event.relatedTarget))hide(button);});
+  document.addEventListener('focusin',function(event){const button=event.target.closest(selector);if(button)show(button);});
+  document.addEventListener('focusout',function(event){const button=event.target.closest(selector);if(button)hide(button);});
+  window.addEventListener('scroll',function(){if(active)show(active);},true);
+  window.addEventListener('resize',function(){if(active)show(active);});
+})();
+</script>
+
+</body></html>
