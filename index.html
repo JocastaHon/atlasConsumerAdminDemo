@@ -5096,6 +5096,38 @@ button[style*="#1E3B8A"]:hover{
   </div>
 </div>
 
+<style id="jobs-inline-clients-styles">
+#jobs-page .jobs-accordion-toggle svg{transition:transform .18s ease}
+#jobs-page .jobs-row{grid-template-columns:40px 150px minmax(300px,1fr) 150px 145px!important}
+#jobs-page .jobs-row.jobs-head::before{content:""}
+#jobs-page .jobs-row:not(.jobs-head)>.jobs-number{grid-column:2}
+#jobs-page .jobs-row:not(.jobs-head)>div:nth-child(2){grid-column:3}
+#jobs-page .jobs-row:not(.jobs-head)>div:nth-child(3){grid-column:4}
+#jobs-page .jobs-row:not(.jobs-head)>.jobs-actions{display:contents!important}
+#jobs-page .jobs-row:not(.jobs-head) .jobs-accordion-toggle{grid-column:1;grid-row:1;justify-self:start}
+#jobs-page .jobs-row:not(.jobs-head) .jobs-create-request{grid-column:5;grid-row:1;justify-self:start}
+#jobs-page .jobs-row.expanded{background:#f8fafc}
+#jobs-page .jobs-row.expanded .jobs-accordion-toggle{background:#eef2f6;color:#0f3155}
+#jobs-page .jobs-row.expanded .jobs-accordion-toggle svg{transform:rotate(180deg)}
+#jobs-page .job-clients-accordion{display:none;padding:16px 18px 18px;background:#fff;border-bottom:1px solid #dfe5ec}
+#jobs-page .job-clients-accordion.open{display:block}
+#jobs-page .job-clients-inline-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;color:#101828}
+#jobs-page .job-clients-inline-head>div{display:flex;align-items:baseline;gap:10px}
+#jobs-page .job-clients-inline-head b{font-size:13px}
+#jobs-page .job-clients-inline-head span{font-size:12px;color:#667085}
+#jobs-page .job-clients-inline-table{overflow:hidden;border:1px solid #dfe5ec;border-radius:8px;background:#fff}
+#jobs-page .job-client-inline-row{width:100%;display:grid;grid-template-columns:1.3fr 1.4fr .7fr 44px;gap:16px;align-items:center;min-height:54px;padding:0 14px;border:0;border-bottom:1px solid #eaecf0;background:#fff;color:#344054;font:inherit;font-size:12px;text-align:left}
+#jobs-page .job-client-inline-row:last-child{border-bottom:0}
+#jobs-page .job-client-inline-row.inline-head{min-height:38px;background:#f5f8ff;color:#475467;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+#jobs-page button.job-client-inline-row{cursor:pointer}
+#jobs-page button.job-client-inline-row:hover{background:#f8fafc}
+#jobs-page .job-client-person{display:flex;align-items:center;gap:9px}
+#jobs-page .job-client-avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#eaf2ff;color:#153e69;font-size:11px;font-weight:700}
+#jobs-page .job-client-status{display:inline-flex;padding:3px 8px;border-radius:999px;background:#ecfdf3;color:#027a48;font-style:normal;font-size:11px;font-weight:600}
+#jobs-page .job-inline-arrow{display:grid;place-items:center;color:#667085}
+#jobs-page .job-inline-arrow svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:900px){#jobs-page .job-clients-accordion{min-width:800px}.job-clients-inline-table{overflow-x:auto}}
+</style>
 <div id="jobs-page" class="page-view">
   <div class="jobs-page-head">
     <div>
@@ -5108,7 +5140,7 @@ button[style*="#1E3B8A"]:hover{
   <div class="jobs-toolbar">
     <div class="jobs-search">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
-      <input id="jobsSearchInput" placeholder="Search by job # or address...">
+      <input id="jobsSearchInput" placeholder="Search by job #, address, or client...">
     </div>
     <select id="jobsStatusFilter">
       <option value="">All Statuses</option>
@@ -5131,8 +5163,15 @@ button[style*="#1E3B8A"]:hover{
       <div>123 Main Street, Austin, TX 78701</div>
       <div><span class="jobs-status active">Active</span></div>
       <div class="jobs-actions">
-        <button class="jobs-icon" title="View job" aria-label="View job"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button>
+        <button class="jobs-accordion-toggle" type="button" aria-expanded="false" aria-label="Show clients for JOB-102">›</button>
         <button class="jobs-create-request">Create Request</button>
+      </div>
+    </div>
+    <div class="job-clients-accordion" data-job="JOB-102" aria-hidden="true">
+      <div class="job-clients-inline-table">
+        <div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="Consumer Company" data-email="contact@consumercompany.com"><span class="job-client-person"><span class="job-client-avatar">C</span><b>Consumer Company</b></span><span>contact@consumercompany.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="James Lee" data-email="james@zenatech.com"><span class="job-client-person"><span class="job-client-avatar">J</span><b>James Lee</b></span><span>james@zenatech.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
       </div>
     </div>
 
@@ -5141,8 +5180,15 @@ button[style*="#1E3B8A"]:hover{
       <div>550 Congress Ave, Austin, TX 78701</div>
       <div><span class="jobs-status pending">Pending</span></div>
       <div class="jobs-actions">
-        <button class="jobs-icon" title="View job" aria-label="View job"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button>
+        <button class="jobs-accordion-toggle" type="button" aria-expanded="false" aria-label="Show clients for JOB-118">›</button>
         <button class="jobs-create-request">Create Request</button>
+      </div>
+    </div>
+    <div class="job-clients-accordion" data-job="JOB-118" aria-hidden="true">
+      <div class="job-clients-inline-table">
+        <div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="Consumer Company" data-email="contact@consumercompany.com"><span class="job-client-person"><span class="job-client-avatar">C</span><b>Consumer Company</b></span><span>contact@consumercompany.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="QA Tester 3" data-email="qa.tester3@example.com"><span class="job-client-person"><span class="job-client-avatar">Q</span><b>QA Tester 3</b></span><span>qa.tester3@example.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
       </div>
     </div>
 
@@ -5151,9 +5197,104 @@ button[style*="#1E3B8A"]:hover{
       <div>345 Apple St, Toronto, ON M5V 2T6</div>
       <div><span class="jobs-status completed">Completed</span></div>
       <div class="jobs-actions">
-        <button class="jobs-icon" title="View job" aria-label="View job"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button>
+        <button class="jobs-accordion-toggle" type="button" aria-expanded="false" aria-label="Show clients for JOB-126">›</button>
         <button class="jobs-create-request">Create Request</button>
       </div>
+    </div>
+    <div class="job-clients-accordion" data-job="JOB-126" aria-hidden="true">
+      <div class="job-clients-inline-table">
+        <div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="No Access Company" data-email="contact@noaccesscompany.com"><span class="job-client-person"><span class="job-client-avatar">N</span><b>No Access Company</b></span><span>contact@noaccesscompany.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
+      </div>
+    </div>
+
+    <div class="jobs-row" data-status="Active">
+      <div class="jobs-number">JOB-132</div>
+      <div>123 Main Street, Austin, TX 78701</div>
+      <div><span class="jobs-status active">Active</span></div>
+      <div class="jobs-actions"><button class="jobs-accordion-toggle" type="button" aria-expanded="false" aria-label="Show clients for JOB-132">›</button><button class="jobs-create-request">Create Request</button></div>
+    </div>
+    <div class="job-clients-accordion" data-job="JOB-132" aria-hidden="true">
+      <div class="job-clients-inline-table">
+        <div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="Consumer Company" data-email="contact@consumercompany.com"><span class="job-client-person"><span class="job-client-avatar">C</span><b>Consumer Company</b></span><span>contact@consumercompany.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
+      </div>
+    </div>
+
+    <div class="jobs-row" data-status="Active">
+      <div class="jobs-number">JOB-131</div>
+      <div>345 Apple St, Toronto, ON M5V 2T6</div>
+      <div><span class="jobs-status active">Active</span></div>
+      <div class="jobs-actions"><button class="jobs-accordion-toggle" type="button" aria-expanded="false" aria-label="Show clients for JOB-131">›</button><button class="jobs-create-request">Create Request</button></div>
+    </div>
+    <div class="job-clients-accordion" data-job="JOB-131" aria-hidden="true">
+      <div class="job-clients-inline-table">
+        <div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="QA Tester 3" data-email="qa.tester3@example.com"><span class="job-client-person"><span class="job-client-avatar">Q</span><b>QA Tester 3</b></span><span>qa.tester3@example.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
+      </div>
+    </div>
+
+    <div class="jobs-row" data-status="Pending">
+      <div class="jobs-number">JOB-129</div>
+      <div>1123 Apple, Toronto, ON</div>
+      <div><span class="jobs-status pending">Pending</span></div>
+      <div class="jobs-actions"><button class="jobs-accordion-toggle" type="button" aria-expanded="false" aria-label="Show clients for JOB-129">›</button><button class="jobs-create-request">Create Request</button></div>
+    </div>
+    <div class="job-clients-accordion" data-job="JOB-129" aria-hidden="true">
+      <div class="job-clients-inline-table">
+        <div class="job-client-inline-row inline-head head"><div>Client</div><div>Email</div><div>Status</div><div></div></div>
+        <button class="job-client-inline-row job-inline-client" type="button" data-client="Consumer Company" data-email="contact@consumercompany.com"><span class="job-client-person"><span class="job-client-avatar">C</span><b>Consumer Company</b></span><span>contact@consumercompany.com</span><span><em class="job-client-status">Active</em></span><span class="job-inline-arrow"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new-job-modal" id="newJobModal" role="dialog" aria-modal="true" aria-labelledby="newJobModalTitle">
+  <div class="new-job-dialog">
+    <div class="new-job-modal-head">
+      <div><h2 id="newJobModalTitle">New Job</h2><p>Create a job by entering its property location and optionally assigning a client.</p></div>
+      <button type="button" class="new-job-close" id="newJobClose" aria-label="Close">×</button>
+    </div>
+    <div class="new-job-modal-body">
+      <div class="new-job-field">
+        <label for="newJobNumber">Job Number</label>
+        <input id="newJobNumber" type="text" readonly aria-readonly="true">
+        <small>Generated automatically when the job is created.</small>
+      </div>
+
+      <div class="new-job-section">
+        <div class="new-job-section-head"><h3>Subject Property</h3><p>Enter an address or use coordinates.</p></div>
+        <div class="new-job-location-tabs" role="tablist" aria-label="Location entry method">
+          <button type="button" class="active" data-new-job-location="address" role="tab" aria-selected="true">Address</button>
+          <button type="button" data-new-job-location="coordinates" role="tab" aria-selected="false">Coordinates</button>
+        </div>
+        <div class="new-job-location-panel active" data-new-job-panel="address">
+          <div class="new-job-grid">
+            <div class="new-job-field full"><label for="newJobStreet">Street Address <span>*</span></label><input id="newJobStreet" placeholder="Enter street address"></div>
+            <div class="new-job-field"><label for="newJobCity">City <span>*</span></label><input id="newJobCity" placeholder="Enter city"></div>
+            <div class="new-job-field"><label for="newJobState">State / Province <span>*</span></label><input id="newJobState" placeholder="Enter state or province"></div>
+            <div class="new-job-field"><label for="newJobCountry">Country <span>*</span></label><select id="newJobCountry"><option value="">Select country...</option><option>United States</option><option>Canada</option></select></div>
+            <div class="new-job-field"><label for="newJobPostal">ZIP / Postal Code <span>*</span></label><input id="newJobPostal" placeholder="Enter ZIP or postal code"></div>
+          </div>
+        </div>
+        <div class="new-job-location-panel" data-new-job-panel="coordinates">
+          <div class="new-job-grid">
+            <div class="new-job-field"><label for="newJobLatitude">Latitude <span>*</span></label><input id="newJobLatitude" inputmode="decimal" placeholder="e.g. 43.6532"></div>
+            <div class="new-job-field"><label for="newJobLongitude">Longitude <span>*</span></label><input id="newJobLongitude" inputmode="decimal" placeholder="e.g. -79.3832"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="new-job-field">
+        <label for="newJobClient">Client <em>Optional</em></label>
+        <div class="new-job-client-row"><select id="newJobClient"><option value="">No client selected</option><option>Consumer Company</option><option>QA Tester 3</option><option>No Access Company</option><option>James Lee</option></select><button type="button" class="new-job-add-client" id="newJobAddClient">＋ Add New Client</button></div>
+        <small>A client can also be assigned later.</small>
+        <div class="new-job-client-notice" id="newJobClientNotice" role="status"></div>
+      </div>
+    </div>
+    <div class="new-job-modal-foot">
+      <button type="button" class="new-job-cancel" id="newJobCancel">Cancel</button>
+      <button type="button" class="new-job-create" id="newJobCreate">Create Job</button>
     </div>
   </div>
 </div>
@@ -5838,23 +5979,39 @@ button[style*="#1E3B8A"]:hover{
 <div id="view-client-page" class="page-view">
 <main class="client-view-page">
   <div class="client-view-head">
-    <div><button type="button" class="back-client-link" id="backFromViewClient">← Back to Clients</button><h1>Client Details</h1><p>Review company information, portal access, and contacts.</p></div>
+    <div><button type="button" class="back-client-link" id="backFromViewClient">← Back</button><h1>Client Details</h1><p>Review client information and associated jobs.</p></div>
     <button type="button" class="header-create" id="viewClientEdit"><svg class="client-view-edit-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg><span>Edit Client</span></button>
   </div>
   <section class="client-view-summary">
     <div class="client-view-avatar" id="viewClientAvatar">CC</div>
-    <div><span>Client / Company</span><h2 id="viewClientCompany">Consumer Company</h2><p id="viewClientPrimary">Primary contact: Consumer Client</p></div>
+    <div><h2 id="viewClientCompany">Consumer Company</h2><p id="viewClientPrimary">Primary contact: Consumer Client</p></div>
     <span class="client-view-active">Portal enabled</span>
   </section>
-  <section class="client-view-card">
-    <h3>Company Information</h3>
-    <div class="client-view-info-grid"><div><span>Company Name</span><b id="viewCompanyName">Consumer Company</b></div><div><span>Phone Number</span><b id="viewCompanyPhone">+1 123 123 1234</b></div><div><span>Email Address</span><b id="viewCompanyEmail">consumer.cl@mail.com</b></div><div><span>Address</span><b id="viewCompanyAddress">123 Main Street, Austin, Texas 78701</b></div></div>
-  </section>
-  <section class="client-view-card">
-    <div class="client-view-card-head"><div><h3>Contacts</h3><p>Contacts associated with this client.</p></div></div>
-    <div class="client-view-contact-table"><div class="client-view-contact-row head"><div>Name</div><div>Email</div><div>Phone</div></div><div id="viewClientContacts"></div></div>
-  </section>
-  <section class="client-view-card"><h3>Additional Information</h3><p class="client-view-notes">Long-term client. Primary contact handles operations.</p></section>
+  <div class="client-view-tabs" role="tablist" aria-label="Client information">
+    <button type="button" class="client-view-tab active" data-client-view-tab="details" role="tab" aria-selected="true">Client Details</button>
+    <button type="button" class="client-view-tab" data-client-view-tab="jobs" role="tab" aria-selected="false">Jobs <span id="viewClientJobCount">0</span></button>
+  </div>
+  <div class="client-view-panel active" id="clientViewDetailsPanel" role="tabpanel">
+    <section class="client-view-card">
+      <h3>Company Information</h3>
+      <div class="client-view-info-grid"><div><span>Company Name</span><b id="viewCompanyName">Consumer Company</b></div><div><span>Phone Number</span><b id="viewCompanyPhone">+1 123 123 1234</b></div><div><span>Email Address</span><b id="viewCompanyEmail">consumer.cl@mail.com</b></div><div><span>Address</span><b id="viewCompanyAddress">123 Main Street, Austin, Texas 78701</b></div></div>
+    </section>
+    <section class="client-view-card">
+      <div class="client-view-card-head"><div><h3>Contacts</h3><p>Contacts associated with this client.</p></div></div>
+      <div class="client-view-contact-table"><div class="client-view-contact-row head"><div>Name</div><div>Email</div><div>Phone</div></div><div id="viewClientContacts"></div></div>
+    </section>
+    <section class="client-view-card"><h3>Additional Information</h3><p class="client-view-notes">Long-term client. Primary contact handles operations.</p></section>
+  </div>
+  <div class="client-view-panel" id="clientViewJobsPanel" role="tabpanel">
+    <section class="client-view-card client-jobs-card">
+      <div class="client-view-card-head"><div><h3>Associated Jobs</h3><p>Select a job to open its details.</p></div></div>
+      <div class="client-jobs-table">
+        <div class="client-job-row head"><div>Job #</div><div>Subject Property</div><div>Status</div><div></div></div>
+        <div id="viewClientJobs"></div>
+      </div>
+      <div class="client-jobs-empty" id="viewClientJobsEmpty">No jobs are associated with this client.</div>
+    </section>
+  </div>
 </main>
 </div>
 
@@ -5939,7 +6096,7 @@ button[style*="#1E3B8A"]:hover{
       <p class="page-sub">Create a new client record and add the contacts associated with the company.</p>
     </div>
     <div class="add-client-head-actions">
-      <button class="header-create">
+      <button class="header-create" id="createClientFromPage">
       <svg class="create-client-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 5v14M5 12h14"/>
       </svg>
@@ -8021,9 +8178,13 @@ search?.addEventListener('input',filter);status?.addEventListener('change',filte
  function filterJobs(){
    const term=q.value.trim().toLowerCase(),s=status.value;
    document.querySelectorAll('#jobs-page .jobs-row:not(.jobs-head)').forEach(row=>{
-     const okText=!term||row.textContent.toLowerCase().includes(term);
+     const accordion=row.nextElementSibling?.classList.contains('job-clients-accordion')?row.nextElementSibling:null;
+     const searchable=(row.textContent+' '+(accordion?.textContent||'')).toLowerCase();
+     const okText=!term||searchable.includes(term);
      const okStatus=!s||row.dataset.status===s;
-     row.style.display=(okText&&okStatus)?'grid':'none';
+     const visible=okText&&okStatus;
+     row.style.display=visible?'grid':'none';
+     if(accordion)accordion.style.display=visible?'':'none';
    });
  }
  q.addEventListener('input',filterJobs);status.addEventListener('change',filterJobs);
@@ -10522,6 +10683,17 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
 .client-view-card h3{margin:0 0 17px;color:#172033;font-size:14px}.client-view-card-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:13px}.client-view-card-head h3{margin:0}.client-view-card-head p{margin:4px 0 0;color:#667085;font-size:12px}
 .client-view-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}.client-view-info-grid span{display:block;margin-bottom:5px;color:#667085;font-size:12px;font-weight:600}.client-view-info-grid b{color:#344054;font-size:13px}
 .client-view-contact-table{border:1px solid #eaecf0;border-radius:8px;overflow:hidden}.client-view-contact-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:14px;align-items:center;min-height:47px;padding:0 13px;border-top:1px solid #eaecf0;color:#344054;font-size:12px}.client-view-contact-row:first-child{border-top:0}.client-view-contact-row.head{min-height:36px;background:#f8fafc;color:#667085;font-size:10px;font-weight:700;text-transform:uppercase}.client-view-notes{margin:0;color:#475467;font-size:13px;line-height:1.6}
+.client-view-tabs{display:flex;gap:24px;margin:0 0 16px;border-bottom:1px solid #dfe5ec}
+.client-view-tab{display:inline-flex;align-items:center;gap:7px;padding:0 2px 11px;border:0;border-bottom:2px solid transparent;background:transparent;color:#667085;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.client-view-tab:hover{color:#153e69}.client-view-tab.active{border-bottom-color:#2563eb;color:#2563eb}
+.client-view-tab span{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#eef2f6;color:#667085;font-size:10px}
+.client-view-tab.active span{background:#eaf1ff;color:#2563eb}.client-view-panel{display:none}.client-view-panel.active{display:block}
+.client-view-head>.header-create.tab-hidden{display:none!important}
+.client-jobs-card{padding-bottom:22px}.client-jobs-table{overflow:hidden;border:1px solid #eaecf0;border-radius:8px;background:#fff}
+.client-job-row{width:100%;display:grid;grid-template-columns:130px minmax(280px,1fr) 140px 36px;gap:16px;align-items:center;min-height:52px;padding:0 14px;border:0;border-top:1px solid #eaecf0;background:#fff;color:#344054;font:inherit;font-size:12px;text-align:left}
+.client-job-row:first-child{border-top:0}.client-job-row.head{min-height:38px;background:#f8fafc;color:#667085;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+button.client-job-row{cursor:pointer}button.client-job-row:hover{background:#f8fafc}.client-job-number{color:#153e69;font-weight:750}.client-job-status{display:inline-flex;padding:4px 9px;border-radius:999px;background:#ecfdf3;color:#027a48;font-size:11px;font-weight:700}.client-job-status.pending{background:#fffaeb;color:#b54708}.client-job-status.completed{background:#f2f4f7;color:#475467}
+.client-job-arrow{display:grid;place-items:center;color:#667085}.client-job-arrow svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.client-jobs-empty{display:none;padding:28px;text-align:center;color:#667085;font-size:12px}
 .contact-delete-backdrop{display:none;position:fixed;inset:0;z-index:350000;align-items:center;justify-content:center;padding:24px;background:rgba(15,23,42,.45)}
 .contact-delete-backdrop.open{display:flex}.contact-delete-dialog{position:relative;width:min(500px,calc(100vw - 32px));padding:0;border-radius:18px;background:#fff;box-shadow:0 24px 60px rgba(15,23,42,.24);overflow:hidden}
 .contact-delete-close{position:absolute;top:21px;right:26px;width:28px;height:28px;border:0;background:transparent;color:#667085;font-size:25px;line-height:1;cursor:pointer}.contact-delete-close:hover{color:#344054}
@@ -10780,177 +10952,5 @@ body,
   function initials(name){return String(name||'').split(/\s+/).map(function(x){return x[0]||'';}).join('').slice(0,2).toUpperCase();}
   function escapeHtml(value){return String(value||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function contactValues(row){const children=row?row.children:[];return{name:children[0]?.textContent.trim()||'',email:children[1]?.textContent.trim()||'',phone:children[2]?.textContent.trim()||''};}
-  function openClient(row){
-    if(!row)return;activeClientRow=row;const cells=row.children;const company=row.querySelector('.company')?.textContent.trim()||'Client';const primary=cells[2]?.querySelector('b')?.textContent.trim()||'';const info=cells[3]?.querySelectorAll('div')||[];const email=info[0]?.textContent.trim()||'—';const phone=info[1]?.textContent.trim()||'—';const detail=row.nextElementSibling;
-    document.getElementById('viewClientAvatar').textContent=initials(company);document.getElementById('viewClientCompany').textContent=company;document.getElementById('viewCompanyName').textContent=company;document.getElementById('viewClientPrimary').textContent='Primary contact: '+(primary||'—');document.getElementById('viewCompanyEmail').textContent=email;document.getElementById('viewCompanyPhone').textContent=phone;document.getElementById('viewCompanyAddress').textContent=addresses[company]||'Address on file';
-    activeDetailRows=detail?[...detail.querySelectorAll('.contact-row:not(.head)')]:[];const contacts=document.getElementById('viewClientContacts');contacts.innerHTML=activeDetailRows.map(function(source,index){const value=contactValues(source);return '<div class="client-view-contact-row" data-contact-index="'+index+'"><b>'+escapeHtml(value.name)+'</b><span>'+escapeHtml(value.email)+'</span><span>'+escapeHtml(value.phone)+'</span></div>';}).join('');
-    show(viewPage);
-  }
-  function openContactEditor(row,source,company,provided){
-    if(!row||!modal)return;activeContactRow=row;activeSourceContactRow=source||row;const value=provided||contactValues(row);const applyValues=function(){const name=document.getElementById('crmContactName'),email=document.getElementById('crmContactEmail'),phone=document.getElementById('crmContactPhone');name.value=value.name||'';email.value=value.email||'';phone.value=value.phone||'';name.defaultValue=value.name||'';email.defaultValue=value.email||'';phone.defaultValue=value.phone||'';};applyValues();const subtitle=modal.querySelector('.contact-edit-head p');if(subtitle)subtitle.textContent='Update this contact under '+(company||'the selected client')+'.';modal.classList.add('open');setTimeout(applyValues,0);setTimeout(applyValues,120);
-  }
-  document.addEventListener('click',function(e){
-    const view=e.target.closest('#clients .client-actions .view-action');if(view){e.preventDefault();e.stopImmediatePropagation();openClient(view.closest('.client-row'));return;}
-    const crmEdit=e.target.closest('#clients .company-detail .contact-row:not(.head) .edit-action');if(crmEdit){e.preventDefault();e.stopImmediatePropagation();const row=crmEdit.closest('.contact-row');const company=row.closest('.company-detail')?.previousElementSibling?.querySelector('.company')?.textContent.trim();openContactEditor(row,row,company);return;}
-    const viewEdit=e.target.closest('#view-client-page .client-view-contact-edit');if(viewEdit){e.preventDefault();e.stopImmediatePropagation();const row=viewEdit.closest('.client-view-contact-row');const source=activeDetailRows[Number(row.dataset.contactIndex)]||row;openContactEditor(row,source,document.getElementById('viewClientCompany').textContent,{name:viewEdit.dataset.contactName,email:viewEdit.dataset.contactEmail,phone:viewEdit.dataset.contactPhone});const restore=function(){document.getElementById('crmContactName').value=viewEdit.dataset.contactName||'';document.getElementById('crmContactEmail').value=viewEdit.dataset.contactEmail||'';document.getElementById('crmContactPhone').value=viewEdit.dataset.contactPhone||'';};restore();setTimeout(restore,160);return;}
-  },true);
-  document.getElementById('saveCrmContactEdit')?.addEventListener('click',function(){const values=[document.getElementById('crmContactName').value,document.getElementById('crmContactEmail').value,document.getElementById('crmContactPhone').value];[activeContactRow,activeSourceContactRow].forEach(function(row){if(!row)return;const children=row.children;if(children[0])children[0].textContent=values[0];if(children[1])children[1].textContent=values[1];if(children[2])children[2].textContent=values[2];});modal?.classList.remove('open');},true);
-  function closeCrmContactModal(){modal?.classList.remove('open');}
-  document.getElementById('closeCrmContactEdit')?.addEventListener('click',closeCrmContactModal);document.getElementById('cancelCrmContactEdit')?.addEventListener('click',closeCrmContactModal);modal?.addEventListener('click',function(e){if(e.target===modal)closeCrmContactModal();});
-  document.getElementById('backFromViewClient')?.addEventListener('click',function(){show(crmPage);});
-  document.getElementById('viewClientEdit')?.addEventListener('click',function(){const edit=activeClientRow?.querySelector('.client-actions .edit-action');if(edit)edit.click();else show(editPage);});
-  document.getElementById('viewClientAddContact')?.addEventListener('click',function(){const add=document.getElementById('addContactModal');const subtitle=add?.querySelector('.contact-edit-head p');if(subtitle)subtitle.textContent='Add a new contact under '+document.getElementById('viewClientCompany').textContent+'.';add?.classList.add('open');});
-  if(location.hash==='#client-view')setTimeout(function(){openClient(document.querySelector('#clients .client-row:not(.header)'));},0);
-})();
-</script>
-<script id="delete-contact-and-row-accordion-flow">
-(function(){
-  const modal=document.getElementById('deleteContactModal');let pendingRow=null;
-  function companyFor(row){const detail=row?.closest('.company-detail');if(detail)return detail.previousElementSibling?.querySelector('.company')?.textContent.trim()||'Client';return 'Consumer Company';}
-  function openDelete(row){if(!row||!modal)return;pendingRow=row;const name=row.children[0]?.textContent.trim()||'this contact';document.getElementById('deleteContactMessage').innerHTML='Are you sure you want to delete <b>'+name.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</b>? This action cannot be undone.';modal.classList.add('open');}
-  function closeDelete(){modal?.classList.remove('open');pendingRow=null;}
-  document.addEventListener('click',function(e){
-    const remove=e.target.closest('#clients .company-detail .contact-row:not(.head) .delete-action,#edit-client-page .edit-contact-row:not(.head) .delete-action');if(remove){e.preventDefault();e.stopImmediatePropagation();openDelete(remove.closest('.contact-row,.edit-contact-row'));return;}
-    const row=e.target.closest('#clients .client-row:not(.header)');if(!row||e.target.closest('button,a,input,select,.client-actions'))return;const detail=row.nextElementSibling;if(!detail?.classList.contains('company-detail'))return;const opening=!detail.classList.contains('open');detail.classList.toggle('open',opening);row.classList.toggle('expanded',opening);
-  },true);
-  document.getElementById('cancelDeleteContact')?.addEventListener('click',closeDelete);document.getElementById('closeDeleteContact')?.addEventListener('click',closeDelete);modal?.addEventListener('click',function(e){if(e.target===modal)closeDelete();});
-  document.getElementById('confirmDeleteContact')?.addEventListener('click',function(){if(pendingRow)pendingRow.remove();closeDelete();});
-  if(location.hash==='#delete-contact-preview')setTimeout(function(){document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');p.style.setProperty('display','none','important');});const crm=document.getElementById('crm-page');crm.classList.add('active');crm.style.setProperty('display','block','important');const row=document.querySelector('#clients .client-row:not(.header)'),detail=row?.nextElementSibling;if(row&&detail?.classList.contains('company-detail')){row.classList.add('expanded');detail.classList.add('open');openDelete(detail.querySelector('.contact-row:not(.head)'));}window.scrollTo(0,0);},0);
-})();
-</script>
-
-<script id="survey-request-menu-icons">
-(function(){
-  const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>';
-  const duplicateIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>';
-  document.querySelectorAll('#survey-requests-page .survey-more-item').forEach(function(item){
-    if(item.querySelector('svg'))return;
-    item.insertAdjacentHTML('afterbegin',item.textContent.trim().toLowerCase().includes('edit')?editIcon:duplicateIcon);
-  });
-})();
-</script>
-
-<script id="approved-quote-download-actions">
-(function(){
-  const downloadSvg='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m8 11 4 4 4-4"/><path d="M5 19h14"/></svg>';
-  const table=document.querySelector('#quotes-page .crm-table');
-  function downloadMenuItem(menu){
-    return [...(menu?.querySelectorAll('.quote-more-item')||[])].find(function(item){return item.textContent.trim().toLowerCase()==='download';});
-  }
-  function syncRow(row){
-    const actions=row.querySelector('.quote-actions'),wrap=actions?.querySelector('.quote-more-wrap'),menu=wrap?.querySelector('.quote-more-menu');
-    if(!actions||!wrap||!menu)return;
-    const approved=!!row.querySelector('.quote-status-admin') || /approved\s*\(admin\)/i.test(row.children[3]?.textContent||'');
-    let outside=actions.querySelector(':scope > .quote-download'),inside=downloadMenuItem(menu);
-    if(approved){
-      if(!outside){outside=document.createElement('button');outside.type='button';outside.className='icon-action quote-download';outside.title='Download';outside.setAttribute('aria-label','Download quote');outside.innerHTML=downloadSvg;actions.insertBefore(outside,wrap);}
-      inside?.remove();
-    }else{
-      outside?.remove();
-      if(!inside){inside=document.createElement('button');inside.type='button';inside.className='quote-more-item';inside.innerHTML=downloadSvg+'<span>Download</span>';menu.insertBefore(inside,menu.querySelector('.delete'));}
-    }
-  }
-  function sync(){table?.querySelectorAll('.quotes-row:not(.header)').forEach(syncRow);}
-  sync();
-  if(table)new MutationObserver(sync).observe(table,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class']});
-})();
-</script>
-
-<script id="shared-back-navigation">
-(function(){
-  const backSelector=[
-    '#jobClientsBack','#jobDetailsBack','#surveyViewBack','#backToSurveyRequests',
-    '#vqBack','#backToQuotes','#edit-backToQuotes','#backFromViewClient',
-    '#backFromEditClient','#backToClients','[data-client-back]',
-    '#cancelSurveyRequest','#cancelCreateQuote','#edit-cancelCreateQuote',
-    '#cancelEditClient','#cancelAddClientPage'
-  ].join(',');
-  const jobPages=new Set([
-    'jobs-page','job-clients-page','job-details-page','survey-requests-page',
-    'new-survey-request-page','view-survey-request-page','quotes-page',
-    'view-quote-page','create-quote-page','edit-quote-page'
-  ]);
-  const crmPages=new Set(['crm-page','view-client-page','edit-client-page','add-client-page']);
-  const activePage=function(){return [...document.querySelectorAll('.page-view')].find(function(page){return page.classList.contains('active');});};
-  const history=[];
-  let suppressTarget='';
-
-  function setTopNavigation(pageId){
-    document.querySelectorAll('.side .nav,.side .page-link,.side .subnav a').forEach(function(item){
-      item.classList.remove('active','selected','subnav-active','job-page-selected');
-      item.removeAttribute('aria-current');
-    });
-    const name=crmPages.has(pageId)?'crm':pageId==='dashboard-page'?'dashboard':'';
-    const link=name?document.querySelector('.page-link[data-page="'+name+'"]'):null;
-    if(link){link.classList.add('active','selected');link.setAttribute('aria-current','page');}
-  }
-
-  function showPage(pageId){
-    if(jobPages.has(pageId)&&typeof window.jobManagementRoute==='function'){
-      window.jobManagementRoute(pageId);
-      return;
-    }
-    document.querySelectorAll('.page-view').forEach(function(page){
-      page.classList.remove('active');
-      page.style.setProperty('display','none','important');
-    });
-    const target=document.getElementById(pageId);
-    if(target){target.classList.add('active');target.style.setProperty('display','block','important');}
-    setTopNavigation(pageId);
-    window.scrollTo(0,0);
-  }
-
-  function recordActive(){
-    const id=activePage()?.id;
-    if(!id)return;
-    if(suppressTarget===id){suppressTarget='';return;}
-    if(history[history.length-1]!==id)history.push(id);
-  }
-
-  document.querySelectorAll(backSelector).forEach(function(button){button.textContent='← Back';button.setAttribute('aria-label','Go back to previous page');});
-  recordActive();
-  new MutationObserver(recordActive).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','style']});
-
-  document.addEventListener('pointerdown',function(event){
-    const trigger=event.target.closest('#survey-requests-page .create-from-request,#view-survey-request-page #surveyViewPrimary');
-    if(!trigger)return;
-    window.__quoteBackOrigin=document.getElementById('view-survey-request-page')?.classList.contains('active')
-      ?'view-survey-request-page':'survey-requests-page';
-  },true);
-
-  document.addEventListener('click',function(event){
-    const quoteTrigger=event.target.closest('#survey-requests-page .create-from-request,#view-survey-request-page #surveyViewPrimary');
-    if(quoteTrigger){
-      const source=activePage()?.id;
-      if(source==='survey-requests-page'||source==='view-survey-request-page')window.__quoteBackOrigin=source;
-    }
-    const back=event.target.closest(backSelector);
-    if(!back)return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    const current=activePage()?.id;
-    if(current&&history[history.length-1]!==current)history.push(current);
-    const quoteOrigin=back.matches('#backToQuotes,#cancelCreateQuote')&&current==='create-quote-page'
-      &&(window.__quoteBackOrigin==='survey-requests-page'||window.__quoteBackOrigin==='view-survey-request-page')
-      ?window.__quoteBackOrigin:'';
-    let target;
-    if(quoteOrigin){
-      const originIndex=history.lastIndexOf(quoteOrigin);
-      if(originIndex>=0)history.splice(originIndex+1);
-      else history.push(quoteOrigin);
-      target=quoteOrigin;
-      window.__quoteBackOrigin='';
-    }else{
-      if(history.length>1)history.pop();
-      target=history[history.length-1]||'dashboard-page';
-    }
-    suppressTarget=target;
-    window.__surveyRequestFromJob=false;
-    window.__surveyRequestJobNo='';
-    document.getElementById('new-survey-request-page')?.classList.remove('from-job');
-    showPage(target);
-  },true);
-})();
-</script>
-
-</body></html>
+  function setClientViewTab(name){
+    document.querySelectorAll('#view-client-page .client-view-tab').forEach(function(tab){const active=tab.dataset.clientViewTab===name;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));});
