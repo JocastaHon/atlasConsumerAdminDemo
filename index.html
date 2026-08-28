@@ -5253,7 +5253,7 @@ button[style*="#1E3B8A"]:hover{
   <main class="create-quote-page new-job-page">
     <div class="create-quote-head">
       <div><button type="button" class="back-client-link" id="newJobBack">← Back</button><h1 id="newJobPageTitle">Add New Job</h1><p>Create a job by entering its property location and optionally assigning a client.</p></div>
-      <div class="create-quote-actions"><button type="button" class="header-create" id="newJobCreate">＋ Create Job</button></div>
+      <div class="create-quote-actions"><button type="button" class="header-cancel create-page-cancel" data-cancel-target="newJobBack">Cancel</button><button type="button" class="header-create" id="newJobCreate">＋ Create Job</button></div>
     </div>
     <div class="new-job-page-body">
       <section class="quote-section new-job-number-section">
@@ -5383,6 +5383,7 @@ button[style*="#1E3B8A"]:hover{
       <p>Create a survey request by identifying the subject property or job, then selecting the client and entering request details.</p>
     </div>
     <div class="create-quote-actions">
+      <button type="button" class="header-cancel create-page-cancel" data-cancel-target="backToSurveyRequests">Cancel</button>
       <button class="header-create">＋ Add Survey Request</button>
     </div>
   </div>
@@ -5546,7 +5547,7 @@ button[style*="#1E3B8A"]:hover{
 <main class="create-quote-page">
   <div class="create-quote-head">
     <div><button class="back-client-link" id="backToQuotes">← Back to Quotes</button><h1>Create Quote</h1><p>Build the quote by selecting services, provider requirements, delivery options, equipment, and pricing.</p></div>
-    <div class="create-quote-actions"><button class="header-create">＋ Create Quote</button></div>
+    <div class="create-quote-actions"><button type="button" class="header-cancel create-page-cancel" data-cancel-target="backToQuotes">Cancel</button><button class="header-create">＋ Create Quote</button></div>
   </div>
   
   <div class="quote-stepper">
@@ -6098,6 +6099,7 @@ button[style*="#1E3B8A"]:hover{
       <p class="page-sub">Create a new client record and add the contacts associated with the company.</p>
     </div>
     <div class="add-client-head-actions">
+      <button type="button" class="header-cancel create-page-cancel" data-cancel-target="backToClients">Cancel</button>
       <button class="header-create" id="createClientFromPage">
       <svg class="create-client-icon" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 5v14M5 12h14"/>
@@ -11405,6 +11407,19 @@ body,
 })();
 </script>
 
+<script id="create-page-cancel-navigation">
+(function(){
+  document.addEventListener('click',function(event){
+    const cancel=event.target.closest('.create-page-cancel');
+    if(!cancel)return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    const back=document.getElementById(cancel.dataset.cancelTarget||'');
+    if(back)back.click();
+  },true);
+})();
+</script>
+
 <script id="shared-back-navigation">
 (function(){
   const backSelector=[
@@ -11733,18 +11748,3 @@ button:disabled{border-color:transparent!important;outline:none!important}
     tooltip.style.top=(rect.top-7)+'px';
   }
   function hide(button){
-    if(button&&active!==button)return;
-    active=null;
-    tooltip.classList.remove('show');
-  }
-  document.querySelectorAll(selector).forEach(prepare);
-  document.addEventListener('pointerover',function(event){const button=event.target.closest(selector);if(button)show(button);});
-  document.addEventListener('pointerout',function(event){const button=event.target.closest(selector);if(button&&!button.contains(event.relatedTarget))hide(button);});
-  document.addEventListener('focusin',function(event){const button=event.target.closest(selector);if(button)show(button);});
-  document.addEventListener('focusout',function(event){const button=event.target.closest(selector);if(button)hide(button);});
-  window.addEventListener('scroll',function(){if(active)show(active);},true);
-  window.addEventListener('resize',function(){if(active)show(active);});
-})();
-</script>
-
-</body></html>
