@@ -4891,6 +4891,7 @@ button[style*="#1E3B8A"]:hover{
   <a href="#" class="job-jobs-link" data-page="jobs">Jobs</a>
   <a href="#" class="job-survey-requests-link" data-route="survey-requests">Survey Requests</a>
   <a href="#" class="job-quotes-link" data-route="quotes">Quotes</a>
+  <a href="#" class="job-work-orders-link" data-route="work-orders">Work Orders</a>
 </div>
 
 <div class="nav accordion" onclick="toggleNav(this)">⌁ &nbsp; Operations <span>›</span></div>
@@ -5321,6 +5322,31 @@ button[style*="#1E3B8A"]:hover{
 <div class="survey-row"><div><b>JOB-131</b></div><div>Aug 20, 2026</div><div>QA Tester 3</div><div>345 Apple St, Toronto, ON</div><div><span class="survey-status quoted">Quoted</span></div><div class="survey-actions"><button class="icon-action view-action" title="View" aria-label="View request"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="survey-text-quote view-created-quote">View Quote</button><div class="survey-more-wrap"><button class="icon-action survey-more-trigger" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="survey-more-menu"><button class="survey-more-item">Edit Request</button><button class="survey-more-item">Duplicate</button></div></div></div></div>
 <div class="survey-row"><div><b>JOB-129</b></div><div>Aug 18, 2026</div><div>Consumer Company</div><div>1123 Apple, Toronto, ON</div><div><span class="survey-status approved">Approved</span></div><div class="survey-actions"><button class="icon-action view-action" title="View" aria-label="View request"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="survey-text-quote view-created-quote">View Quote</button><div class="survey-more-wrap"><button class="icon-action survey-more-trigger" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="survey-more-menu"><button class="survey-more-item">Edit Request</button><button class="survey-more-item">Duplicate</button></div></div></div></div>
 </div></main></div>
+
+<div id="work-orders-page" class="page-view">
+<main class="survey-requests-page work-orders-page">
+  <div class="survey-requests-head"><div><h1>Work Orders</h1><p>Review work orders, track deadlines, and create tasks for field teams.</p></div></div>
+  <div class="survey-filter-box work-orders-filters">
+    <div class="survey-filter-row">
+      <input class="survey-search" id="workOrderSearch" type="search" placeholder="Search job #, address, or client..." aria-label="Search work orders">
+      <select class="survey-filter" id="workOrderStatus" aria-label="Filter by status"><option>All Statuses</option><option>Unassigned</option><option>Assigned</option><option>In Progress</option><option>Completed</option></select>
+      <select class="survey-filter" id="workOrderType" aria-label="Filter by type"><option>All Types</option><option>Boundary Survey</option><option>Topographic Survey</option><option>Other</option></select>
+      <label class="work-orders-rush"><input type="checkbox" id="workOrderRush"> <span>Rush only</span></label>
+    </div>
+  </div>
+  <div class="work-orders-table-scroll">
+    <div class="survey-table work-orders-table">
+      <div class="work-order-row head"><div>Job #</div><div>Type</div><div>Address</div><div>Client</div><div>Map</div><div>Est. Hrs</div><div>Deadline</div><div>Status</div><div>Actions</div></div>
+      <div class="work-order-row" data-status="Unassigned" data-type="Boundary Survey" data-rush="true"><div><b>26-24165</b><span class="work-order-rush-badge">Rush</span></div><div><span class="work-order-type">Boundary Survey</span></div><div>300 Loveland Circle</div><div>Benjamin Nunnally</div><div><span class="work-order-map ready" title="Mapped" aria-label="Mapped"></span></div><div>4.5h</div><div><span class="work-order-deadline overdue">Sep 24 (overdue)</span></div><div><span class="work-order-status">Unassigned</span></div><div class="work-order-actions"><button type="button" class="icon-action view-action work-order-view" title="View" aria-label="View work order"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="work-order-create-tasks">Create Tasks</button><div class="work-order-more-wrap"><button type="button" class="icon-action work-order-more" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="work-order-more-menu"><button>View Job</button><button>Edit Work Order</button><button>Assign Team</button></div></div></div></div>
+      <div class="work-order-row" data-status="Unassigned" data-type="Other" data-rush="false"><div><b>25-23341</b></div><div><span class="work-order-type">Other</span></div><div>800 W Garden Street</div><div>Chris Logue William Van Horn</div><div><span class="work-order-map ready" title="Mapped" aria-label="Mapped"></span></div><div>2.0h</div><div><span class="work-order-deadline overdue">Aug 18 (overdue)</span></div><div><span class="work-order-status">Unassigned</span></div><div class="work-order-actions"><button type="button" class="icon-action view-action work-order-view" title="View" aria-label="View work order"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="work-order-create-tasks">Create Tasks</button><div class="work-order-more-wrap"><button type="button" class="icon-action work-order-more" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="work-order-more-menu"><button>View Job</button><button>Edit Work Order</button><button>Assign Team</button></div></div></div></div>
+      <div class="work-order-row" data-status="Unassigned" data-type="Other" data-rush="false"><div><b>26-23754</b></div><div><span class="work-order-type">Other</span></div><div>4457 Mobile Highway</div><div>Alex Dietch</div><div><span class="work-order-map partial" title="Map pending" aria-label="Map pending">≈</span></div><div>2.0h</div><div><span class="work-order-deadline overdue">Aug 31 (overdue)</span></div><div><span class="work-order-status">Unassigned</span></div><div class="work-order-actions"><button type="button" class="icon-action view-action work-order-view" title="View" aria-label="View work order"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="work-order-create-tasks">Create Tasks</button><div class="work-order-more-wrap"><button type="button" class="icon-action work-order-more" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="work-order-more-menu"><button>View Job</button><button>Edit Work Order</button><button>Assign Team</button></div></div></div></div>
+      <div class="work-order-row" data-status="Unassigned" data-type="Boundary Survey" data-rush="false"><div><b>26-24125</b></div><div><span class="work-order-type">Boundary Survey</span></div><div>5200 Blk Hamilton Ln</div><div>Chase Cole</div><div><span class="work-order-map ready" title="Mapped" aria-label="Mapped"></span></div><div>13.0h</div><div><span class="work-order-deadline overdue">Sep 17 (overdue)</span></div><div><span class="work-order-status">Unassigned</span></div><div class="work-order-actions"><button type="button" class="icon-action view-action work-order-view" title="View" aria-label="View work order"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="work-order-create-tasks">Create Tasks</button><div class="work-order-more-wrap"><button type="button" class="icon-action work-order-more" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="work-order-more-menu"><button>View Job</button><button>Edit Work Order</button><button>Assign Team</button></div></div></div></div>
+      <div class="work-order-row" data-status="Unassigned" data-type="Topographic Survey" data-rush="false"><div><b>26-24153</b></div><div><span class="work-order-type">Topographic Survey</span></div><div>6000 Block Frank Reeder Road</div><div>Larry Kelly</div><div><span class="work-order-map ready" title="Mapped" aria-label="Mapped"></span></div><div>2.0h</div><div><span class="work-order-deadline overdue">Sep 22 (overdue)</span></div><div><span class="work-order-status">Unassigned</span></div><div class="work-order-actions"><button type="button" class="icon-action view-action work-order-view" title="View" aria-label="View work order"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg></button><button type="button" class="work-order-create-tasks">Create Tasks</button><div class="work-order-more-wrap"><button type="button" class="icon-action work-order-more" title="More actions" aria-label="More actions"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1.3" fill="currentColor" stroke="none"/></svg></button><div class="work-order-more-menu"><button>View Job</button><button>Edit Work Order</button><button>Assign Team</button></div></div></div></div>
+    </div>
+  </div>
+  <div class="work-orders-empty" id="workOrdersEmpty">No work orders match the selected filters.</div>
+</main>
+</div>
 <div id="view-survey-request-page" class="page-view">
 <main class="survey-view-page">
   <div class="survey-view-head">
@@ -11767,6 +11793,78 @@ button:disabled{border-color:transparent!important;outline:none!important}
   document.addEventListener('focusout',function(event){const button=event.target.closest(selector);if(button)hide(button);});
   window.addEventListener('scroll',function(){if(active)show(active);},true);
   window.addEventListener('resize',function(){if(active)show(active);});
+})();
+</script>
+
+<style id="work-orders-styles">
+.work-orders-page{min-width:0}
+.work-orders-filters .survey-filter-row{align-items:center;flex-wrap:nowrap}
+.work-orders-rush{height:42px;display:flex;align-items:center;gap:7px;padding:0 4px;color:#b42318;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer}.work-orders-rush input{width:15px;height:15px;margin:0;accent-color:#153e69}
+.work-orders-table-scroll{width:100%;overflow-x:auto;border-radius:10px}.work-orders-table{min-width:1280px;overflow:visible}
+.work-order-row{display:grid;grid-template-columns:.82fr 1.08fr 1.5fr 1.58fr .55fr .65fr 1.12fr .9fr 1.55fr;gap:14px;align-items:center;min-height:58px;padding:0 15px;border-bottom:1px solid #edf0f4;color:#344054;font-family:Inter,Arial,sans-serif;font-size:12px}.work-order-row:last-child{border-bottom:0}.work-order-row.head{min-height:42px;background:#F5F8FF;color:#153E69;font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.02em}.work-order-row>div{min-width:0}.work-order-row>div:first-child{display:flex;align-items:center;gap:7px}.work-order-job-link{color:#315DF4;font-weight:600;text-decoration:none;cursor:pointer}.work-order-job-link:hover{text-decoration:underline;text-underline-offset:2px}
+.work-order-rush-badge,.work-order-type,.work-order-status{display:inline-block;width:max-content;padding:4px 9px;border:0;border-radius:12px;font-size:12px;font-weight:600;line-height:1.2;white-space:nowrap}.work-order-rush-badge{background:#FEE2E2;color:#B91C1C}.work-order-type{background:#DBEAFE;color:#1D4ED8}.work-order-row[data-type="Other"] .work-order-type{background:#F2F4F7;color:#344054}.work-order-row[data-type="Topographic Survey"] .work-order-type{background:#F3E8FF;color:#7E22CE}.work-order-map.ready{width:6px;height:6px;display:inline-block;border-radius:50%;background:#039855}.work-order-map.partial{color:#9a5b00;font-weight:800}.work-order-deadline.overdue{color:#d92d20}.work-order-status{background:#F2F4F7;color:#344054}
+.work-order-actions{display:flex;align-items:center;justify-content:flex-start;gap:7px;white-space:nowrap}.work-order-create-tasks{height:30px;padding:0 10px;border:1px solid #153e69;border-radius:6px;background:#153e69;color:#fff;font-size:11px;font-weight:700;cursor:pointer}.work-order-create-tasks:hover{border-color:#2d5b84;background:#2d5b84}.work-order-more-wrap{position:relative}.work-order-more-menu{position:absolute;right:0;top:35px;z-index:2200;width:158px;display:none;padding:5px;border:1px solid #dfe5ec;border-radius:7px;background:#fff;box-shadow:0 10px 24px rgba(15,23,42,.15)}.work-order-row:nth-last-child(-n+2) .work-order-more-menu{top:auto;bottom:35px}.work-order-more-wrap.open .work-order-more-menu{display:block}.work-order-more-menu button{width:100%;height:34px;padding:0 9px;border:0;border-radius:5px;background:transparent;color:#344054;font-size:11px;text-align:left;cursor:pointer}.work-order-more-menu button:hover{background:#f4f7fb}.work-order-row:has(.work-order-more-wrap.open){position:relative;z-index:2100}
+.work-orders-empty{display:none;padding:28px;text-align:center;color:#667085;font-size:12px}
+@media(max-width:1050px){.work-orders-filters .survey-filter-row{flex-wrap:wrap}.work-orders-filters .survey-search{flex-basis:100%}}
+</style>
+
+<script id="work-orders-behavior">
+(function(){
+  const link=document.querySelector('.job-work-orders-link');
+  const page=document.getElementById('work-orders-page');
+  const jobsPage=document.getElementById('jobs-page');
+  if(!link||!page)return;
+  const matchingJobs=['JOB-132','JOB-131','JOB-129','JOB-118','JOB-102'];
+  page.querySelectorAll('.work-order-row:not(.head)').forEach(function(row,index){
+    const cell=row.children[0];
+    const oldNumber=cell?.querySelector('b');
+    if(!cell||!oldNumber||!matchingJobs[index])return;
+    const jobLink=document.createElement('a');
+    jobLink.href='#';jobLink.className='work-order-job-link';jobLink.dataset.job=matchingJobs[index];jobLink.textContent=matchingJobs[index];
+    oldNumber.replaceWith(jobLink);
+  });
+  function openWorkOrders(event){
+    event?.preventDefault();event?.stopImmediatePropagation();
+    document.querySelectorAll('.page-view').forEach(function(view){view.classList.remove('active');view.style.setProperty('display','none','important');});
+    page.classList.add('active');page.style.setProperty('display','block','important');
+    document.querySelectorAll('.side .nav,.side .subnav a').forEach(function(item){item.classList.remove('active','selected','subnav-active','job-page-selected');item.removeAttribute('aria-current');});
+    link.classList.add('job-page-selected');link.setAttribute('aria-current','page');
+    const sub=link.closest('.subnav');sub?.classList.add('open');sub?.previousElementSibling?.classList.add('open');
+    window.scrollTo(0,0);
+  }
+  link.addEventListener('click',openWorkOrders,true);
+
+  const search=document.getElementById('workOrderSearch');
+  const status=document.getElementById('workOrderStatus');
+  const type=document.getElementById('workOrderType');
+  const rush=document.getElementById('workOrderRush');
+  const empty=document.getElementById('workOrdersEmpty');
+  function filterRows(){
+    const query=(search?.value||'').trim().toLowerCase();const selectedStatus=status?.value||'All Statuses';const selectedType=type?.value||'All Types';let visible=0;
+    page.querySelectorAll('.work-order-row:not(.head)').forEach(function(row){const matchesQuery=!query||row.textContent.toLowerCase().includes(query);const matchesStatus=selectedStatus==='All Statuses'||row.dataset.status===selectedStatus;const matchesType=selectedType==='All Types'||row.dataset.type===selectedType;const matchesRush=!rush?.checked||row.dataset.rush==='true';const show=matchesQuery&&matchesStatus&&matchesType&&matchesRush;row.style.display=show?'grid':'none';if(show)visible++;});
+    if(empty)empty.style.display=visible?'none':'block';
+  }
+  search?.addEventListener('input',filterRows);status?.addEventListener('change',filterRows);type?.addEventListener('change',filterRows);rush?.addEventListener('change',filterRows);
+  page.addEventListener('click',function(event){
+    const jobLink=event.target.closest('.work-order-job-link');
+    if(jobLink){
+      event.preventDefault();event.stopPropagation();
+      const jobNo=jobLink.dataset.job||jobLink.textContent.trim();
+      const accordion=[...jobsPage?.querySelectorAll('.job-clients-accordion')||[]].find(function(item){return item.dataset.job===jobNo;});
+      jobsPage?.querySelectorAll('.job-clients-accordion.open').forEach(function(item){item.classList.remove('open');item.setAttribute('aria-hidden','true');item.previousElementSibling?.classList.remove('expanded');item.previousElementSibling?.querySelector('.jobs-accordion-toggle')?.setAttribute('aria-expanded','false');});
+      const row=accordion?.previousElementSibling;
+      if(accordion){accordion.classList.add('open');accordion.setAttribute('aria-hidden','false');row?.classList.add('expanded');row?.querySelector('.jobs-accordion-toggle')?.setAttribute('aria-expanded','true');}
+      if(typeof window.jobManagementRoute==='function')window.jobManagementRoute('jobs-page');
+      else if(jobsPage){document.querySelectorAll('.page-view').forEach(function(view){view.classList.remove('active');view.style.setProperty('display','none','important');});jobsPage.classList.add('active');jobsPage.style.setProperty('display','block','important');}
+      setTimeout(function(){row?.scrollIntoView({behavior:'smooth',block:'center'});},80);
+      return;
+    }
+    const more=event.target.closest('.work-order-more');
+    if(more){event.preventDefault();event.stopPropagation();const wrap=more.closest('.work-order-more-wrap');page.querySelectorAll('.work-order-more-wrap.open').forEach(function(item){if(item!==wrap)item.classList.remove('open');});wrap?.classList.toggle('open');return;}
+    const view=event.target.closest('.work-order-view');
+    if(view){event.preventDefault();if(typeof window.openAppPage==='function')window.openAppPage('job-details-page');return;}
+  });
+  document.addEventListener('click',function(){page.querySelectorAll('.work-order-more-wrap.open').forEach(function(item){item.classList.remove('open');});});
 })();
 </script>
 
