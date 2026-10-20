@@ -4890,7 +4890,7 @@ button[style*="#1E3B8A"]:hover{
 <div class="nav accordion" onclick="toggleNav(this)"><span class="material-icons nav-icon" aria-hidden="true">work_outline</span>Job Management <span class="material-icons nav-chevron" aria-hidden="true">chevron_right</span></div>
 <div class="subnav">
   <a href="#" class="job-jobs-link" data-page="jobs">Jobs</a>
-  <a href="#" class="job-survey-requests-link" data-route="survey-requests">Survey Requests</a>
+  <a href="#" class="job-survey-requests-link" data-route="survey-requests">Quote Requests</a>
   <a href="#" class="job-quotes-link" data-route="quotes">Quotes</a>
   <a href="#" class="job-work-orders-link" data-route="work-orders">Ongoing Jobs</a>
 </div>
@@ -5323,7 +5323,7 @@ button[style*="#1E3B8A"]:hover{
 </div>
 
 <div id="survey-requests-page" class="page-view"><main class="survey-requests-page">
-<div class="survey-requests-head"><div><h1>Survey Requests</h1><p>Review and manage survey requests submitted for clients and jobs.</p></div><button class="survey-request-primary" id="newSurveyRequest">＋ New Survey Request</button></div>
+<div class="survey-requests-head"><div><h1>Quote Requests</h1><p>Review and manage survey requests submitted for clients and jobs.</p></div><button class="survey-request-primary" id="newSurveyRequest">＋ New Quote Request</button></div>
 <div class="survey-filter-box"><div class="survey-filter-row"><input class="survey-search" id="surveyRequestSearch" placeholder="Search quote #, job #, client, or address..."><select class="survey-filter" id="surveyRequestStatus"><option>All Statuses</option><option>Pending</option><option>Quoted</option><option>Approved</option></select><select class="survey-filter"><option>All Clients</option><option>Consumer Company</option><option>QA Tester 3</option><option>No Access Company</option></select></div></div>
 <div class="survey-table">
 <div class="survey-row head"><div>Quote #</div><div>Job #</div><div>Date</div><div>Client</div><div>Address</div><div>Status</div><div>Actions</div></div>
@@ -5461,12 +5461,12 @@ button[style*="#1E3B8A"]:hover{
   <div class="create-quote-head">
     <div>
       <button class="back-client-link" id="backToSurveyRequests"><span class="material-icons back-material-icon" aria-hidden="true">arrow_back</span><span>Back</span></button>
-      <h1>Add New Survey Request</h1>
-      <p>Create a survey request by identifying the subject property or job, then selecting the client and entering request details.</p>
+      <h1>Add New Quote Request</h1>
+      <p>Create a quote request by identifying the subject property or job, then selecting the client and entering request details.</p>
     </div>
     <div class="create-quote-actions">
       <button type="button" class="header-cancel create-page-cancel" data-cancel-target="backToSurveyRequests">Cancel</button>
-      <button class="header-create">＋ Add Survey Request</button>
+      <button class="header-create">＋ Add Quote Request</button>
     </div>
   </div>
 
@@ -8301,10 +8301,10 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     const aliases={
       'jobs':'Jobs',
       'jobs-page':'Jobs',
-      'survey-requests':'Survey Requests',
-      'survey-requests-page':'Survey Requests',
-      'new-survey-request':'Survey Requests',
-      'new-survey-request-page':'Survey Requests',
+      'survey-requests':'Quote Requests',
+      'survey-requests-page':'Quote Requests',
+      'new-survey-request':'Quote Requests',
+      'new-survey-request-page':'Quote Requests',
       'quotes':'Quotes',
       'quotes-page':'Quotes',
       'create-quote':'Quotes',
@@ -8331,7 +8331,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     if(!el)return;
     const text=el.textContent.trim();
     if(text==='Jobs') syncJobNav('jobs');
-    else if(text==='Survey Requests'||text.includes('New Survey Request')||text.includes('Back to Survey Requests')) syncJobNav('survey-requests');
+    else if(text==='Quote Requests'||text==='Survey Requests'||text.includes('New Quote Request')||text.includes('New Survey Request')||text.includes('Back to Quote Requests')||text.includes('Back to Survey Requests')) syncJobNav('survey-requests');
     else if(text==='Quotes'||text.includes('Create Quote')||text.includes('View Quote')||text.includes('Create Estimate')||text.includes('View Estimate')) syncJobNav('quotes');
   });
 
@@ -8352,8 +8352,8 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
 (function(){
   const map={
     'jobs-page':'Jobs',
-    'survey-requests-page':'Survey Requests',
-    'new-survey-request-page':'Survey Requests',
+    'survey-requests-page':'Quote Requests',
+    'new-survey-request-page':'Quote Requests',
     'quotes-page':'Quotes',
     'create-quote-page':'Quotes'
   };
@@ -8843,7 +8843,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
 (function(){
   const routeMap={
     'Jobs':'jobs-page',
-    'Survey Requests':'survey-requests-page',
+    'Quote Requests':'survey-requests-page',
     'Quotes':'quotes-page'
   };
 
@@ -8866,7 +8866,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
 
     let selected='';
     if(id==='jobs-page'||id==='job-clients-page'||id==='job-details-page'||id==='new-job-page') selected='Jobs';
-    if(id==='survey-requests-page'||id==='new-survey-request-page') selected='Survey Requests';
+    if(id==='survey-requests-page'||id==='new-survey-request-page') selected='Quote Requests';
     if(id==='quotes-page'||id==='create-quote-page') selected='Quotes';
 
     if(selected){
@@ -8904,7 +8904,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     if(!el)return;
     const text=el.textContent.trim();
 
-    if(text.includes('New Survey Request') && !el.closest('#new-survey-request-page')){
+    if((text.includes('New Quote Request')||text.includes('New Survey Request')) && !el.closest('#new-survey-request-page')){
       e.preventDefault();
       e.stopImmediatePropagation();
       window.__surveyRequestFromJob=false;
@@ -8937,6 +8937,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
         }
       }
       route('new-survey-request-page');
+      return;
     }
 
     // Survey Request back/cancel returns to the page that launched the form.
@@ -8950,7 +8951,7 @@ document.querySelectorAll('.jobs-create-request').forEach(btn=>{
     }
 
     // Quote entry points.
-    if((text==='Create Quote' || text.includes('New Quote')) && !el.closest('#create-quote-page') && !el.closest('.create-from-request,#jobDetailsCreateQuote')){
+    if((text==='Create Quote' || text.includes('New Quote')) && !el.closest('#newSurveyRequest') && !el.closest('#create-quote-page') && !el.closest('.create-from-request,#jobDetailsCreateQuote')){
       e.preventDefault();
       e.stopImmediatePropagation();
       route('create-quote-page');
@@ -10734,7 +10735,7 @@ document.getElementById('noteSearch').oninput=e=>{const q=e.target.value.toLower
     show(view);
   }
   document.addEventListener('click',function(e){
-    if(e.target.closest('#newSurveyRequest')){const form=document.getElementById('new-survey-request-page');const title=form?.querySelector('.create-quote-head h1'),save=form?.querySelector('.create-quote-head .header-create');if(title)title.textContent='Add New Survey Request';if(save)save.textContent='＋ Add Survey Request';}
+    if(e.target.closest('#newSurveyRequest')){const form=document.getElementById('new-survey-request-page');const title=form?.querySelector('.create-quote-head h1'),subtitle=form?.querySelector('.create-quote-head h1 + p'),save=form?.querySelector('.create-quote-head .header-create');if(title)title.textContent='Add New Quote Request';if(subtitle)subtitle.textContent='Create a quote request by identifying the subject property or job, then selecting the client and entering request details.';if(save)save.textContent='＋ Add Quote Request';}
     const button=e.target.closest('#survey-requests-page .view-action');if(!button)return;e.preventDefault();e.stopImmediatePropagation();openRow(button.closest('.survey-row'));
   },true);
   document.getElementById('surveyViewBack')?.addEventListener('click',function(){show(document.getElementById('survey-requests-page'));},true);
@@ -11573,7 +11574,7 @@ body,
   let suppressTarget='';
   const pageNames={
     'dashboard-page':'Dashboard','jobs-page':'Jobs','job-clients-page':'Job Overview','job-details-page':'Job Details','new-job-page':'Jobs',
-    'survey-requests-page':'Survey Requests','new-survey-request-page':'Survey Requests','view-survey-request-page':'Survey Request Details',
+    'survey-requests-page':'Quote Requests','new-survey-request-page':'Quote Requests','view-survey-request-page':'Survey Request Details',
     'quotes-page':'Quotes','view-quote-page':'Estimate Details','create-quote-page':'Quotes','edit-quote-page':'Quotes',
     'crm-page':'Clients','view-client-page':'Client Details','edit-client-page':'Client Details','add-client-page':'Clients',
     'work-orders-page':'Ongoing Jobs','view-ongoing-job-page':'Ongoing Job Details'
